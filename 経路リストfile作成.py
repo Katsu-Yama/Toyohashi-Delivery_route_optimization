@@ -16,7 +16,7 @@ node_data= "Node/kyoten_geocode_Revised.json"
 # ノード情報をJSONファイルから読み込み
 df=pd.read_json(root_dir+node_data)
 
-# 対象地域（小田原市）の道路ネットワークグラフを取得（車両用）
+# 対象地域の道路ネットワークグラフを取得（車両用）
 place = {'city' : 'Odawara',
          'state' : 'Kanagawa',
          'country' : 'Japan'}
