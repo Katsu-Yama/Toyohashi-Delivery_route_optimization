@@ -29,6 +29,11 @@ import copy  # オブジェクトのディープコピー用
 
 ##############################
 
+# FixStars 有効なトークンを設定
+api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"  
+
+##############################
+
 # 対象地域のマップ表示中心座標
 mapcenter = [34.7691972,　137.3914667]   #豊橋市役所
 
@@ -290,17 +295,19 @@ def change_num_of_people():
          np_df.loc[np_df.Node==node, 'num'] = num
     st.session_state['num_of_people']=np_df
 
+
 ########################################
 # アニーリング周り(以前の関数群)
 ########################################
 
+# FixstarsClient を初期化し、認証トークンを設定して返す
 def start_amplify():
-  client = FixstarsClient()
-  client.token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"  # 有効なトークンを設定
+    client = FixstarsClient()
+    client.token = api_token    #上記の有効トークン
+    
+    return client
 
-  return client
-
-
+# one-hot から得たルートシーケンスを重複除去し、戻り値とする(同一ノード連続出現をまとめて削除)
 def process_sequence(sequence: dict[int, list]) -> dict[int, list]:
     new_seq = dict()
     for k, v in sequence.items():
@@ -309,6 +316,7 @@ def process_sequence(sequence: dict[int, list]) -> dict[int, list]:
         new_seq[k] = v[mask]
     return new_seq
 
+# one-hot 配列をルートシーケンス辞書に変換する関数: solution.shape == (steps, nodes, vehicles)
 def onehot2sequence(solution: np.ndarray) -> dict[int, list]:
     nvehicle = solution.shape[2]
     sequence = dict()
@@ -316,6 +324,7 @@ def onehot2sequence(solution: np.ndarray) -> dict[int, list]:
         sequence[k] = np.where(solution[:, :, k])[1]
     return sequence
 
+# 単一車両で訪問可能な最多拠点数を計算する関数(demand を昇順で累積し、容量内に収まる数を返す)
 def upperbound_of_tour(capacity: int, demand: np.ndarray) -> int:
     max_tourable_bases = 0
     for w in sorted(demand):
@@ -326,6 +335,7 @@ def upperbound_of_tour(capacity: int, demand: np.ndarray) -> int:
             return max_tourable_bases
     return max_tourable_bases
 
+# ノード間距離行列を作成する関数(未登録ルートはNaNを設定し、最後に未登録組み合わせがある場合は例外を投げる)
 def set_distance_matrix(path_df, node_list):
     distance_matrix = np.zeros((len(node_list), len(node_list)))
     unreachable = []
@@ -348,19 +358,28 @@ def set_distance_matrix(path_df, node_list):
         )
     return distance_matrix
 
+# アニーリング用のパラメータをまとめて計算して返す関数
+# (distance_matrix: 距離行列, n_transport_base: 配送拠点数, n_shellter: 避難所数, nbase: 全ノード数, nvehicle: 車両台数, capacity: 車両容量, demand: 各ノードの需要（被災者数）)
 def set_parameter( path_df, op_data,np_df):
-    annering_param = {}
     
-    re_node_list = op_data['配送拠点'] + op_data['避難所']
-    distance_matrix = set_distance_matrix(path_df, re_node_list)
+    annering_param = {}
 
+    # ノードリスト（配送拠点＋避難所）
+    re_node_list = op_data['配送拠点'] + op_data['避難所']
+
+    # 距離行列作成
+    distance_matrix = set_distance_matrix(path_df, re_node_list)
+    
+    # 基本パラメータ設定
     n_transport_base = len(op_data['配送拠点'])
     n_shellter = len(op_data['避難所'])
     nbase = distance_matrix.shape[0]
     nvehicle = n_transport_base
 
+    # 車両あたり平均訪問拠点数
     avg_nbase_per_vehicle = (nbase - n_transport_base) // nvehicle
 
+    # 需要配列初期化 
     demand = np.zeros(nbase)
     shel_data=op_data['避難所']
     for i in range(nbase - n_transport_base - 1):
@@ -369,11 +388,13 @@ def set_parameter( path_df, op_data,np_df):
         #demand[i + n_transport_base] = np_df[np_df['Node']==node]['num']
         demand[i + n_transport_base] = np_df.loc[np_df.Node==node, 'num'].iloc[0]
 
+    # 容量計算
     demand_max = np.max(demand)
     demand_mean = np.mean(demand[nvehicle:])
 
     capacity = int(demand_max) + int(demand_mean) * (avg_nbase_per_vehicle)
 
+    # パラメータ辞書に格納
     annering_param['distance_matrix'] = distance_matrix
     annering_param['n_transport_base'] = n_transport_base
     annering_param['n_shellter'] = n_shellter
@@ -385,11 +406,16 @@ def set_parameter( path_df, op_data,np_df):
 
     return annering_param
 
+# Amplify モデルを構築して返す関数(・バイナリ変数 x, 目的関数 objective, 制約条件 constraintsを定義し、Model オブジェクトと変数 x を返す)
 def set_annering_model(ap):
     gen = VariableGenerator()
+    # 車両ごとの最大訪問拠点数を算出
     max_tourable_bases = upperbound_of_tour(ap['capacity'], ap['demand'][ap['nvehicle']:])
+    
+    # 変数 x の定義: (ステップ数, ノード数, 車両数)
     x = gen.array("Binary", shape=(max_tourable_bases + 2, ap['nbase'], ap['nvehicle']))
-
+    
+    # 出発点・終点および他車両ノード訪問禁止の初期設定
     for k in range(ap['nvehicle']):
         if k > 0:
             x[:, 0:k, k] = 0
@@ -397,12 +423,16 @@ def set_annering_model(ap):
             x[:, k+1:ap['nvehicle'], k] = 0
         x[0, k, k] = 1
         x[-1, k, k] = 1
+        # 他車両のノード訪問禁止
         x[0, ap['nvehicle']:, k] = 0
         x[-1, ap['nvehicle']:, k] = 0
 
+    # 1回の配送は1拠点ずつ
     one_trip_constraints = one_hot(x[1:-1, :, :], axis=1)
+    # 各避難所は1度だけ訪問
     one_visit_constraints = one_hot(x[1:-1, ap['nvehicle']:, :], axis=(0, 2))
 
+    # 容量制約: 走行中の積載重量合計 <= 容量
     weight_sums = einsum("j,ijk->ik", ap['demand'], x[1:-1, :, :])
     capacity_constraints: ConstraintList = less_equal(
         weight_sums,
@@ -411,8 +441,10 @@ def set_annering_model(ap):
         penalty_formulation="Relaxation",
     )
 
+    # 目的関数: 距離行列を用いた総移動距離最小化
     objective: Poly = einsum("pq,ipk,iqk->", ap['distance_matrix'], x[:-1], x[1:])
 
+    # 制約の合成とスケーリング
     constraints = one_trip_constraints + one_visit_constraints + capacity_constraints
     constraints *= np.max(ap['distance_matrix'])
 
@@ -420,12 +452,14 @@ def set_annering_model(ap):
 
     return model, x
 
+# Amplify を用いてアニーリング実行し、結果を返す関数(num_cal: 解探索試行回数, timeout: タイムアウト（ms）)
 def sovle_annering(model, client, num_cal, timeout):
     client.parameters.timeout = timedelta(milliseconds=timeout)
     result = solve(model, client, num_solves=num_cal)
     if len(result) == 0:
-        raise RuntimeError("Constraints not satisfied.")
+        raise RuntimeError("アニーリングに失敗しました。制約を見直してください。")
     return result
+
 
 ########################################
 # ここからStreamlit本体
