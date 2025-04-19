@@ -509,8 +509,10 @@ if 'num_transport' not in st.session_state:
 if 'annering_param' not in st.session_state:
     st.session_state["annering_param"] = None
 
+# 描画リセットフラグ
 st.session_state['redraw'] = False
 
+# セッションから値を取得
 best_tour=st.session_state['best_tour']
 selected_base=st.session_state['points']
 np_df= st.session_state["num_of_people"]
@@ -519,19 +521,21 @@ np_df= st.session_state["num_of_people"]
 all_shelter= df[df['Node'].str.startswith('K')]
 all_transport= df[df['Node'].str.startswith('M')]
 
-# サイドバー選択UI
+# 右カラムで拠点選択UIを表示
 with anr_st:
   st.markdown('<div class="Qsubheader">拠点リスト</div>',unsafe_allow_html=True)
   spinner_container = st.container()
   st.write("開設されている避難所と配送拠点を選んでください")
+  # Pill UI で複数選択
   selected_shelter=anr_st.pills("避難所",all_shelter['施設名'].tolist(),selection_mode="multi")
   selected_transport=anr_st.pills("配送拠点",all_transport['施設名'].tolist(),selection_mode="multi")
   st.write("選択完了後、下のボタンを押してください。")
 
-# ノードIDリスト
+# 選択されたノードIDリスト
 selected_shelter_node=all_shelter[all_shelter['施設名'].isin(selected_shelter)]['Node'].tolist()
 selected_transport_node=all_transport[all_transport['施設名'].isin(selected_transport)]['Node'].tolist()
 
+# 選択数が変化したらツアーリセット
 num_shelter=len(selected_shelter_node)
 num_transport=len(selected_transport_node)
 
@@ -541,14 +545,17 @@ if num_shelter != st.session_state['num_shelter'] or num_transport != st.session
     best_tour = None
     st.session_state["best_tour"] = best_tour
 
+# 選択拠点情報をセッションに保存
 selected_base={'配送拠点':selected_transport_node,'避難所':selected_shelter_node}
-
 st.session_state['points']=selected_base
+
+# ルート探索用ノード順リスト
 re_node_list = selected_base['配送拠点'] +selected_base['避難所']
 
-# 地図描画
+# 地図描画エリア
 with gis_st:
   if best_tour !=None:
+    # 計算結果表示モード
     st.markdown('<div class="Qsubheader">配送最適化-計算結果</div>',unsafe_allow_html=True)
     selected_base=st.session_state['points']
     plot_select_marker(base_map_copy, df,selected_base)
@@ -581,11 +588,11 @@ with gis_st:
   else:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
 
-
+　# レイヤーコントロールと地図表示
   folium.LayerControl().add_to(base_map_copy)
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
-# 最適化実行ボタン
+# 最適経路探索開始ボタン押下時
 if anr_st.button("最適経路探索開始"):
     with spinner_container:
         with st.spinner("処理中です。しばらくお待ちください..."):
@@ -593,7 +600,7 @@ if anr_st.button("最適経路探索開始"):
             if not selected_shelter_node or not selected_transport_node:
                 anr_st.warning("避難所・配送拠点をそれぞれを1つ以上選択してください")
             else:
-            # ここでアニーリング等を実行
+            # ここで、パラメータ設定→モデル構築→アニーリング実行
             #annering_param = set_parameter(np_df, path_df, op_data)
                 annering_param=set_parameter(path_df,selected_base,np_df)
                 model, x = set_annering_model(annering_param)
@@ -615,11 +622,12 @@ if anr_st.button("最適経路探索開始"):
 
                     if not any(k in best_tour[k][1:-1] for k in range(annering_param['nvehicle'])):
                        break
-
+                
+                # メートル→キロメートル変換、小数第1位
                 best_obj = best_obj / 1000.0  # メートル→キロメートル
                 best_obj = round(best_obj, 1)  # 小数点第1位まで
 
-        # 結果をセッションステートに保存
+                # 結果をセッションステートに保存し再描画
                 st.session_state["best_tour"] = best_tour
                 st.session_state["best_cost"] = best_obj
                 st.session_state["annering_param"]=annering_param
