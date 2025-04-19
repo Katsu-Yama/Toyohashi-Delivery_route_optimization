@@ -9,16 +9,15 @@ import os
 import json
 
 # データファイルのパス設定
-dir_name = "/Q-quest2024/teamC/"
-root_dir = "/content/drive/MyDrive/" + dir_name
-node_data= "Node/kyoten_geocode_Revised.json"
+root_dir = "./"
+node_data= "path_list_toyohashi.json"
 
 # ノード情報をJSONファイルから読み込み
 df=pd.read_json(root_dir+node_data)
 
 # 対象地域の道路ネットワークグラフを取得（車両用）
-place = {'city' : 'Odawara',
-         'state' : 'Kanagawa',
+place = {'city' : 'Toyohashi',
+         'state' : 'Aichi',
          'country' : 'Japan'}
 G = ox.graph_from_place(place, network_type='drive')
 
