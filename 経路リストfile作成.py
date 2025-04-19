@@ -10,7 +10,7 @@ import json
 
 # データファイルのパス設定
 root_dir = "./"
-node_data= "path_list_toyohashi.json"
+node_data= "kyoten_geocode.json"
 
 # ノード情報をJSONファイルから読み込み
 df=pd.read_json(root_dir+node_data)
@@ -82,7 +82,7 @@ file_path=root_dir+"distance_matrix.csv"
 np.savetxt(file_path,distance_matrix,delimiter=",")
 
 # 経路情報リストをJSON形式で保存
-file_path=root_dir+"path_list.json"
+file_path=root_dir+"path_list_toyohashi.json"
 with open(file_path, 'w') as f:
     json.dump(path_list, f)
 
