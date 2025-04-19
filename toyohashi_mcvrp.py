@@ -27,6 +27,11 @@ from amplify import Model
 from amplify import solve
 import copy  # オブジェクトのディープコピー用
 
+##############################
+
+# 対象地域のマップ表示中心座標
+mapcenter = [34.7691972,　137.3914667]   #豊橋市役所
+
 #########################################
 # Streamlit アプリのページ設定
 #########################################
@@ -73,6 +78,8 @@ st.markdown(
 """,unsafe_allow_html=True
 )
 
+####################################
+
 # 地図経路の色指定リスト（ルート表示時に順番に循環）
 _colors = [
     "green",
@@ -91,12 +98,12 @@ _colors = [
     "darkpurple",
 ]
 
-# ファイル読み込み用ディレクトリ設定
-root_dir="./"
-
 #######################
 #　ファイルパス指定
 #######################
+
+# ファイル読み込み用ディレクトリ設定
+root_dir="./"
 
 node_data = "kyoten_geocode_Revised.json"       # 拠点データ(JSON)
 numOfPeople = "number_of_people.csv"            # 被災者数データ(CSV)
@@ -104,10 +111,13 @@ geojson_path = root_dir + "N03-20240101_14.geojson"  # 小田原市GeoJSON
 route_file = "path_list_v20250317.json"         # 経路リストデータ(JSON)
 Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景地図タイルURL
 
+#################################
+
 # セッションステートに被災者数データを読み込む（初回のみ）
 if "num_of_people" not in st.session_state:
     np_df = pd.read_csv(root_dir + numOfPeople, header=None, names=['Node', 'num'])
     st.session_state["num_of_people"] = np_df
+
 # 避難所データ用の初期化
 if 'shelter_df' not in st.session_state:
     st.session_state['shelter_df'] = None
@@ -125,7 +135,7 @@ FORMAT_HTML = '<div>【{type}】<br/><b>{name}</b><br/>住所:{address}<div>'
 # ここからFolium を使う表示系関数
 ########################################
 
-def disp_odawaraMap(odawara_district,center=[35.2646012,139.15223698], zoom_start=GIS_ZOOM):
+def disp_odawaraMap(odawara_district,center=mapcenter, zoom_start=GIS_ZOOM):
     m = folium.Map(
         location=center,
         tiles=Map_Tile,
