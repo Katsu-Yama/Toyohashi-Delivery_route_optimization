@@ -13,7 +13,8 @@ root_dir = "./"
 node_data= "kyoten_geocode.json"
 
 # ノード情報をJSONファイルから読み込み
-df=pd.read_json(root_dir+node_data)
+# df=pd.read_json(root_dir+node_data)
+node_list = pd.read_json(root_dir+node_data)
 
 # 対象地域の道路ネットワークグラフを取得（車両用）
 place = {'city' : 'Toyohashi',
@@ -26,8 +27,10 @@ print(G)
 ox.plot_graph(G)
 """
 
+"""
 # ノードリスト作成：「M」または「K」を含むノードのみを抽出
 node_list=pd.concat([df[df['Node'].str.contains('M') ],df[df['Node'].str.contains('K')]], ignore_index=True)
+"""
 
 # 距離行列の初期化。ノード数×ノード数のゼロ行列を作成
 distance_matrix=np.zeros((len(node_list),len(node_list)))
