@@ -1,24 +1,21 @@
 ################################################################
 
-import folium
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import geopandas as gpd
-import os
-import json
-import osmnx as ox
-import networkx as nx
-from geopy.distance import geodesic
-from sklearn import *
+iimport folium  # 地図描画用ライブラリ
+import pandas as pd  # データフレーム操作用ライブラリ
+import numpy as np  # 数値計算用ライブラリ
+import matplotlib.pyplot as plt  # プロット用ライブラリ（未使用部分あり）
+import geopandas as gpd  # 地理データ操作用ライブラリ
+import os  # OS関連操作用ライブラリ
+import json  # JSON操作用ライブラリ
+import osmnx as ox  # OpenStreetMapデータ取得・操作ライブラリ
+import networkx as nx  # グラフ計算用ライブラリ
+from geopy.distance import geodesic  # 距離計算用ライブラリ
+from datetime import timedelta  # 時間差操作用ライブラリ
 
-from geopy.distance import geodesic
-from datetime import timedelta
+import streamlit as st  # Streamlitアプリ用ライブラリ
+from streamlit_folium import st_folium  # Streamlit上でFolium地図を表示するための関数
 
-import streamlit as st
-from streamlit_folium import st_folium
-
-#Fixstars Amplify 関係のインポート
+# Fixstars Amplify 関係のインポート（量子アニーリング用）
 import amplify
 from amplify.client import FixstarsClient
 from amplify import VariableGenerator
@@ -27,15 +24,18 @@ from amplify import einsum
 from amplify import less_equal, ConstraintList
 from amplify import Poly
 from amplify import Model
-from amplify import FixstarsClient
 from amplify import solve
-import copy
+import copy  # オブジェクトのディープコピー用
 
+#########################################
+# Streamlit アプリのページ設定
+#########################################
 st.set_page_config(
-    page_title="小田原市 周辺",
-    page_icon="🗾",
-    layout="wide"
+    page_title="豊橋市　救援物資配送_最適ルート",  # ブラウザタブタイトル
+    page_icon="🗾",  # タブアイコン
+    layout="wide"  # ページレイアウトを横幅いっぱいに設定
 )
+
 #########################################
 # streamlit custom css
 #########################################
@@ -73,7 +73,7 @@ st.markdown(
 """,unsafe_allow_html=True
 )
 
-# 色指定
+# 地図経路の色指定リスト（ルート表示時に順番に循環）
 _colors = [
     "green",
     "orange",
@@ -302,22 +302,6 @@ def upperbound_of_tour(capacity: int, demand: np.ndarray) -> int:
             return max_tourable_bases
     return max_tourable_bases
 
-"""
-def set_distance_matrix(path_df, node_list):
-    distance_matrix = np.zeros((len(node_list), len(node_list)))
-    for i, st_node in enumerate(node_list):
-        for j, ed_node in enumerate(node_list):
-            row = path_df[(path_df['start_node'] == st_node) & (path_df['goal_node'] == ed_node)]
-            if row.empty:
-                if st_node == ed_node:
-                    dis = 0
-                else:
-                    dis = np.inf
-            else:
-                dis = row['distance'].values[0]
-            distance_matrix[i, j] = dis
-    return distance_matrix
-"""
 def set_distance_matrix(path_df, node_list):
     distance_matrix = np.zeros((len(node_list), len(node_list)))
     unreachable = []
