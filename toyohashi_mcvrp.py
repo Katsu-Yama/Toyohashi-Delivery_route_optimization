@@ -142,6 +142,8 @@ def disp_odawaraMap(odawara_district,center=mapcenter, zoom_start=GIS_ZOOM):
         attr='電子国土基本図',
         zoom_start=zoom_start
     )
+
+    # 市境界をジオJSONで点線描画
     folium.GeoJson(
         odawara_district,
         style_function=lambda x: {
@@ -152,9 +154,10 @@ def disp_odawaraMap(odawara_district,center=mapcenter, zoom_start=GIS_ZOOM):
     ).add_to(m)
     return m
 
-
+# 全拠点にマーカーを追加して表示する関数
 def plot_marker(m, data):
     for _, row in data.iterrows():
+        # Node先頭文字判定による色設定
         if row['Node'][0] == 'K':
             icol = 'pink'
         elif row['Node'][0] == 'M':
@@ -163,12 +166,14 @@ def plot_marker(m, data):
             icol = 'red'
         else:
             icol = 'green'
+        # マーカー追加
         folium.Marker(
             location=[row['緯度'], row['経度']],
             popup=f"{row['施設名']} / {row['住所']} ({row['拠点種類']})",
             icon=folium.Icon(color=icol)
         ).add_to(m)
 
+# 選択された避難所・配送拠点をレイヤーに分けてマーカー表示(op_data: {'配送拠点': [...], '避難所': [...]}の辞書)
 def plot_select_marker(m, data,op_data):
     actve_layer = folium.FeatureGroup(name="開設")
     actve_layer.add_to(m)
@@ -176,6 +181,7 @@ def plot_select_marker(m, data,op_data):
     nonactive_layer.add_to(m)
 
     for _, row in data.iterrows():
+         # 避難所ノード判定
         if row['Node'][0] == 'K':
           if row['Node'] in (op_data['避難所']):
             icol = 'green'
@@ -183,7 +189,8 @@ def plot_select_marker(m, data,op_data):
           else:
             icol = 'lightgray'
             layer=nonactive_layer
-
+        
+        # 配送拠点ノード判定
         elif row['Node'][0] == 'M':
           if row['Node'] in (op_data['配送拠点']):
             icol = 'purple'
@@ -194,8 +201,10 @@ def plot_select_marker(m, data,op_data):
         else:
           continue
 
+        # ポップアップHTML生成
         html =FORMAT_HTML.format( name=row['施設名'],address=row['住所'],type=row['拠点種類'])
         popup = folium.Popup(html, max_width=300)
+        # マーカーを該当レイヤーに追加
         folium.Marker(
             location=[row['緯度'], row['経度']],
             #popup=f"{row['施設名']} / {row['住所']} ({row['拠点種類']})",
@@ -203,10 +212,13 @@ def plot_select_marker(m, data,op_data):
             icon=folium.Icon(color=icol)
         ).add_to(layer)
 
+# 太線で最適ルートを描画する関数(best_routes: {車両ID: [ノードインデックス,...], ...})
 def draw_route(m, G, best_routes, path_df, node_name_list):
     for k, vehicle_route in best_routes.items():
         layer = folium.FeatureGroup(name=f"ルート {k}")
         layer.add_to(m)
+
+        # 各区間をルートジオメトリとして描画
         for iv in range(len(vehicle_route) - 1):
             start_node = node_name_list[vehicle_route[iv]]
             goal_node = node_name_list[vehicle_route[iv + 1]]
@@ -221,6 +233,7 @@ def draw_route(m, G, best_routes, path_df, node_name_list):
     #folium.LayerControl().add_to(m)
     return m
 
+# 細線で最適ルートを描画する関数(draw_route と同様、線の太さのみ変更)
 def draw_route_v2(m, G, best_routes, path_df, node_name_list):
     for k, vehicle_route in best_routes.items():
         layer = folium.FeatureGroup(name=f"ルート {k}")
@@ -239,41 +252,43 @@ def draw_route_v2(m, G, best_routes, path_df, node_name_list):
     #folium.LayerControl().add_to(m)
     return 
 
+# Node ID から施設名を検索して返す補助関数(data: 拠点データ DataFrame, node: 対象ノードID)
 def get_point_name(data,node):
    for i,row in data.iterrows():
       if row['Node']== node:
          return row['施設名']
-      
+
+# 地図表示に必要な各種データを読み込んで dict で返す関数(拠点データ, GeoJSON境界, 経路リスト. OSM道路ネットワーク, ベースマップ)
 def set_map_data():
 
-  map_data={}
-  map_data['node_d']=pd.read_json(root_dir + node_data)    #拠点データ
+    map_data={}
+    map_data['node_d']=pd.read_json(root_dir + node_data)    #拠点データ
 
-  administrative_district = gpd.read_file(geojson_path)
-  map_data['gep_map']=administrative_district[administrative_district["N03_004"]=="小田原市"]
+    administrative_district = gpd.read_file(geojson_path)
+    map_data['gep_map']=administrative_district[administrative_district["N03_004"]=="小田原市"]  # 小田原市フィルタリング
 
-  map_data['path_d'] = pd.read_json(root_dir + route_file)   #道路データ
+    map_data['path_d'] = pd.read_json(root_dir + route_file)    # 経路リスト
 
-  # グラフ
-  place = {'city' : 'Odawara',
-         'state' : 'Kanagawa',
-         'country' : 'Japan'}
-  map_data['G'] = ox.graph_from_place(place, network_type='drive')
+    # OSMnx で道路グラフ取得
+    place = {'city' : 'Odawara', 'state' : 'Kanagawa', 'country' : 'Japan'}
+    map_data['G'] = ox.graph_from_place(place, network_type='drive')
 
-  map_data['base_map']=disp_odawaraMap(map_data['gep_map'] )
+    # ベース地図作成
+    map_data['base_map']=disp_odawaraMap(map_data['gep_map'] )
 
-  return(map_data)
+    return(map_data)
 
+# 避難所ごとの被災者数（num）をセッションステートから反映更新する関数
 def change_num_of_people():
-   np_df=st.session_state['num_of_people']
-   shelter_df=st.session_state['shelter_df']
+    np_df=st.session_state['num_of_people']
+    shelter_df=st.session_state['shelter_df']
    
-   for index, row in shelter_df.iterrows():
-        node=row['Node']
-        num=row['num']
-        #np_df.num[np_df.Node==node]=num
-        np_df.loc[np_df.Node==node, 'num'] = num
-   st.session_state['num_of_people']=np_df
+    for index, row in shelter_df.iterrows():
+         node=row['Node']
+         num=row['num']
+         #np_df.num[np_df.Node==node]=num
+         np_df.loc[np_df.Node==node, 'num'] = num
+    st.session_state['num_of_people']=np_df
 
 ########################################
 # アニーリング周り(以前の関数群)
