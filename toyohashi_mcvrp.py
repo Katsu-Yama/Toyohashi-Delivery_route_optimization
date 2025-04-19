@@ -112,7 +112,7 @@ root_dir="./"
 
 node_data = "kyoten_geocode_Revised.json"       # 拠点データ(JSON)
 numOfPeople = "number_of_people.csv"            # 被災者数データ(CSV)
-geojson_path = root_dir + "N03-20240101_14.geojson"  # 小田原市GeoJSON
+geojson_path = root_dir + "N03-20240101_23_GML\N03-20240101_23.geojson"  # 豊橋市_行政区域GeoJSON
 route_file = "path_list_v20250317.json"         # 経路リストデータ(JSON)
 Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景地図タイルURL
 
