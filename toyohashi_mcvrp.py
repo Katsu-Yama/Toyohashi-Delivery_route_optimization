@@ -91,39 +91,38 @@ _colors = [
     "darkpurple",
 ]
 
-# ディレクトリ設定
-#dir_name = "/Q-quest2024/teamC/"
-#dir_name = "/Q-Quest/"
-#root_dir = "/content/drive/MyDrive/" + dir_name
+# ファイル読み込み用ディレクトリ設定
 root_dir="./"
 
-
 #######################
-#　ファイル指定
+#　ファイルパス指定
 #######################
 
-node_data =  "kyoten_geocode_Revised.json"
-numOfPeople = "number_of_people.csv"
-#geojson_path = root_dir + "GIS/N03-20240101_14_GML/N03-20240101_14.geojson"
-geojson_path = root_dir + "N03-20240101_14.geojson"
-route_file = "path_list_v20250317.json"
-#route_file = "path_list_v2.json"
-Map_Tile='https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
+node_data = "kyoten_geocode_Revised.json"       # 拠点データ(JSON)
+numOfPeople = "number_of_people.csv"            # 被災者数データ(CSV)
+geojson_path = root_dir + "N03-20240101_14.geojson"  # 小田原市GeoJSON
+route_file = "path_list_v20250317.json"         # 経路リストデータ(JSON)
+Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景地図タイルURL
 
+# セッションステートに被災者数データを読み込む（初回のみ）
 if "num_of_people" not in st.session_state:
-   np_df = pd.read_csv(root_dir + numOfPeople,header=None, names=['Node', 'num']) #人数データ
-   st.session_state["num_of_people"] = np_df
+    np_df = pd.read_csv(root_dir + numOfPeople, header=None, names=['Node', 'num'])
+    st.session_state["num_of_people"] = np_df
+# 避難所データ用の初期化
 if 'shelter_df' not in st.session_state:
-   st.session_state['shelter_df'] = None
+    st.session_state['shelter_df'] = None
 
-GIS_HIGHT=650
-GIS_WIDE=1000
-GIS_ZOOM=12.2
+# Folium地図表示サイズとズームレベル設定
+GIS_HIGHT = 650
+GIS_WIDE = 1000
+GIS_ZOOM = 12.2
 
-FORMAT_HTML ='<div>【{type}】<br/><b>{name}</b><br/>住所:{address}<div>'
+# ポップアップHTMLフォーマット定義
+FORMAT_HTML = '<div>【{type}】<br/><b>{name}</b><br/>住所:{address}<div>'
+
 
 ########################################
-# Folium を使う表示系関数
+# ここからFolium を使う表示系関数
 ########################################
 
 def disp_odawaraMap(odawara_district,center=[35.2646012,139.15223698], zoom_start=GIS_ZOOM):
