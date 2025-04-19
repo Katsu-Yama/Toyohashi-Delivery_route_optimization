@@ -464,20 +464,31 @@ def sovle_annering(model, client, num_cal, timeout):
 ########################################
 # ここからStreamlit本体
 ########################################
+# ヘッダー表示
 #st.markdown('<div class="Qheader"><span class="Qtitle">Q-LOGIQ</span> <span class="caption">Quantum Logistics Intelligence & Quality Optimization  created by WINKY Force</span></div>', unsafe_allow_html=True)
 st.markdown('<div class="Qheader"><span class="Qtitle">えるくお</span> <span class="caption">--Emergency Logistics Quantum Optiviser-- Created by WINKY Force</span></div>', unsafe_allow_html=True)
 
+# カラム分割
 gis_st, anr_st = st.columns([2, 1])
 
+# Amplify クライアント初期化
 if "client" not in st.session_state:
     st.session_state["client"] =start_amplify()
-
 client=st.session_state["client"]
 
+# 地図データ初期化
 if "map_data" not in st.session_state:
     st.session_state["map_data"] = set_map_data()
-
 map_data=st.session_state["map_data"]
+
+"""
+# セッションステート変数初期化
+for key in ['best_tour','best_cost','points','annering_param']:
+    if key not in st.session_state:
+        st.session_state[key] = None
+"""
+
+# データ展開
 G=map_data['G']
 df=map_data['node_d']
 path_df=map_data['path_d']
@@ -508,6 +519,7 @@ np_df= st.session_state["num_of_people"]
 all_shelter= df[df['Node'].str.startswith('K')]
 all_transport= df[df['Node'].str.startswith('M')]
 
+# サイドバー選択UI
 with anr_st:
   st.markdown('<div class="Qsubheader">拠点リスト</div>',unsafe_allow_html=True)
   spinner_container = st.container()
@@ -516,6 +528,7 @@ with anr_st:
   selected_transport=anr_st.pills("配送拠点",all_transport['施設名'].tolist(),selection_mode="multi")
   st.write("選択完了後、下のボタンを押してください。")
 
+# ノードIDリスト
 selected_shelter_node=all_shelter[all_shelter['施設名'].isin(selected_shelter)]['Node'].tolist()
 selected_transport_node=all_transport[all_transport['施設名'].isin(selected_transport)]['Node'].tolist()
 
@@ -533,6 +546,7 @@ selected_base={'配送拠点':selected_transport_node,'避難所':selected_shelt
 st.session_state['points']=selected_base
 re_node_list = selected_base['配送拠点'] +selected_base['避難所']
 
+# 地図描画
 with gis_st:
   if best_tour !=None:
     st.markdown('<div class="Qsubheader">配送最適化-計算結果</div>',unsafe_allow_html=True)
@@ -571,6 +585,7 @@ with gis_st:
   folium.LayerControl().add_to(base_map_copy)
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
+# 最適化実行ボタン
 if anr_st.button("最適経路探索開始"):
     with spinner_container:
         with st.spinner("処理中です。しばらくお待ちください..."):
@@ -611,6 +626,7 @@ if anr_st.button("最適経路探索開始"):
                 st.session_state['redraw'] = True
             
             st.success("処理が完了しました！")
+
 # ========== 出力 ==========
 if st.session_state['best_tour'] !=None:
   annering_param=st.session_state["annering_param"]
