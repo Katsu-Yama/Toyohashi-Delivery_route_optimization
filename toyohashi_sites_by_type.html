@@ -1,0 +1,2411 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_175b1a83f8fb96e412bfcc8d88dc021f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_175b1a83f8fb96e412bfcc8d88dc021f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_175b1a83f8fb96e412bfcc8d88dc021f = L.map(
+                "map_175b1a83f8fb96e412bfcc8d88dc021f",
+                {
+                    center: [34.74607735528926, 137.39643805338847],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0cd2212a962d70b7bb1a7948d26dcd95 = L.tileLayer(
+                "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"http://cartodb.com/attributions\"\u003eCartoDB\u003c/a\u003e, CartoDB \u003ca href =\"http://cartodb.com/attributions\"\u003eattributions\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_175b1a83f8fb96e412bfcc8d88dc021f);
+        
+    
+            var feature_group_59b4689dd52fe807260ed4a454643c35 = L.featureGroup(
+                {}
+            ).addTo(map_175b1a83f8fb96e412bfcc8d88dc021f);
+        
+    
+            var circle_marker_b0735f43ea1897743732c219dfced8c3 = L.circleMarker(
+                [34.76842227, 137.3838468],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_59b4689dd52fe807260ed4a454643c35);
+        
+    
+        var popup_e6a26de27a81db7e592da841bc81a2ed = L.popup({"maxWidth": "100%"});
+
+        
+            var html_85c97d5620cbc5369f4fd918e400ad5d = $(`<div id="html_85c97d5620cbc5369f4fd918e400ad5d" style="width: 100.0%; height: 100.0%;"><b>こども未来館</b><br>愛知県豊橋市豊橋市松葉町三丁目1</div>`)[0];
+            popup_e6a26de27a81db7e592da841bc81a2ed.setContent(html_85c97d5620cbc5369f4fd918e400ad5d);
+        
+
+        circle_marker_b0735f43ea1897743732c219dfced8c3.bindPopup(popup_e6a26de27a81db7e592da841bc81a2ed)
+        ;
+
+        
+    
+    
+            var circle_marker_5cbe3cefa7628beaa42b392510ef8b02 = L.circleMarker(
+                [34.7608962, 137.3839796],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_59b4689dd52fe807260ed4a454643c35);
+        
+    
+        var popup_043e201c8e22522a298719ff9bd660e3 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c0aed56362fb04d741baa477b65b8d4d = $(`<div id="html_c0aed56362fb04d741baa477b65b8d4d" style="width: 100.0%; height: 100.0%;"><b>穂の国とよはし芸術劇場</b><br>愛知県豊橋市豊橋市西小田原町123</div>`)[0];
+            popup_043e201c8e22522a298719ff9bd660e3.setContent(html_c0aed56362fb04d741baa477b65b8d4d);
+        
+
+        circle_marker_5cbe3cefa7628beaa42b392510ef8b02.bindPopup(popup_043e201c8e22522a298719ff9bd660e3)
+        ;
+
+        
+    
+    
+            var feature_group_91b3d34ca394804ec986e3cef1f6bf16 = L.featureGroup(
+                {}
+            ).addTo(map_175b1a83f8fb96e412bfcc8d88dc021f);
+        
+    
+            var circle_marker_dc7d50a4476afebdceae2672b85068cc = L.circleMarker(
+                [34.74064075, 137.3523471],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_91b3d34ca394804ec986e3cef1f6bf16);
+        
+    
+        var popup_94d2363af63fb0e02f3cd2a0507969d4 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_398eb621439708761568596f19515502 = $(`<div id="html_398eb621439708761568596f19515502" style="width: 100.0%; height: 100.0%;"><b>三郷地区津波防災センター</b><br>愛知県豊橋市豊橋市神野新田町字ハノ割18</div>`)[0];
+            popup_94d2363af63fb0e02f3cd2a0507969d4.setContent(html_398eb621439708761568596f19515502);
+        
+
+        circle_marker_dc7d50a4476afebdceae2672b85068cc.bindPopup(popup_94d2363af63fb0e02f3cd2a0507969d4)
+        ;
+
+        
+    
+    
+            var circle_marker_ac7f62815995fee1887337904cbda6c0 = L.circleMarker(
+                [34.69025062, 137.3256251],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_91b3d34ca394804ec986e3cef1f6bf16);
+        
+    
+        var popup_62650e9fa348166c097ace5dccf4345e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_3398b3c3d21e94f94252a22d1246936d = $(`<div id="html_3398b3c3d21e94f94252a22d1246936d" style="width: 100.0%; height: 100.0%;"><b>天津地区津波防災センター</b><br>愛知県豊橋市豊橋市杉山町字天津179-1</div>`)[0];
+            popup_62650e9fa348166c097ace5dccf4345e.setContent(html_3398b3c3d21e94f94252a22d1246936d);
+        
+
+        circle_marker_ac7f62815995fee1887337904cbda6c0.bindPopup(popup_62650e9fa348166c097ace5dccf4345e)
+        ;
+
+        
+    
+    
+            var feature_group_f3327cbf8b3719e8197e6d885e4ab74b = L.featureGroup(
+                {}
+            ).addTo(map_175b1a83f8fb96e412bfcc8d88dc021f);
+        
+    
+            var circle_marker_32308eed756a87d2c6f759fd33e2cad8 = L.circleMarker(
+                [34.80043595, 137.4394399],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f3327cbf8b3719e8197e6d885e4ab74b);
+        
+    
+        var popup_6c4c7a98050bcd7fe1dbf35c15d2007a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2dc62ae84a4456cc96bf7529d98c98da = $(`<div id="html_2dc62ae84a4456cc96bf7529d98c98da" style="width: 100.0%; height: 100.0%;"><b>石巻老人福祉センター</b><br>愛知県豊橋市豊橋市石巻本町字市場7</div>`)[0];
+            popup_6c4c7a98050bcd7fe1dbf35c15d2007a.setContent(html_2dc62ae84a4456cc96bf7529d98c98da);
+        
+
+        circle_marker_32308eed756a87d2c6f759fd33e2cad8.bindPopup(popup_6c4c7a98050bcd7fe1dbf35c15d2007a)
+        ;
+
+        
+    
+    
+            var circle_marker_16e54d1b9b19e614a8bea10cbd8c8df6 = L.circleMarker(
+                [34.7783289, 137.3841041],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f3327cbf8b3719e8197e6d885e4ab74b);
+        
+    
+        var popup_fbc3cca9aef4eef41089f24cb84810fb = L.popup({"maxWidth": "100%"});
+
+        
+            var html_f2f94f311f80a28036964dce29ec64f9 = $(`<div id="html_f2f94f311f80a28036964dce29ec64f9" style="width: 100.0%; height: 100.0%;"><b>下地老人福祉センター</b><br>愛知県豊橋市豊橋市下地町字宮前52-1</div>`)[0];
+            popup_fbc3cca9aef4eef41089f24cb84810fb.setContent(html_f2f94f311f80a28036964dce29ec64f9);
+        
+
+        circle_marker_16e54d1b9b19e614a8bea10cbd8c8df6.bindPopup(popup_fbc3cca9aef4eef41089f24cb84810fb)
+        ;
+
+        
+    
+    
+            var circle_marker_b552c63370f7a751c8c08efd921cbacf = L.circleMarker(
+                [34.72542478, 137.4499412],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f3327cbf8b3719e8197e6d885e4ab74b);
+        
+    
+        var popup_834be97ac63e06abe90148698e3bf61f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ff5a4242e4cbfbc814e8dd824917b9f9 = $(`<div id="html_ff5a4242e4cbfbc814e8dd824917b9f9" style="width: 100.0%; height: 100.0%;"><b>大岩老人福祉センター</b><br>愛知県豊橋市豊橋市大岩町字東郷内4-5</div>`)[0];
+            popup_834be97ac63e06abe90148698e3bf61f.setContent(html_ff5a4242e4cbfbc814e8dd824917b9f9);
+        
+
+        circle_marker_b552c63370f7a751c8c08efd921cbacf.bindPopup(popup_834be97ac63e06abe90148698e3bf61f)
+        ;
+
+        
+    
+    
+            var circle_marker_87972ab601411fb47125c11373005fd2 = L.circleMarker(
+                [34.76295948, 137.4049022],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f3327cbf8b3719e8197e6d885e4ab74b);
+        
+    
+        var popup_5d192aa5849d96204ca924f005cb978e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_42e9b947e74de7e33b706cb340dad7df = $(`<div id="html_42e9b947e74de7e33b706cb340dad7df" style="width: 100.0%; height: 100.0%;"><b>豊橋市障害者福祉会館</b><br>愛知県豊橋市豊橋市東新町15</div>`)[0];
+            popup_5d192aa5849d96204ca924f005cb978e.setContent(html_42e9b947e74de7e33b706cb340dad7df);
+        
+
+        circle_marker_87972ab601411fb47125c11373005fd2.bindPopup(popup_5d192aa5849d96204ca924f005cb978e)
+        ;
+
+        
+    
+    
+            var circle_marker_75aa3bb22e15d6f039bf0f890f5ddf14 = L.circleMarker(
+                [34.74274527, 137.4054128],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f3327cbf8b3719e8197e6d885e4ab74b);
+        
+    
+        var popup_e60b692cd7f602fddcb64dfeea0a2760 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_14137596af55e6243cfdc2fbe2c80c86 = $(`<div id="html_14137596af55e6243cfdc2fbe2c80c86" style="width: 100.0%; height: 100.0%;"><b>つつじが丘地域福祉センター</b><br>愛知県豊橋市豊橋市佐藤五丁目22-16</div>`)[0];
+            popup_e60b692cd7f602fddcb64dfeea0a2760.setContent(html_14137596af55e6243cfdc2fbe2c80c86);
+        
+
+        circle_marker_75aa3bb22e15d6f039bf0f890f5ddf14.bindPopup(popup_e60b692cd7f602fddcb64dfeea0a2760)
+        ;
+
+        
+    
+    
+            var circle_marker_90afb4e57a2c1a14a2e953485f85d0a5 = L.circleMarker(
+                [34.6976126, 137.3633486],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f3327cbf8b3719e8197e6d885e4ab74b);
+        
+    
+        var popup_6e1625f6d4c214dfe64be5ba134c0652 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_de1eb63b8c7c5da7bd98e2d9c7844fd9 = $(`<div id="html_de1eb63b8c7c5da7bd98e2d9c7844fd9" style="width: 100.0%; height: 100.0%;"><b>大清水地域福祉センター</b><br>愛知県豊橋市豊橋市大清水町字大清水546</div>`)[0];
+            popup_6e1625f6d4c214dfe64be5ba134c0652.setContent(html_de1eb63b8c7c5da7bd98e2d9c7844fd9);
+        
+
+        circle_marker_90afb4e57a2c1a14a2e953485f85d0a5.bindPopup(popup_6e1625f6d4c214dfe64be5ba134c0652)
+        ;
+
+        
+    
+    
+            var circle_marker_32ee33229c154f045bd9ca44ea849f7b = L.circleMarker(
+                [34.76536353, 137.4063217],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f3327cbf8b3719e8197e6d885e4ab74b);
+        
+    
+        var popup_58c92169a2931292e45cabb24ae0a19f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b2e278c11c705aa9ba574bf8aab5e0f3 = $(`<div id="html_b2e278c11c705aa9ba574bf8aab5e0f3" style="width: 100.0%; height: 100.0%;"><b>豊橋市総合福祉センター</b><br>愛知県豊橋市豊橋市前畑町115</div>`)[0];
+            popup_58c92169a2931292e45cabb24ae0a19f.setContent(html_b2e278c11c705aa9ba574bf8aab5e0f3);
+        
+
+        circle_marker_32ee33229c154f045bd9ca44ea849f7b.bindPopup(popup_58c92169a2931292e45cabb24ae0a19f)
+        ;
+
+        
+    
+    
+            var circle_marker_e6dd8633525bb85f2184db8572fc03a4 = L.circleMarker(
+                [34.76692321, 137.3977224],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f3327cbf8b3719e8197e6d885e4ab74b);
+        
+    
+        var popup_3985f534ca3abbb1647f73b4da72382b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_757ad41c8f5eca22c5879e73bb838fbe = $(`<div id="html_757ad41c8f5eca22c5879e73bb838fbe" style="width: 100.0%; height: 100.0%;"><b>八町地域福祉センター</b><br>愛知県豊橋市豊橋市八町通五丁目9</div>`)[0];
+            popup_3985f534ca3abbb1647f73b4da72382b.setContent(html_757ad41c8f5eca22c5879e73bb838fbe);
+        
+
+        circle_marker_e6dd8633525bb85f2184db8572fc03a4.bindPopup(popup_3985f534ca3abbb1647f73b4da72382b)
+        ;
+
+        
+    
+    
+            var circle_marker_80d9cdaf94337f6130ad3d8b89140c40 = L.circleMarker(
+                [34.76135569, 137.3561803],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f3327cbf8b3719e8197e6d885e4ab74b);
+        
+    
+        var popup_c8bd4c96de2b5cee11679b7dd80fc4ce = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ff1b870a2c5fe001060457f46d87d886 = $(`<div id="html_ff1b870a2c5fe001060457f46d87d886" style="width: 100.0%; height: 100.0%;"><b>牟呂地域福祉センター</b><br>愛知県豊橋市豊橋市牟呂町字内田22-2</div>`)[0];
+            popup_c8bd4c96de2b5cee11679b7dd80fc4ce.setContent(html_ff1b870a2c5fe001060457f46d87d886);
+        
+
+        circle_marker_80d9cdaf94337f6130ad3d8b89140c40.bindPopup(popup_c8bd4c96de2b5cee11679b7dd80fc4ce)
+        ;
+
+        
+    
+    
+            var circle_marker_b9b782557cfad52c741e68c323ed17ce = L.circleMarker(
+                [34.70111639, 137.3880994],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_f3327cbf8b3719e8197e6d885e4ab74b);
+        
+    
+        var popup_2dc9ea14b46a973424f9d73dad447169 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_cf01be9290c410f8b70ae478f3359738 = $(`<div id="html_cf01be9290c410f8b70ae478f3359738" style="width: 100.0%; height: 100.0%;"><b>くすのき特別支援学校</b><br>愛知県豊橋市豊橋市野依町字上ノ山3-2</div>`)[0];
+            popup_2dc9ea14b46a973424f9d73dad447169.setContent(html_cf01be9290c410f8b70ae478f3359738);
+        
+
+        circle_marker_b9b782557cfad52c741e68c323ed17ce.bindPopup(popup_2dc9ea14b46a973424f9d73dad447169)
+        ;
+
+        
+    
+    
+            var feature_group_805e041de7066423e2dd7e2c3f024647 = L.featureGroup(
+                {}
+            ).addTo(map_175b1a83f8fb96e412bfcc8d88dc021f);
+        
+    
+            var circle_marker_38b50413dc815cb3913706cfbfddb063 = L.circleMarker(
+                [34.78988982, 137.3978061],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_339731f3fe8e8ba8eb93cc83e5d7c5b3 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_132687ae390ae55c1b29bc9f9a33ea88 = $(`<div id="html_132687ae390ae55c1b29bc9f9a33ea88" style="width: 100.0%; height: 100.0%;"><b>大村小学校</b><br>愛知県豊橋市豊橋市大村町字地之神9</div>`)[0];
+            popup_339731f3fe8e8ba8eb93cc83e5d7c5b3.setContent(html_132687ae390ae55c1b29bc9f9a33ea88);
+        
+
+        circle_marker_38b50413dc815cb3913706cfbfddb063.bindPopup(popup_339731f3fe8e8ba8eb93cc83e5d7c5b3)
+        ;
+
+        
+    
+    
+            var circle_marker_8ba1f6899e1f9c962809c258be918146 = L.circleMarker(
+                [34.77770063, 137.3847799],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_145889980b4da05b55cebb01580d56b9 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e4a7d3b13cf4b91be07c54d760f1bbb9 = $(`<div id="html_e4a7d3b13cf4b91be07c54d760f1bbb9" style="width: 100.0%; height: 100.0%;"><b>下地小学校</b><br>愛知県豊橋市豊橋市下地町字宮前68</div>`)[0];
+            popup_145889980b4da05b55cebb01580d56b9.setContent(html_e4a7d3b13cf4b91be07c54d760f1bbb9);
+        
+
+        circle_marker_8ba1f6899e1f9c962809c258be918146.bindPopup(popup_145889980b4da05b55cebb01580d56b9)
+        ;
+
+        
+    
+    
+            var circle_marker_43e3cfef829d289350e8a0394dda2b8c = L.circleMarker(
+                [34.78179134, 137.385108],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_9c30e950e684634dc421ed23be7e7a58 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_1eb43d2fb94382ab6f2cbab1b8e2367d = $(`<div id="html_1eb43d2fb94382ab6f2cbab1b8e2367d" style="width: 100.0%; height: 100.0%;"><b>北部中学校</b><br>愛知県豊橋市豊橋市下地町字長池1</div>`)[0];
+            popup_9c30e950e684634dc421ed23be7e7a58.setContent(html_1eb43d2fb94382ab6f2cbab1b8e2367d);
+        
+
+        circle_marker_43e3cfef829d289350e8a0394dda2b8c.bindPopup(popup_9c30e950e684634dc421ed23be7e7a58)
+        ;
+
+        
+    
+    
+            var circle_marker_e8a324176f3ab7598b60fc5db0d99bc4 = L.circleMarker(
+                [34.78130652, 137.3668981],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_6721380317b1c51efe452d2bba75a8b4 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c14cab79ae63c1eb0062f412065962e7 = $(`<div id="html_c14cab79ae63c1eb0062f412065962e7" style="width: 100.0%; height: 100.0%;"><b>津田小学校</b><br>愛知県豊橋市豊橋市横須賀町宮元3-1</div>`)[0];
+            popup_6721380317b1c51efe452d2bba75a8b4.setContent(html_c14cab79ae63c1eb0062f412065962e7);
+        
+
+        circle_marker_e8a324176f3ab7598b60fc5db0d99bc4.bindPopup(popup_6721380317b1c51efe452d2bba75a8b4)
+        ;
+
+        
+    
+    
+            var circle_marker_47beb6819dae6841bcb2a937042f8ba5 = L.circleMarker(
+                [34.78605731, 137.3396649],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_0150fdb8e9ece9c16013705c66b2d5a1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c9c13a484fb3909e709fdadd723474dd = $(`<div id="html_c9c13a484fb3909e709fdadd723474dd" style="width: 100.0%; height: 100.0%;"><b>前芝小学校</b><br>愛知県豊橋市豊橋市前芝町字西堤30</div>`)[0];
+            popup_0150fdb8e9ece9c16013705c66b2d5a1.setContent(html_c9c13a484fb3909e709fdadd723474dd);
+        
+
+        circle_marker_47beb6819dae6841bcb2a937042f8ba5.bindPopup(popup_0150fdb8e9ece9c16013705c66b2d5a1)
+        ;
+
+        
+    
+    
+            var circle_marker_1da7976f2112e46eb25a9f3c8d21ceaa = L.circleMarker(
+                [34.78633657, 137.3384553],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_d86e3f64bfc460c4e89f4b5b547ded06 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a110665f9ce6ec79663807600fe521f5 = $(`<div id="html_a110665f9ce6ec79663807600fe521f5" style="width: 100.0%; height: 100.0%;"><b>前芝中学校</b><br>愛知県豊橋市豊橋市前芝町字塩見1</div>`)[0];
+            popup_d86e3f64bfc460c4e89f4b5b547ded06.setContent(html_a110665f9ce6ec79663807600fe521f5);
+        
+
+        circle_marker_1da7976f2112e46eb25a9f3c8d21ceaa.bindPopup(popup_d86e3f64bfc460c4e89f4b5b547ded06)
+        ;
+
+        
+    
+    
+            var circle_marker_75ab0918e4aa7ccb633e6ad12530aa20 = L.circleMarker(
+                [34.79157186, 137.3272626],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_4e082f9087d3d338f51e783270447e8c = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e16c33b939cd42ae904d699c0d0c2ea6 = $(`<div id="html_e16c33b939cd42ae904d699c0d0c2ea6" style="width: 100.0%; height: 100.0%;"><b>梅薮地区津波防災センター</b><br>愛知県豊橋市豊橋市梅薮町字西神25-1</div>`)[0];
+            popup_4e082f9087d3d338f51e783270447e8c.setContent(html_e16c33b939cd42ae904d699c0d0c2ea6);
+        
+
+        circle_marker_75ab0918e4aa7ccb633e6ad12530aa20.bindPopup(popup_4e082f9087d3d338f51e783270447e8c)
+        ;
+
+        
+    
+    
+            var circle_marker_2df144e08853ac124764cad9d91c12b0 = L.circleMarker(
+                [34.80362112, 137.4151232],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_eb6dfb1adada4c957db6352a6b6906b9 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a78232346399487985d2bf6a5babff6d = $(`<div id="html_a78232346399487985d2bf6a5babff6d" style="width: 100.0%; height: 100.0%;"><b>下条小学校</b><br>愛知県豊橋市豊橋市下条東町字西浦41</div>`)[0];
+            popup_eb6dfb1adada4c957db6352a6b6906b9.setContent(html_a78232346399487985d2bf6a5babff6d);
+        
+
+        circle_marker_2df144e08853ac124764cad9d91c12b0.bindPopup(popup_eb6dfb1adada4c957db6352a6b6906b9)
+        ;
+
+        
+    
+    
+            var circle_marker_7cbf9fb7d3c32a105eee35b727860cb5 = L.circleMarker(
+                [34.78050322, 137.416114],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_9007ae40f9f3f9a0872ef022fb64b7e6 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_0972520e8ed59be1955ea81a4d095704 = $(`<div id="html_0972520e8ed59be1955ea81a4d095704" style="width: 100.0%; height: 100.0%;"><b>牛川小学校</b><br>愛知県豊橋市豊橋市牛川町字中郷6-1</div>`)[0];
+            popup_9007ae40f9f3f9a0872ef022fb64b7e6.setContent(html_0972520e8ed59be1955ea81a4d095704);
+        
+
+        circle_marker_7cbf9fb7d3c32a105eee35b727860cb5.bindPopup(popup_9007ae40f9f3f9a0872ef022fb64b7e6)
+        ;
+
+        
+    
+    
+            var circle_marker_f94f37ea093c3bc977dd296891706c09 = L.circleMarker(
+                [34.77549596, 137.4107382],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_2012182b84d3f0380f33b5c600681139 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c99e64d8697279fdc3626b584303b987 = $(`<div id="html_c99e64d8697279fdc3626b584303b987" style="width: 100.0%; height: 100.0%;"><b>青陵中学校</b><br>愛知県豊橋市豊橋市牛川町字洗島108-1</div>`)[0];
+            popup_2012182b84d3f0380f33b5c600681139.setContent(html_c99e64d8697279fdc3626b584303b987);
+        
+
+        circle_marker_f94f37ea093c3bc977dd296891706c09.bindPopup(popup_2012182b84d3f0380f33b5c600681139)
+        ;
+
+        
+    
+    
+            var circle_marker_2255fe9c5b5f641916e268e95d7a3936 = L.circleMarker(
+                [34.76672548, 137.4035409],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_320e21e60508c6892b0461b8c8461740 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_87896c092516915f8012f8300e1f14e4 = $(`<div id="html_87896c092516915f8012f8300e1f14e4" style="width: 100.0%; height: 100.0%;"><b>旭小学校</b><br>愛知県豊橋市豊橋市旭町字旭409</div>`)[0];
+            popup_320e21e60508c6892b0461b8c8461740.setContent(html_87896c092516915f8012f8300e1f14e4);
+        
+
+        circle_marker_2255fe9c5b5f641916e268e95d7a3936.bindPopup(popup_320e21e60508c6892b0461b8c8461740)
+        ;
+
+        
+    
+    
+            var circle_marker_08bbd06e0f84bf66f2212d46a9ba4920 = L.circleMarker(
+                [34.76367618, 137.4087684],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_1aa7de8386fb8770b04a43d2a47f8e37 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_96c327d349ede765914f38952acc684a = $(`<div id="html_96c327d349ede765914f38952acc684a" style="width: 100.0%; height: 100.0%;"><b>藤ノ花女子高等学校</b><br>愛知県豊橋市豊橋市老松町109</div>`)[0];
+            popup_1aa7de8386fb8770b04a43d2a47f8e37.setContent(html_96c327d349ede765914f38952acc684a);
+        
+
+        circle_marker_08bbd06e0f84bf66f2212d46a9ba4920.bindPopup(popup_1aa7de8386fb8770b04a43d2a47f8e37)
+        ;
+
+        
+    
+    
+            var circle_marker_ad89cf9ce8798184c13ba90f14cc78b4 = L.circleMarker(
+                [34.76987516, 137.4111296],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_97ea92fdf4b0ad8a63a54d2e9281601f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_3daffc714f779a8ab1d995483044bdb1 = $(`<div id="html_3daffc714f779a8ab1d995483044bdb1" style="width: 100.0%; height: 100.0%;"><b>東田小学校</b><br>愛知県豊橋市豊橋市仁連木町15</div>`)[0];
+            popup_97ea92fdf4b0ad8a63a54d2e9281601f.setContent(html_3daffc714f779a8ab1d995483044bdb1);
+        
+
+        circle_marker_ad89cf9ce8798184c13ba90f14cc78b4.bindPopup(popup_97ea92fdf4b0ad8a63a54d2e9281601f)
+        ;
+
+        
+    
+    
+            var circle_marker_33d00dde97c249981ef51c8cc3aa36b8 = L.circleMarker(
+                [34.76973589, 137.4150615],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_3a54215b384221b1ff6282137fc2e8d1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_0efdb4dc3c109276984bb774d2a4e9a4 = $(`<div id="html_0efdb4dc3c109276984bb774d2a4e9a4" style="width: 100.0%; height: 100.0%;"><b>仁連木老人福祉ｾﾝﾀｰ</b><br>愛知県豊橋市豊橋市仁連木町136-2</div>`)[0];
+            popup_3a54215b384221b1ff6282137fc2e8d1.setContent(html_0efdb4dc3c109276984bb774d2a4e9a4);
+        
+
+        circle_marker_33d00dde97c249981ef51c8cc3aa36b8.bindPopup(popup_3a54215b384221b1ff6282137fc2e8d1)
+        ;
+
+        
+    
+    
+            var circle_marker_de09f30fb5e33cf2bddf350a9bc696d7 = L.circleMarker(
+                [34.76996284, 137.4183687],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_6cf7cd213d4e2250511fd089a4f22a5e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_303f17ca9df6a21f3c4be50901a0dfe9 = $(`<div id="html_303f17ca9df6a21f3c4be50901a0dfe9" style="width: 100.0%; height: 100.0%;"><b>豊橋競輪場</b><br>愛知県豊橋市豊橋市東田町87</div>`)[0];
+            popup_6cf7cd213d4e2250511fd089a4f22a5e.setContent(html_303f17ca9df6a21f3c4be50901a0dfe9);
+        
+
+        circle_marker_de09f30fb5e33cf2bddf350a9bc696d7.bindPopup(popup_6cf7cd213d4e2250511fd089a4f22a5e)
+        ;
+
+        
+    
+    
+            var circle_marker_1908187d7765a75a1d19e0de3307c4a3 = L.circleMarker(
+                [34.76681813, 137.4105232],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_0ffb74091f5a5e37c73edb5d8ca6fb55 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_8479de2d8aa504a74949f357a3c3a055 = $(`<div id="html_8479de2d8aa504a74949f357a3c3a055" style="width: 100.0%; height: 100.0%;"><b>市立豊橋高等学校</b><br>愛知県豊橋市豊橋市東郷町43-1</div>`)[0];
+            popup_0ffb74091f5a5e37c73edb5d8ca6fb55.setContent(html_8479de2d8aa504a74949f357a3c3a055);
+        
+
+        circle_marker_1908187d7765a75a1d19e0de3307c4a3.bindPopup(popup_0ffb74091f5a5e37c73edb5d8ca6fb55)
+        ;
+
+        
+    
+    
+            var circle_marker_201ce7f5680cc95722601388b0ef67d6 = L.circleMarker(
+                [34.77275403, 137.4247697],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_5dcba021a491043576a87e522f9800e1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_4a4fb2163f996fca255bde76040d9766 = $(`<div id="html_4a4fb2163f996fca255bde76040d9766" style="width: 100.0%; height: 100.0%;"><b>鷹丘小学校</b><br>愛知県豊橋市豊橋市西小鷹野三丁目7-1</div>`)[0];
+            popup_5dcba021a491043576a87e522f9800e1.setContent(html_4a4fb2163f996fca255bde76040d9766);
+        
+
+        circle_marker_201ce7f5680cc95722601388b0ef67d6.bindPopup(popup_5dcba021a491043576a87e522f9800e1)
+        ;
+
+        
+    
+    
+            var circle_marker_14df6863e956b0addf2eec920b7ac00d = L.circleMarker(
+                [34.77498255, 137.4340521],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_f904b903f3f1c843000ee12ab3cfe722 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_5dda0bbc97defdb15051675cb4e189cc = $(`<div id="html_5dda0bbc97defdb15051675cb4e189cc" style="width: 100.0%; height: 100.0%;"><b>東陵中学校</b><br>愛知県豊橋市豊橋市牛川町字乗小路32-35</div>`)[0];
+            popup_f904b903f3f1c843000ee12ab3cfe722.setContent(html_5dda0bbc97defdb15051675cb4e189cc);
+        
+
+        circle_marker_14df6863e956b0addf2eec920b7ac00d.bindPopup(popup_f904b903f3f1c843000ee12ab3cfe722)
+        ;
+
+        
+    
+    
+            var circle_marker_5339e6338fcfe9e3888262096b46419b = L.circleMarker(
+                [34.83876826, 137.4345911],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_b1455ecbf71012e0466410aa8046875a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_21f1b4b5e95bb3532541d6c91e0202f3 = $(`<div id="html_21f1b4b5e95bb3532541d6c91e0202f3" style="width: 100.0%; height: 100.0%;"><b>賀茂小学校</b><br>愛知県豊橋市豊橋市賀茂町字森信24</div>`)[0];
+            popup_b1455ecbf71012e0466410aa8046875a.setContent(html_21f1b4b5e95bb3532541d6c91e0202f3);
+        
+
+        circle_marker_5339e6338fcfe9e3888262096b46419b.bindPopup(popup_b1455ecbf71012e0466410aa8046875a)
+        ;
+
+        
+    
+    
+            var circle_marker_8feeda0f278ecd6227e034870f10030f = L.circleMarker(
+                [34.82971385, 137.469823],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_cd529d253bbf240fea3b3d7d639dc716 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_213f06fc9c138c3b5d012148ef97f95d = $(`<div id="html_213f06fc9c138c3b5d012148ef97f95d" style="width: 100.0%; height: 100.0%;"><b>西郷小学校</b><br>愛知県豊橋市豊橋市石巻萩平町字城脇164-2</div>`)[0];
+            popup_cd529d253bbf240fea3b3d7d639dc716.setContent(html_213f06fc9c138c3b5d012148ef97f95d);
+        
+
+        circle_marker_8feeda0f278ecd6227e034870f10030f.bindPopup(popup_cd529d253bbf240fea3b3d7d639dc716)
+        ;
+
+        
+    
+    
+            var circle_marker_f8afbd59f2e5b130f7f8c3a6173fb9c7 = L.circleMarker(
+                [34.80043145, 137.4372493],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_99f4219bab25a1e230e6fad3d5170da2 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_19e1271ba4da89d7d8aff8e1624b6787 = $(`<div id="html_19e1271ba4da89d7d8aff8e1624b6787" style="width: 100.0%; height: 100.0%;"><b>玉川小学校</b><br>愛知県豊橋市豊橋市石巻本町字野添10</div>`)[0];
+            popup_99f4219bab25a1e230e6fad3d5170da2.setContent(html_19e1271ba4da89d7d8aff8e1624b6787);
+        
+
+        circle_marker_f8afbd59f2e5b130f7f8c3a6173fb9c7.bindPopup(popup_99f4219bab25a1e230e6fad3d5170da2)
+        ;
+
+        
+    
+    
+            var circle_marker_acfa78f210a93a177523c9d40ab86b0d = L.circleMarker(
+                [34.80572311, 137.4423734],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_ba2aab5de588e4e453578079bedd950d = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d91588991dfeed6fc26aed76fb7638a4 = $(`<div id="html_d91588991dfeed6fc26aed76fb7638a4" style="width: 100.0%; height: 100.0%;"><b>石巻中学校</b><br>愛知県豊橋市豊橋市石巻本町字出口1</div>`)[0];
+            popup_ba2aab5de588e4e453578079bedd950d.setContent(html_d91588991dfeed6fc26aed76fb7638a4);
+        
+
+        circle_marker_acfa78f210a93a177523c9d40ab86b0d.bindPopup(popup_ba2aab5de588e4e453578079bedd950d)
+        ;
+
+        
+    
+    
+            var circle_marker_af475f9963fe71e8860767a0ebaee670 = L.circleMarker(
+                [34.80089337, 137.4722428],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_52416c1fe79defff10bad3d6b93e96af = L.popup({"maxWidth": "100%"});
+
+        
+            var html_5c1b24ffb62a9024eb7e9d822ad7e436 = $(`<div id="html_5c1b24ffb62a9024eb7e9d822ad7e436" style="width: 100.0%; height: 100.0%;"><b>嵩山小学校</b><br>愛知県豊橋市豊橋市嵩山町字宮下78-1</div>`)[0];
+            popup_52416c1fe79defff10bad3d6b93e96af.setContent(html_5c1b24ffb62a9024eb7e9d822ad7e436);
+        
+
+        circle_marker_af475f9963fe71e8860767a0ebaee670.bindPopup(popup_52416c1fe79defff10bad3d6b93e96af)
+        ;
+
+        
+    
+    
+            var circle_marker_4a343d781682c43a34396dd9900f58f7 = L.circleMarker(
+                [34.78501447, 137.4385166],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_c7d4a2f07843233ab69a55e484343596 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_bbd3e4545134a4b76fed107c54e3a7c6 = $(`<div id="html_bbd3e4545134a4b76fed107c54e3a7c6" style="width: 100.0%; height: 100.0%;"><b>石巻小学校</b><br>愛知県豊橋市豊橋市石巻町字西浦16</div>`)[0];
+            popup_c7d4a2f07843233ab69a55e484343596.setContent(html_bbd3e4545134a4b76fed107c54e3a7c6);
+        
+
+        circle_marker_4a343d781682c43a34396dd9900f58f7.bindPopup(popup_c7d4a2f07843233ab69a55e484343596)
+        ;
+
+        
+    
+    
+            var circle_marker_21bde16669825287a86a187e34bf2d6e = L.circleMarker(
+                [34.75180683, 137.4198483],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_5e53d3c5323b3db13e37d6bace864ee0 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b7d4b15b4daf175bbdf81596675eef32 = $(`<div id="html_b7d4b15b4daf175bbdf81596675eef32" style="width: 100.0%; height: 100.0%;"><b>豊小学校</b><br>愛知県豊橋市豊橋市西岩田五丁目6-1</div>`)[0];
+            popup_5e53d3c5323b3db13e37d6bace864ee0.setContent(html_b7d4b15b4daf175bbdf81596675eef32);
+        
+
+        circle_marker_21bde16669825287a86a187e34bf2d6e.bindPopup(popup_5e53d3c5323b3db13e37d6bace864ee0)
+        ;
+
+        
+    
+    
+            var circle_marker_b40644d0240bbc6bd56f8248096f12ac = L.circleMarker(
+                [34.75981491, 137.4142402],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_faafe0a71cadebad33e6c4daf7b906a6 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_184835486617374ac9b483e51399ad9d = $(`<div id="html_184835486617374ac9b483e51399ad9d" style="width: 100.0%; height: 100.0%;"><b>藤ノ花女子高等学校　第二体育館</b><br>愛知県豊橋市豊橋市仲ノ町14</div>`)[0];
+            popup_faafe0a71cadebad33e6c4daf7b906a6.setContent(html_184835486617374ac9b483e51399ad9d);
+        
+
+        circle_marker_b40644d0240bbc6bd56f8248096f12ac.bindPopup(popup_faafe0a71cadebad33e6c4daf7b906a6)
+        ;
+
+        
+    
+    
+            var circle_marker_d73e981cbdebc773d9ed546f7fbadd24 = L.circleMarker(
+                [34.75677881, 137.4284121],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_141e16ae4d0e68954bd0cf948e0ac8c3 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_1f1e3cfcaf1df550f382f88735c6a50d = $(`<div id="html_1f1e3cfcaf1df550f382f88735c6a50d" style="width: 100.0%; height: 100.0%;"><b>岩田小学校</b><br>愛知県豊橋市豊橋市中岩田四丁目1-2</div>`)[0];
+            popup_141e16ae4d0e68954bd0cf948e0ac8c3.setContent(html_1f1e3cfcaf1df550f382f88735c6a50d);
+        
+
+        circle_marker_d73e981cbdebc773d9ed546f7fbadd24.bindPopup(popup_141e16ae4d0e68954bd0cf948e0ac8c3)
+        ;
+
+        
+    
+    
+            var circle_marker_7afdf9fb8c70305449be09d77e471c65 = L.circleMarker(
+                [34.75466239, 137.4236225],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_e83ddcb6784190818a97b3cc71506428 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_cb2fc7f82b7679c9091aa7fae874a4e3 = $(`<div id="html_cb2fc7f82b7679c9091aa7fae874a4e3" style="width: 100.0%; height: 100.0%;"><b>豊岡中学校</b><br>愛知県豊橋市豊橋市中岩田一丁目5-2</div>`)[0];
+            popup_e83ddcb6784190818a97b3cc71506428.setContent(html_cb2fc7f82b7679c9091aa7fae874a4e3);
+        
+
+        circle_marker_7afdf9fb8c70305449be09d77e471c65.bindPopup(popup_e83ddcb6784190818a97b3cc71506428)
+        ;
+
+        
+    
+    
+            var circle_marker_d4f256c8c129a30c75e8301962bf53a0 = L.circleMarker(
+                [34.75706571, 137.4196365],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_3f23da68ccfa49d376c045688890c5fb = L.popup({"maxWidth": "100%"});
+
+        
+            var html_517ed9296d2be434cb6c5af6c6a136f9 = $(`<div id="html_517ed9296d2be434cb6c5af6c6a136f9" style="width: 100.0%; height: 100.0%;"><b>豊丘高等学校</b><br>愛知県豊橋市豊橋市豊岡町74</div>`)[0];
+            popup_3f23da68ccfa49d376c045688890c5fb.setContent(html_517ed9296d2be434cb6c5af6c6a136f9);
+        
+
+        circle_marker_d4f256c8c129a30c75e8301962bf53a0.bindPopup(popup_3f23da68ccfa49d376c045688890c5fb)
+        ;
+
+        
+    
+    
+            var circle_marker_08cb640022642d65f832095e07dd4076 = L.circleMarker(
+                [34.76119616, 137.4503851],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_04d05794d8a24d9d918a140100289518 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_f92b7579e79dc6ee8b48c027ea0ed821 = $(`<div id="html_f92b7579e79dc6ee8b48c027ea0ed821" style="width: 100.0%; height: 100.0%;"><b>多米小学校</b><br>愛知県豊橋市豊橋市多米中町二丁目27-1</div>`)[0];
+            popup_04d05794d8a24d9d918a140100289518.setContent(html_f92b7579e79dc6ee8b48c027ea0ed821);
+        
+
+        circle_marker_08cb640022642d65f832095e07dd4076.bindPopup(popup_04d05794d8a24d9d918a140100289518)
+        ;
+
+        
+    
+    
+            var circle_marker_e28ae74b36b7396b3a12d2fb4f3285cf = L.circleMarker(
+                [34.7547767, 137.443476],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_07c0f06dabae3237a346b20fd4a2b305 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_0408ac45b8aae1029c4946794dcdef84 = $(`<div id="html_0408ac45b8aae1029c4946794dcdef84" style="width: 100.0%; height: 100.0%;"><b>東陽中学校</b><br>愛知県豊橋市豊橋市岩崎町字野田1-2</div>`)[0];
+            popup_07c0f06dabae3237a346b20fd4a2b305.setContent(html_0408ac45b8aae1029c4946794dcdef84);
+        
+
+        circle_marker_e28ae74b36b7396b3a12d2fb4f3285cf.bindPopup(popup_07c0f06dabae3237a346b20fd4a2b305)
+        ;
+
+        
+    
+    
+            var circle_marker_2156ddc4e0102fcd1b56ee171e12645f = L.circleMarker(
+                [34.72609909, 137.4507294],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_41f6f9470bf958f03bd39b5d0cb0c5e1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_8fd6077b5eb16765f11903a6dedc66c6 = $(`<div id="html_8fd6077b5eb16765f11903a6dedc66c6" style="width: 100.0%; height: 100.0%;"><b>二川小学校</b><br>愛知県豊橋市豊橋市二川町字北裏80</div>`)[0];
+            popup_41f6f9470bf958f03bd39b5d0cb0c5e1.setContent(html_8fd6077b5eb16765f11903a6dedc66c6);
+        
+
+        circle_marker_2156ddc4e0102fcd1b56ee171e12645f.bindPopup(popup_41f6f9470bf958f03bd39b5d0cb0c5e1)
+        ;
+
+        
+    
+    
+            var circle_marker_d8308ddaea5458440f3157825b58ef58 = L.circleMarker(
+                [34.73050734, 137.4285926],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_4ea9f898a9bb537af0b646ad1a05ab1f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d7563a6168eceaa4f4e852b6fd0a6dd0 = $(`<div id="html_d7563a6168eceaa4f4e852b6fd0a6dd0" style="width: 100.0%; height: 100.0%;"><b>視聴覚教育センター</b><br>愛知県豊橋市豊橋市大岩町字火打坂19-16</div>`)[0];
+            popup_4ea9f898a9bb537af0b646ad1a05ab1f.setContent(html_d7563a6168eceaa4f4e852b6fd0a6dd0);
+        
+
+        circle_marker_d8308ddaea5458440f3157825b58ef58.bindPopup(popup_4ea9f898a9bb537af0b646ad1a05ab1f)
+        ;
+
+        
+    
+    
+            var circle_marker_490f0cdb54833a980c9ed181a3eb8466 = L.circleMarker(
+                [34.72862722, 137.4788995],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_f52f7ee776cc01e44690591f58cfd4da = L.popup({"maxWidth": "100%"});
+
+        
+            var html_3784fb0679fd7d693d2664d750a5777b = $(`<div id="html_3784fb0679fd7d693d2664d750a5777b" style="width: 100.0%; height: 100.0%;"><b>谷川小学校</b><br>愛知県豊橋市豊橋市中原町字東ノ谷1-3</div>`)[0];
+            popup_f52f7ee776cc01e44690591f58cfd4da.setContent(html_3784fb0679fd7d693d2664d750a5777b);
+        
+
+        circle_marker_490f0cdb54833a980c9ed181a3eb8466.bindPopup(popup_f52f7ee776cc01e44690591f58cfd4da)
+        ;
+
+        
+    
+    
+            var circle_marker_1997f5e575cd4a57b7df4b866df8218c = L.circleMarker(
+                [34.71402065, 137.4486402],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_8df3d78885395c9b88a0cfd1463af82b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b991070179ccf81ade56b4efd7de3842 = $(`<div id="html_b991070179ccf81ade56b4efd7de3842" style="width: 100.0%; height: 100.0%;"><b>二川南小学校</b><br>愛知県豊橋市豊橋市大岩町字前荒田145-2</div>`)[0];
+            popup_8df3d78885395c9b88a0cfd1463af82b.setContent(html_b991070179ccf81ade56b4efd7de3842);
+        
+
+        circle_marker_1997f5e575cd4a57b7df4b866df8218c.bindPopup(popup_8df3d78885395c9b88a0cfd1463af82b)
+        ;
+
+        
+    
+    
+            var circle_marker_bca4974f47c03b317a6651277e4bc3eb = L.circleMarker(
+                [34.71537956, 137.4504104],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_d5d0ed1cbacf0090520cb0a39be7ed9c = L.popup({"maxWidth": "100%"});
+
+        
+            var html_3d03ea790793c2c4b385a8a8395ef758 = $(`<div id="html_3d03ea790793c2c4b385a8a8395ef758" style="width: 100.0%; height: 100.0%;"><b>二川中学校</b><br>愛知県豊橋市豊橋市二川町字西向山41-10</div>`)[0];
+            popup_d5d0ed1cbacf0090520cb0a39be7ed9c.setContent(html_3d03ea790793c2c4b385a8a8395ef758);
+        
+
+        circle_marker_bca4974f47c03b317a6651277e4bc3eb.bindPopup(popup_d5d0ed1cbacf0090520cb0a39be7ed9c)
+        ;
+
+        
+    
+    
+            var circle_marker_dc2e3d3ca9247959f415d36b6c14de42 = L.circleMarker(
+                [34.68581195, 137.4686843],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_85327a5317f2472edda45412656d91c4 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_037b7932cec774e0106d53b5c84d5a0a = $(`<div id="html_037b7932cec774e0106d53b5c84d5a0a" style="width: 100.0%; height: 100.0%;"><b>細谷小学校</b><br>愛知県豊橋市豊橋市細谷町字中ノ島47-1</div>`)[0];
+            popup_85327a5317f2472edda45412656d91c4.setContent(html_037b7932cec774e0106d53b5c84d5a0a);
+        
+
+        circle_marker_dc2e3d3ca9247959f415d36b6c14de42.bindPopup(popup_85327a5317f2472edda45412656d91c4)
+        ;
+
+        
+    
+    
+            var circle_marker_844f061f376b55c34f6ad38a300a8dd6 = L.circleMarker(
+                [34.68427321, 137.4537783],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_0cc02ebf54ea5d51e1d3262ca7487c1b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ddc081e010c078fa7f2c0b13e5dedfa9 = $(`<div id="html_ddc081e010c078fa7f2c0b13e5dedfa9" style="width: 100.0%; height: 100.0%;"><b>五並中学校</b><br>愛知県豊橋市豊橋市細谷町字北芋ヶ谷30-44</div>`)[0];
+            popup_0cc02ebf54ea5d51e1d3262ca7487c1b.setContent(html_ddc081e010c078fa7f2c0b13e5dedfa9);
+        
+
+        circle_marker_844f061f376b55c34f6ad38a300a8dd6.bindPopup(popup_0cc02ebf54ea5d51e1d3262ca7487c1b)
+        ;
+
+        
+    
+    
+            var circle_marker_f75c6831eaddf91e0037f94f7de0d70b = L.circleMarker(
+                [34.6803742, 137.4418503],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_48eb6a83bc024d994a020564923b1b06 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_501f7baa62ac0eebefa106462e491810 = $(`<div id="html_501f7baa62ac0eebefa106462e491810" style="width: 100.0%; height: 100.0%;"><b>小沢小学校</b><br>愛知県豊橋市豊橋市小島町字荒巻81-1</div>`)[0];
+            popup_48eb6a83bc024d994a020564923b1b06.setContent(html_501f7baa62ac0eebefa106462e491810);
+        
+
+        circle_marker_f75c6831eaddf91e0037f94f7de0d70b.bindPopup(popup_48eb6a83bc024d994a020564923b1b06)
+        ;
+
+        
+    
+    
+            var circle_marker_d57d25dce4df45fdaca6d06a430aa9af = L.circleMarker(
+                [34.69602049, 137.3351168],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_71662578075651fe3e62933f93b8cc5a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a47fef5ac0c20ace5b7b28c00737251f = $(`<div id="html_a47fef5ac0c20ace5b7b28c00737251f" style="width: 100.0%; height: 100.0%;"><b>老津小学校</b><br>愛知県豊橋市豊橋市老津町字宮脇15-4</div>`)[0];
+            popup_71662578075651fe3e62933f93b8cc5a.setContent(html_a47fef5ac0c20ace5b7b28c00737251f);
+        
+
+        circle_marker_d57d25dce4df45fdaca6d06a430aa9af.bindPopup(popup_71662578075651fe3e62933f93b8cc5a)
+        ;
+
+        
+    
+    
+            var circle_marker_3df17e588a5dbc6c511fc6a4dcd15e92 = L.circleMarker(
+                [34.69565597, 137.334429],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_bdac09c238c0bbdf0c25ce41e01f71ed = L.popup({"maxWidth": "100%"});
+
+        
+            var html_72ae10f5117ced294e43c20bd2d110f1 = $(`<div id="html_72ae10f5117ced294e43c20bd2d110f1" style="width: 100.0%; height: 100.0%;"><b>章南中学校</b><br>愛知県豊橋市豊橋市老津町字宮脇15-2</div>`)[0];
+            popup_bdac09c238c0bbdf0c25ce41e01f71ed.setContent(html_72ae10f5117ced294e43c20bd2d110f1);
+        
+
+        circle_marker_3df17e588a5dbc6c511fc6a4dcd15e92.bindPopup(popup_bdac09c238c0bbdf0c25ce41e01f71ed)
+        ;
+
+        
+    
+    
+            var circle_marker_674782da46008ac46188d3d5064e5a43 = L.circleMarker(
+                [34.69024012, 137.3358694],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_65b125e455fe9f47a25f9a45c555b500 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_8b1f6526bc5a8fd2826feed0c65d0b87 = $(`<div id="html_8b1f6526bc5a8fd2826feed0c65d0b87" style="width: 100.0%; height: 100.0%;"><b>家政高等専修学校</b><br>愛知県豊橋市豊橋市老津町字西高縄78</div>`)[0];
+            popup_65b125e455fe9f47a25f9a45c555b500.setContent(html_8b1f6526bc5a8fd2826feed0c65d0b87);
+        
+
+        circle_marker_674782da46008ac46188d3d5064e5a43.bindPopup(popup_65b125e455fe9f47a25f9a45c555b500)
+        ;
+
+        
+    
+    
+            var circle_marker_27981985b8bdac5d8a74d6167a659d1d = L.circleMarker(
+                [34.67633407, 137.323808],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_b23c3e09cd8e36c5c8d36b8b7778c36e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_1c419e67a84dfc163ada9353305f8d4a = $(`<div id="html_1c419e67a84dfc163ada9353305f8d4a" style="width: 100.0%; height: 100.0%;"><b>杉山小学校</b><br>愛知県豊橋市豊橋市杉山町字御園9-4</div>`)[0];
+            popup_b23c3e09cd8e36c5c8d36b8b7778c36e.setContent(html_1c419e67a84dfc163ada9353305f8d4a);
+        
+
+        circle_marker_27981985b8bdac5d8a74d6167a659d1d.bindPopup(popup_b23c3e09cd8e36c5c8d36b8b7778c36e)
+        ;
+
+        
+    
+    
+            var circle_marker_85033970b742a9ad22987d8541eb3962 = L.circleMarker(
+                [34.68162697, 137.3580597],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_ff07e6bd350f8da6c891fa7d1c0e2aa1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_0d1562dcd4158b8d21674bb4b5afaf24 = $(`<div id="html_0d1562dcd4158b8d21674bb4b5afaf24" style="width: 100.0%; height: 100.0%;"><b>富士見小学校</b><br>愛知県豊橋市豊橋市富士見台二丁目1-5</div>`)[0];
+            popup_ff07e6bd350f8da6c891fa7d1c0e2aa1.setContent(html_0d1562dcd4158b8d21674bb4b5afaf24);
+        
+
+        circle_marker_85033970b742a9ad22987d8541eb3962.bindPopup(popup_ff07e6bd350f8da6c891fa7d1c0e2aa1)
+        ;
+
+        
+    
+    
+            var circle_marker_765e4231a3f4e89129b08aa3fa6806fa = L.circleMarker(
+                [34.66103798, 137.3633499],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_3e61c418901a6d4fd46b3ecddbc50394 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c7b199fea41f2c15ac469b180fd22c27 = $(`<div id="html_c7b199fea41f2c15ac469b180fd22c27" style="width: 100.0%; height: 100.0%;"><b>豊南小学校</b><br>愛知県豊橋市豊橋市東赤沢町字西横根130</div>`)[0];
+            popup_3e61c418901a6d4fd46b3ecddbc50394.setContent(html_c7b199fea41f2c15ac469b180fd22c27);
+        
+
+        circle_marker_765e4231a3f4e89129b08aa3fa6806fa.bindPopup(popup_3e61c418901a6d4fd46b3ecddbc50394)
+        ;
+
+        
+    
+    
+            var circle_marker_b0eb6c7c4442d053095b3a1151ae5f4e = L.circleMarker(
+                [34.66608127, 137.3755471],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_880d072e85832ea6d9b26699d3d687d1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_9b5d9b749113dbaf79d3ed80f5bb03e4 = $(`<div id="html_9b5d9b749113dbaf79d3ed80f5bb03e4" style="width: 100.0%; height: 100.0%;"><b>高豊中学校</b><br>愛知県豊橋市豊橋市伊古部町字原24-1</div>`)[0];
+            popup_880d072e85832ea6d9b26699d3d687d1.setContent(html_9b5d9b749113dbaf79d3ed80f5bb03e4);
+        
+
+        circle_marker_b0eb6c7c4442d053095b3a1151ae5f4e.bindPopup(popup_880d072e85832ea6d9b26699d3d687d1)
+        ;
+
+        
+    
+    
+            var circle_marker_d467722a4fcf37a56fcab8b110b2a930 = L.circleMarker(
+                [34.67163732, 137.4142566],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_be766704a58890f6e73a845ed0dbb145 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_584fa0d41a603d9d9e0db02682566333 = $(`<div id="html_584fa0d41a603d9d9e0db02682566333" style="width: 100.0%; height: 100.0%;"><b>高根小学校</b><br>愛知県豊橋市豊橋市西七根町字北浜辺147-1</div>`)[0];
+            popup_be766704a58890f6e73a845ed0dbb145.setContent(html_584fa0d41a603d9d9e0db02682566333);
+        
+
+        circle_marker_d467722a4fcf37a56fcab8b110b2a930.bindPopup(popup_be766704a58890f6e73a845ed0dbb145)
+        ;
+
+        
+    
+    
+            var circle_marker_083be5f19f98cfab516394fa977ee63d = L.circleMarker(
+                [34.71734654, 137.3432953],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_fc6507abe8739abac212b9fab6e18f9a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_194ee83d98e9373f300a1951764fcf42 = $(`<div id="html_194ee83d98e9373f300a1951764fcf42" style="width: 100.0%; height: 100.0%;"><b>大崎小学校</b><br>愛知県豊橋市豊橋市大崎町字西里中20-1</div>`)[0];
+            popup_fc6507abe8739abac212b9fab6e18f9a.setContent(html_194ee83d98e9373f300a1951764fcf42);
+        
+
+        circle_marker_083be5f19f98cfab516394fa977ee63d.bindPopup(popup_fc6507abe8739abac212b9fab6e18f9a)
+        ;
+
+        
+    
+    
+            var circle_marker_37899060e874a8a73ba98b6536a0de7e = L.circleMarker(
+                [34.71179606, 137.367463],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_05e71aec56bbefcc1a165905ac4cc3a7 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_346516cd5cbdbf815953780d6bd1d127 = $(`<div id="html_346516cd5cbdbf815953780d6bd1d127" style="width: 100.0%; height: 100.0%;"><b>植田小学校</b><br>愛知県豊橋市豊橋市植田町字池堀田15</div>`)[0];
+            popup_05e71aec56bbefcc1a165905ac4cc3a7.setContent(html_346516cd5cbdbf815953780d6bd1d127);
+        
+
+        circle_marker_37899060e874a8a73ba98b6536a0de7e.bindPopup(popup_05e71aec56bbefcc1a165905ac4cc3a7)
+        ;
+
+        
+    
+    
+            var circle_marker_a116155c5e19a1361e7c585b29b68798 = L.circleMarker(
+                [34.70980808, 137.3688874],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_bd0293a7cf501f61332dba3a943022e0 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d7a772c5e79c6c9e306078b773ed8451 = $(`<div id="html_d7a772c5e79c6c9e306078b773ed8451" style="width: 100.0%; height: 100.0%;"><b>南稜中学校</b><br>愛知県豊橋市豊橋市植田町字的場50</div>`)[0];
+            popup_bd0293a7cf501f61332dba3a943022e0.setContent(html_d7a772c5e79c6c9e306078b773ed8451);
+        
+
+        circle_marker_a116155c5e19a1361e7c585b29b68798.bindPopup(popup_bd0293a7cf501f61332dba3a943022e0)
+        ;
+
+        
+    
+    
+            var circle_marker_49b31968f302f55fb63184e0aa15b086 = L.circleMarker(
+                [34.69801573, 137.3892003],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_ea140940d06a9eaa23b97fcf9d781c33 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a16a51c6649eb9cff44f6c91298eddb9 = $(`<div id="html_a16a51c6649eb9cff44f6c91298eddb9" style="width: 100.0%; height: 100.0%;"><b>野依小学校</b><br>愛知県豊橋市豊橋市野依町字諏訪125</div>`)[0];
+            popup_ea140940d06a9eaa23b97fcf9d781c33.setContent(html_a16a51c6649eb9cff44f6c91298eddb9);
+        
+
+        circle_marker_49b31968f302f55fb63184e0aa15b086.bindPopup(popup_ea140940d06a9eaa23b97fcf9d781c33)
+        ;
+
+        
+    
+    
+            var circle_marker_3a43ff5dac4f256aabfca8bb0527e703 = L.circleMarker(
+                [34.69570139, 137.3636357],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_4d27480f98fcff6a15ac9ee222daff4b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_68d6b85e368e5d92b8ecca24a5601ba2 = $(`<div id="html_68d6b85e368e5d92b8ecca24a5601ba2" style="width: 100.0%; height: 100.0%;"><b>大清水小学校</b><br>愛知県豊橋市豊橋市南大清水町字元町78</div>`)[0];
+            popup_4d27480f98fcff6a15ac9ee222daff4b.setContent(html_68d6b85e368e5d92b8ecca24a5601ba2);
+        
+
+        circle_marker_3a43ff5dac4f256aabfca8bb0527e703.bindPopup(popup_4d27480f98fcff6a15ac9ee222daff4b)
+        ;
+
+        
+    
+    
+            var circle_marker_40a21b67931a806e81ab45071e772f6d = L.circleMarker(
+                [34.73115566, 137.4075189],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_bae77c1dff54ff1e33d9c4636dc13f4d = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ebc395573f2d4ee64588ff2d4a32e94e = $(`<div id="html_ebc395573f2d4ee64588ff2d4a32e94e" style="width: 100.0%; height: 100.0%;"><b>幸小学校</b><br>愛知県豊橋市豊橋市西幸町字笠松183</div>`)[0];
+            popup_bae77c1dff54ff1e33d9c4636dc13f4d.setContent(html_ebc395573f2d4ee64588ff2d4a32e94e);
+        
+
+        circle_marker_40a21b67931a806e81ab45071e772f6d.bindPopup(popup_bae77c1dff54ff1e33d9c4636dc13f4d)
+        ;
+
+        
+    
+    
+            var circle_marker_f1543e68715590187651c699e43ca7fd = L.circleMarker(
+                [34.72357394, 137.4074232],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_375ea8c878d8ad9bb751481e0b8f016f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ab93287ca0c393bb6973b37d669dd4b4 = $(`<div id="html_ab93287ca0c393bb6973b37d669dd4b4" style="width: 100.0%; height: 100.0%;"><b>高師台中学校</b><br>愛知県豊橋市豊橋市西幸町字浜池328</div>`)[0];
+            popup_375ea8c878d8ad9bb751481e0b8f016f.setContent(html_ab93287ca0c393bb6973b37d669dd4b4);
+        
+
+        circle_marker_f1543e68715590187651c699e43ca7fd.bindPopup(popup_375ea8c878d8ad9bb751481e0b8f016f)
+        ;
+
+        
+    
+    
+            var circle_marker_5063a7e1d91f90670652f93cc04e80b5 = L.circleMarker(
+                [34.72149192, 137.4110778],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_ce3a038187a4eddc25c65aaf5db03436 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_95ee1808456dacde3a23ed0ae7349fee = $(`<div id="html_95ee1808456dacde3a23ed0ae7349fee" style="width: 100.0%; height: 100.0%;"><b>豊橋サイエンスコア</b><br>愛知県豊橋市豊橋市西幸町字浜池333-9</div>`)[0];
+            popup_ce3a038187a4eddc25c65aaf5db03436.setContent(html_95ee1808456dacde3a23ed0ae7349fee);
+        
+
+        circle_marker_5063a7e1d91f90670652f93cc04e80b5.bindPopup(popup_ce3a038187a4eddc25c65aaf5db03436)
+        ;
+
+        
+    
+    
+            var circle_marker_f0b4c15e4a307d44d698355f91fbdc4a = L.circleMarker(
+                [34.71254731, 137.4133747],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_9af09a343a3405980e625ae6ac1090f4 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_01c9c14cf675d95c1942c6ad6479db28 = $(`<div id="html_01c9c14cf675d95c1942c6ad6479db28" style="width: 100.0%; height: 100.0%;"><b>天伯小学校</b><br>愛知県豊橋市豊橋市天伯町字高田山136-1</div>`)[0];
+            popup_9af09a343a3405980e625ae6ac1090f4.setContent(html_01c9c14cf675d95c1942c6ad6479db28);
+        
+
+        circle_marker_f0b4c15e4a307d44d698355f91fbdc4a.bindPopup(popup_9af09a343a3405980e625ae6ac1090f4)
+        ;
+
+        
+    
+    
+            var circle_marker_e0d40b7cfc65220f3cd99e6cc987a777 = L.circleMarker(
+                [34.72033529, 137.3921468],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_278ba3f360b3bc2909f8448e0f98a5a1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_9fc470957d12d9f48e68fa390770efdb = $(`<div id="html_9fc470957d12d9f48e68fa390770efdb" style="width: 100.0%; height: 100.0%;"><b>高師小学校</b><br>愛知県豊橋市豊橋市上野町字上原100</div>`)[0];
+            popup_278ba3f360b3bc2909f8448e0f98a5a1.setContent(html_9fc470957d12d9f48e68fa390770efdb);
+        
+
+        circle_marker_e0d40b7cfc65220f3cd99e6cc987a777.bindPopup(popup_278ba3f360b3bc2909f8448e0f98a5a1)
+        ;
+
+        
+    
+    
+            var circle_marker_6d939dd86dc1992ac125f80fa6a3bddc = L.circleMarker(
+                [34.71557819, 137.3960093],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_502a469ace4f664b7fbecdd309d4e7fe = L.popup({"maxWidth": "100%"});
+
+        
+            var html_9cfc815b4e4fbb207dcd86cac9cd4531 = $(`<div id="html_9cfc815b4e4fbb207dcd86cac9cd4531" style="width: 100.0%; height: 100.0%;"><b>本郷中学校</b><br>愛知県豊橋市豊橋市高師本郷町字竹の内90-1</div>`)[0];
+            popup_502a469ace4f664b7fbecdd309d4e7fe.setContent(html_9cfc815b4e4fbb207dcd86cac9cd4531);
+        
+
+        circle_marker_6d939dd86dc1992ac125f80fa6a3bddc.bindPopup(popup_502a469ace4f664b7fbecdd309d4e7fe)
+        ;
+
+        
+    
+    
+            var circle_marker_0ea3feec3a617d29f4a84f71c043a424 = L.circleMarker(
+                [34.71814867, 137.3813633],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_6954c5ec8df0feec55f99bf933384f4f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_fe9471a3725ff2e5248c6861c3c79361 = $(`<div id="html_fe9471a3725ff2e5248c6861c3c79361" style="width: 100.0%; height: 100.0%;"><b>芦原小学校</b><br>愛知県豊橋市豊橋市芦原町字嵩山地42-1</div>`)[0];
+            popup_6954c5ec8df0feec55f99bf933384f4f.setContent(html_fe9471a3725ff2e5248c6861c3c79361);
+        
+
+        circle_marker_0ea3feec3a617d29f4a84f71c043a424.bindPopup(popup_6954c5ec8df0feec55f99bf933384f4f)
+        ;
+
+        
+    
+    
+            var circle_marker_1fee7da62aaa9693994f5855c4bc4a00 = L.circleMarker(
+                [34.73983399, 137.4160671],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_99a8753ca062d4ff99e4b65b78c345ad = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2e33288c5280160d0a4c0e18b28880e8 = $(`<div id="html_2e33288c5280160d0a4c0e18b28880e8" style="width: 100.0%; height: 100.0%;"><b>高師老人福祉センター</b><br>愛知県豊橋市豊橋市高師町字北原1</div>`)[0];
+            popup_99a8753ca062d4ff99e4b65b78c345ad.setContent(html_2e33288c5280160d0a4c0e18b28880e8);
+        
+
+        circle_marker_1fee7da62aaa9693994f5855c4bc4a00.bindPopup(popup_99a8753ca062d4ff99e4b65b78c345ad)
+        ;
+
+        
+    
+    
+            var circle_marker_279525e1ce21c2d606080546b25ed71b = L.circleMarker(
+                [34.74121157, 137.3811623],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_06dbf4755c8eb4047e862cce09540aca = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d5310893a342ff2d70f8a9ebad8cbf1a = $(`<div id="html_d5310893a342ff2d70f8a9ebad8cbf1a" style="width: 100.0%; height: 100.0%;"><b>福岡小学校</b><br>愛知県豊橋市豊橋市橋良町字平野1-1</div>`)[0];
+            popup_06dbf4755c8eb4047e862cce09540aca.setContent(html_d5310893a342ff2d70f8a9ebad8cbf1a);
+        
+
+        circle_marker_279525e1ce21c2d606080546b25ed71b.bindPopup(popup_06dbf4755c8eb4047e862cce09540aca)
+        ;
+
+        
+    
+    
+            var circle_marker_820200669c71c1f52ebe8edb9085ceb0 = L.circleMarker(
+                [34.75124834, 137.3915009],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_02d39dd57b41dcd7864dd7fee2f57c79 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_f56889c254f544798d874334ac6e847d = $(`<div id="html_f56889c254f544798d874334ac6e847d" style="width: 100.0%; height: 100.0%;"><b>豊橋中央高等学校</b><br>愛知県豊橋市豊橋市鍵田町106</div>`)[0];
+            popup_02d39dd57b41dcd7864dd7fee2f57c79.setContent(html_f56889c254f544798d874334ac6e847d);
+        
+
+        circle_marker_820200669c71c1f52ebe8edb9085ceb0.bindPopup(popup_02d39dd57b41dcd7864dd7fee2f57c79)
+        ;
+
+        
+    
+    
+            var circle_marker_7a2ac3fc6b7af6e97ed591f8cd9af176 = L.circleMarker(
+                [34.73942283, 137.3871035],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_a465e2c608f0e2147d877e90dc6aa23a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c012ff28dc4f8ca6f9aaf005b950483c = $(`<div id="html_c012ff28dc4f8ca6f9aaf005b950483c" style="width: 100.0%; height: 100.0%;"><b>栄小学校</b><br>愛知県豊橋市豊橋市北山町字東浦46-4</div>`)[0];
+            popup_a465e2c608f0e2147d877e90dc6aa23a.setContent(html_c012ff28dc4f8ca6f9aaf005b950483c);
+        
+
+        circle_marker_7a2ac3fc6b7af6e97ed591f8cd9af176.bindPopup(popup_a465e2c608f0e2147d877e90dc6aa23a)
+        ;
+
+        
+    
+    
+            var circle_marker_00266b327eb9c44f50b36744980be0f6 = L.circleMarker(
+                [34.73753699, 137.3878225],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_9cf2d1255293e68de0bbf3775aca88c3 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_7ac0c5a401f2486c8d229846a9620827 = $(`<div id="html_7ac0c5a401f2486c8d229846a9620827" style="width: 100.0%; height: 100.0%;"><b>南部中学校</b><br>愛知県豊橋市豊橋市北山町字東浦1-4</div>`)[0];
+            popup_9cf2d1255293e68de0bbf3775aca88c3.setContent(html_7ac0c5a401f2486c8d229846a9620827);
+        
+
+        circle_marker_00266b327eb9c44f50b36744980be0f6.bindPopup(popup_9cf2d1255293e68de0bbf3775aca88c3)
+        ;
+
+        
+    
+    
+            var circle_marker_78a686bd89c62aa6d74b5cefe74719e1 = L.circleMarker(
+                [34.74371738, 137.3851904],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_15f61f2d8f29d06203756d29355931bb = L.popup({"maxWidth": "100%"});
+
+        
+            var html_4fb8567a749b8d3bfe529ce275dc1fdb = $(`<div id="html_4fb8567a749b8d3bfe529ce275dc1fdb" style="width: 100.0%; height: 100.0%;"><b>時習館高等学校</b><br>愛知県豊橋市豊橋市富本町</div>`)[0];
+            popup_15f61f2d8f29d06203756d29355931bb.setContent(html_4fb8567a749b8d3bfe529ce275dc1fdb);
+        
+
+        circle_marker_78a686bd89c62aa6d74b5cefe74719e1.bindPopup(popup_15f61f2d8f29d06203756d29355931bb)
+        ;
+
+        
+    
+    
+            var circle_marker_30b06400afe042fef149165c4d1f4fba = L.circleMarker(
+                [34.74188047, 137.3878076],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_93909bd85f43378e9576dea0807d3845 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_681d3562e499fa19205455c854e0b04b = $(`<div id="html_681d3562e499fa19205455c854e0b04b" style="width: 100.0%; height: 100.0%;"><b>愛知大学</b><br>愛知県豊橋市豊橋市町畑町1-1</div>`)[0];
+            popup_93909bd85f43378e9576dea0807d3845.setContent(html_681d3562e499fa19205455c854e0b04b);
+        
+
+        circle_marker_30b06400afe042fef149165c4d1f4fba.bindPopup(popup_93909bd85f43378e9576dea0807d3845)
+        ;
+
+        
+    
+    
+            var circle_marker_d3d598a9b1c0e5731d1b9d5b50212b1a = L.circleMarker(
+                [34.73157305, 137.3754241],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_ee9ccb7ed90a87500653c7c156d92a69 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_08e5a1ff773801566cbfb0a9d8ae7825 = $(`<div id="html_08e5a1ff773801566cbfb0a9d8ae7825" style="width: 100.0%; height: 100.0%;"><b>豊橋工業高等学校</b><br>愛知県豊橋市豊橋市草間町官有地</div>`)[0];
+            popup_ee9ccb7ed90a87500653c7c156d92a69.setContent(html_08e5a1ff773801566cbfb0a9d8ae7825);
+        
+
+        circle_marker_d3d598a9b1c0e5731d1b9d5b50212b1a.bindPopup(popup_ee9ccb7ed90a87500653c7c156d92a69)
+        ;
+
+        
+    
+    
+            var circle_marker_17a854747cee4bc2a15d2c21d2c947f5 = L.circleMarker(
+                [34.74108914, 137.3788848],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_051c57fb0157ff8e7ef95c68b252e8ff = L.popup({"maxWidth": "100%"});
+
+        
+            var html_6294be8cea2643625c560e2fcb564e56 = $(`<div id="html_6294be8cea2643625c560e2fcb564e56" style="width: 100.0%; height: 100.0%;"><b>中野小学校</b><br>愛知県豊橋市豊橋市橋良町字向山6-4</div>`)[0];
+            popup_051c57fb0157ff8e7ef95c68b252e8ff.setContent(html_6294be8cea2643625c560e2fcb564e56);
+        
+
+        circle_marker_17a854747cee4bc2a15d2c21d2c947f5.bindPopup(popup_051c57fb0157ff8e7ef95c68b252e8ff)
+        ;
+
+        
+    
+    
+            var circle_marker_7339cd62c68324066f8f74050e20eab9 = L.circleMarker(
+                [34.72837854, 137.3670637],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_465c7b7da5788661ee29ae3b9b042482 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_373e7cc3b96a0ca69999eaebf946a47e = $(`<div id="html_373e7cc3b96a0ca69999eaebf946a47e" style="width: 100.0%; height: 100.0%;"><b>磯辺小学校</b><br>愛知県豊橋市豊橋市駒形町字丸山61</div>`)[0];
+            popup_465c7b7da5788661ee29ae3b9b042482.setContent(html_373e7cc3b96a0ca69999eaebf946a47e);
+        
+
+        circle_marker_7339cd62c68324066f8f74050e20eab9.bindPopup(popup_465c7b7da5788661ee29ae3b9b042482)
+        ;
+
+        
+    
+    
+            var circle_marker_f932111e5d117c409e51b35dcbd68b90 = L.circleMarker(
+                [34.73339202, 137.3638295],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_ed9894f3f9b60cd04902ae7cb0dae9d8 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_9d3df074ab9e7afd5dcafa77dd004125 = $(`<div id="html_9d3df074ab9e7afd5dcafa77dd004125" style="width: 100.0%; height: 100.0%;"><b>南陽中学校</b><br>愛知県豊橋市豊橋市駒形町字南欠下1-1</div>`)[0];
+            popup_ed9894f3f9b60cd04902ae7cb0dae9d8.setContent(html_9d3df074ab9e7afd5dcafa77dd004125);
+        
+
+        circle_marker_f932111e5d117c409e51b35dcbd68b90.bindPopup(popup_ed9894f3f9b60cd04902ae7cb0dae9d8)
+        ;
+
+        
+    
+    
+            var circle_marker_3d2866d753bf4cde83f3f4fd849102c3 = L.circleMarker(
+                [34.73257337, 137.3811903],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_5a28d326748a7b963d384e6960012b4f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_4a02654aa38c45cfd3d947e6e23be85a = $(`<div id="html_4a02654aa38c45cfd3d947e6e23be85a" style="width: 100.0%; height: 100.0%;"><b>アイプラザ豊橋</b><br>愛知県豊橋市豊橋市草間町字東山143-6</div>`)[0];
+            popup_5a28d326748a7b963d384e6960012b4f.setContent(html_4a02654aa38c45cfd3d947e6e23be85a);
+        
+
+        circle_marker_3d2866d753bf4cde83f3f4fd849102c3.bindPopup(popup_5a28d326748a7b963d384e6960012b4f)
+        ;
+
+        
+    
+    
+            var circle_marker_8c867f86e458946d72cc6db5f4380c0c = L.circleMarker(
+                [34.76130448, 137.3743493],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_c046e49db5266ef0f3a99a6cec09d270 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_56562c448eee5f74a323134de1807053 = $(`<div id="html_56562c448eee5f74a323134de1807053" style="width: 100.0%; height: 100.0%;"><b>花田小学校</b><br>愛知県豊橋市豊橋市西羽田町247</div>`)[0];
+            popup_c046e49db5266ef0f3a99a6cec09d270.setContent(html_56562c448eee5f74a323134de1807053);
+        
+
+        circle_marker_8c867f86e458946d72cc6db5f4380c0c.bindPopup(popup_c046e49db5266ef0f3a99a6cec09d270)
+        ;
+
+        
+    
+    
+            var circle_marker_dc683880225bc63901175a7260b8afa9 = L.circleMarker(
+                [34.75913786, 137.3710442],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_bd76d69db2eae73ca0606a22948b6fed = L.popup({"maxWidth": "100%"});
+
+        
+            var html_dd85e8fdfc74f9a7a3d6b41677114998 = $(`<div id="html_dd85e8fdfc74f9a7a3d6b41677114998" style="width: 100.0%; height: 100.0%;"><b>羽田中学校</b><br>愛知県豊橋市豊橋市西羽田町43-1</div>`)[0];
+            popup_bd76d69db2eae73ca0606a22948b6fed.setContent(html_dd85e8fdfc74f9a7a3d6b41677114998);
+        
+
+        circle_marker_dc683880225bc63901175a7260b8afa9.bindPopup(popup_bd76d69db2eae73ca0606a22948b6fed)
+        ;
+
+        
+    
+    
+            var circle_marker_7c2a6141db9bd92f3abf6d3567f74dad = L.circleMarker(
+                [34.75753386, 137.3782648],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_25e247266a49c008ee1274aa0ef5dc85 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_32864496fc0e235a2808f88f0ffe1029 = $(`<div id="html_32864496fc0e235a2808f88f0ffe1029" style="width: 100.0%; height: 100.0%;"><b>羽根井小学校</b><br>愛知県豊橋市豊橋市羽根井本町131</div>`)[0];
+            popup_25e247266a49c008ee1274aa0ef5dc85.setContent(html_32864496fc0e235a2808f88f0ffe1029);
+        
+
+        circle_marker_7c2a6141db9bd92f3abf6d3567f74dad.bindPopup(popup_25e247266a49c008ee1274aa0ef5dc85)
+        ;
+
+        
+    
+    
+            var circle_marker_5e1e762623419d853e55b0685035f8cd = L.circleMarker(
+                [34.75091962, 137.3583387],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_8cc42202c09fcc2d0ff2b5855dc75480 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ba86d52195c103842387f2eec2730a4e = $(`<div id="html_ba86d52195c103842387f2eec2730a4e" style="width: 100.0%; height: 100.0%;"><b>牟呂小学校</b><br>愛知県豊橋市豊橋市牟呂中村町1-4</div>`)[0];
+            popup_8cc42202c09fcc2d0ff2b5855dc75480.setContent(html_ba86d52195c103842387f2eec2730a4e);
+        
+
+        circle_marker_5e1e762623419d853e55b0685035f8cd.bindPopup(popup_8cc42202c09fcc2d0ff2b5855dc75480)
+        ;
+
+        
+    
+    
+            var circle_marker_4786b05c812fa34ce3b376659ab9cf07 = L.circleMarker(
+                [34.74915523, 137.3515652],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_1cdd971bdfa5dfadf2802cc76abb88a0 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d493d8387a8709531da3738e86a080d9 = $(`<div id="html_d493d8387a8709531da3738e86a080d9" style="width: 100.0%; height: 100.0%;"><b>牟呂中学校</b><br>愛知県豊橋市豊橋市神野新田町字イノ割1-3</div>`)[0];
+            popup_1cdd971bdfa5dfadf2802cc76abb88a0.setContent(html_d493d8387a8709531da3738e86a080d9);
+        
+
+        circle_marker_4786b05c812fa34ce3b376659ab9cf07.bindPopup(popup_1cdd971bdfa5dfadf2802cc76abb88a0)
+        ;
+
+        
+    
+    
+            var circle_marker_993c77d549b8085af6c376662f02b6c6 = L.circleMarker(
+                [34.74648163, 137.3628467],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_720bf707784f0a6c03c04982cebf6e2e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c725b309ba51a79e84388c2c3191f801 = $(`<div id="html_c725b309ba51a79e84388c2c3191f801" style="width: 100.0%; height: 100.0%;"><b>汐田小学校</b><br>愛知県豊橋市豊橋市牟呂町字北汐田50-1</div>`)[0];
+            popup_720bf707784f0a6c03c04982cebf6e2e.setContent(html_c725b309ba51a79e84388c2c3191f801);
+        
+
+        circle_marker_993c77d549b8085af6c376662f02b6c6.bindPopup(popup_720bf707784f0a6c03c04982cebf6e2e)
+        ;
+
+        
+    
+    
+            var circle_marker_8b85cd9aaf812886172e7c24148a8003 = L.circleMarker(
+                [34.74952286, 137.3718422],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_4f0a1206c47dccaa69398386522577eb = L.popup({"maxWidth": "100%"});
+
+        
+            var html_5e170018de070bfe3a34bce2bcf28b64 = $(`<div id="html_5e170018de070bfe3a34bce2bcf28b64" style="width: 100.0%; height: 100.0%;"><b>青少年センター</b><br>愛知県豊橋市豊橋市牟呂町字東里26</div>`)[0];
+            popup_4f0a1206c47dccaa69398386522577eb.setContent(html_5e170018de070bfe3a34bce2bcf28b64);
+        
+
+        circle_marker_8b85cd9aaf812886172e7c24148a8003.bindPopup(popup_4f0a1206c47dccaa69398386522577eb)
+        ;
+
+        
+    
+    
+            var circle_marker_95762f605e2f1ce3e1775d9c2332274f = L.circleMarker(
+                [34.75969364, 137.3937582],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_8774d236193e25f45e570c25cdf0db25 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b27800bd3b63818bdd314d4fc34b1c71 = $(`<div id="html_b27800bd3b63818bdd314d4fc34b1c71" style="width: 100.0%; height: 100.0%;"><b>新川小学校</b><br>愛知県豊橋市豊橋市前田中町8-23</div>`)[0];
+            popup_8774d236193e25f45e570c25cdf0db25.setContent(html_b27800bd3b63818bdd314d4fc34b1c71);
+        
+
+        circle_marker_95762f605e2f1ce3e1775d9c2332274f.bindPopup(popup_8774d236193e25f45e570c25cdf0db25)
+        ;
+
+        
+    
+    
+            var circle_marker_be0cde5c2206b63dfe64d6fd49c7a65d = L.circleMarker(
+                [34.76330532, 137.3993097],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_2da700ad7b39e47dfbd76311459efba7 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_925b8004ca8863c46b8bdb7878a8b87d = $(`<div id="html_925b8004ca8863c46b8bdb7878a8b87d" style="width: 100.0%; height: 100.0%;"><b>中部中学校</b><br>愛知県豊橋市豊橋市舟原町154</div>`)[0];
+            popup_2da700ad7b39e47dfbd76311459efba7.setContent(html_925b8004ca8863c46b8bdb7878a8b87d);
+        
+
+        circle_marker_be0cde5c2206b63dfe64d6fd49c7a65d.bindPopup(popup_2da700ad7b39e47dfbd76311459efba7)
+        ;
+
+        
+    
+    
+            var circle_marker_ed03651ead4ccaa917b7533c5302fad9 = L.circleMarker(
+                [34.75919764, 137.4039271],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_b17ec8c2e7bbbdd1de892de143f636d1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_bdfe83a87740297b0cd70e214316b4fb = $(`<div id="html_bdfe83a87740297b0cd70e214316b4fb" style="width: 100.0%; height: 100.0%;"><b>向山小学校</b><br>愛知県豊橋市豊橋市向山西町5-1</div>`)[0];
+            popup_b17ec8c2e7bbbdd1de892de143f636d1.setContent(html_bdfe83a87740297b0cd70e214316b4fb);
+        
+
+        circle_marker_ed03651ead4ccaa917b7533c5302fad9.bindPopup(popup_b17ec8c2e7bbbdd1de892de143f636d1)
+        ;
+
+        
+    
+    
+            var circle_marker_b58ed932d82a40cbad070d3f9a243ad5 = L.circleMarker(
+                [34.75516933, 137.4085878],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_ef68cdd6f68505fb067ca2a1f54466aa = L.popup({"maxWidth": "100%"});
+
+        
+            var html_32f5f2bcd432b83afb8b24abf499b797 = $(`<div id="html_32f5f2bcd432b83afb8b24abf499b797" style="width: 100.0%; height: 100.0%;"><b>豊橋東高等学校</b><br>愛知県豊橋市豊橋市向山町字西猿22</div>`)[0];
+            popup_ef68cdd6f68505fb067ca2a1f54466aa.setContent(html_32f5f2bcd432b83afb8b24abf499b797);
+        
+
+        circle_marker_b58ed932d82a40cbad070d3f9a243ad5.bindPopup(popup_ef68cdd6f68505fb067ca2a1f54466aa)
+        ;
+
+        
+    
+    
+            var circle_marker_7f96971ff40cfcbb368b47d1900f5d71 = L.circleMarker(
+                [34.75598987, 137.3964225],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_a3ed3211155e6c4c514e500977ce90db = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e1499ac30beb0c7a36f9efc7aa62fdb5 = $(`<div id="html_e1499ac30beb0c7a36f9efc7aa62fdb5" style="width: 100.0%; height: 100.0%;"><b>豊橋商業高等学校</b><br>愛知県豊橋市豊橋市向山町官有地</div>`)[0];
+            popup_a3ed3211155e6c4c514e500977ce90db.setContent(html_e1499ac30beb0c7a36f9efc7aa62fdb5);
+        
+
+        circle_marker_7f96971ff40cfcbb368b47d1900f5d71.bindPopup(popup_a3ed3211155e6c4c514e500977ce90db)
+        ;
+
+        
+    
+    
+            var circle_marker_2afd7f406f39e3fed66f221e86739962 = L.circleMarker(
+                [34.75888421, 137.3871406],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_ac2f3bffb7c3881e10fd9e75a94343c1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_5fde93b622684cd7d9efd3a778663108 = $(`<div id="html_5fde93b622684cd7d9efd3a778663108" style="width: 100.0%; height: 100.0%;"><b>松山小学校</b><br>愛知県豊橋市豊橋市西松山町42</div>`)[0];
+            popup_ac2f3bffb7c3881e10fd9e75a94343c1.setContent(html_5fde93b622684cd7d9efd3a778663108);
+        
+
+        circle_marker_2afd7f406f39e3fed66f221e86739962.bindPopup(popup_ac2f3bffb7c3881e10fd9e75a94343c1)
+        ;
+
+        
+    
+    
+            var circle_marker_592c59d5d8777e2b2cd902f4f9f00c4d = L.circleMarker(
+                [34.7530929, 137.3948401],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_d67976caecb3ddf5c7ba6fbd2551f8c3 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_630b497eee20d1b73d162b9669bd56d2 = $(`<div id="html_630b497eee20d1b73d162b9669bd56d2" style="width: 100.0%; height: 100.0%;"><b>前田南地区体育館</b><br>愛知県豊橋市豊橋市前田南町二丁目19-8</div>`)[0];
+            popup_d67976caecb3ddf5c7ba6fbd2551f8c3.setContent(html_630b497eee20d1b73d162b9669bd56d2);
+        
+
+        circle_marker_592c59d5d8777e2b2cd902f4f9f00c4d.bindPopup(popup_d67976caecb3ddf5c7ba6fbd2551f8c3)
+        ;
+
+        
+    
+    
+            var circle_marker_909c9f6df997f07cde515591e68a4d4f = L.circleMarker(
+                [34.7395629, 137.4178392],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_88bd206653c935901d7eecebc3d7f0c3 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e510c47a7bbf22520395e3607a35f533 = $(`<div id="html_e510c47a7bbf22520395e3607a35f533" style="width: 100.0%; height: 100.0%;"><b>岩西小学校</b><br>愛知県豊橋市豊橋市西口町字西ノ口25-4</div>`)[0];
+            popup_88bd206653c935901d7eecebc3d7f0c3.setContent(html_e510c47a7bbf22520395e3607a35f533);
+        
+
+        circle_marker_909c9f6df997f07cde515591e68a4d4f.bindPopup(popup_88bd206653c935901d7eecebc3d7f0c3)
+        ;
+
+        
+    
+    
+            var circle_marker_d70e8e51631040ed21487411b3de3444 = L.circleMarker(
+                [34.74219697, 137.4252733],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_5f5ce916ace88e2153b877b1235ad3e0 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_fc4302e35554abe7af40268ca0a4bb99 = $(`<div id="html_fc4302e35554abe7af40268ca0a4bb99" style="width: 100.0%; height: 100.0%;"><b>飯村小学校</b><br>愛知県豊橋市豊橋市飯村南四丁目6-4</div>`)[0];
+            popup_5f5ce916ace88e2153b877b1235ad3e0.setContent(html_fc4302e35554abe7af40268ca0a4bb99);
+        
+
+        circle_marker_d70e8e51631040ed21487411b3de3444.bindPopup(popup_5f5ce916ace88e2153b877b1235ad3e0)
+        ;
+
+        
+    
+    
+            var circle_marker_12079a27e69d926e28050044a71c242c = L.circleMarker(
+                [34.74809999, 137.4286762],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_f5b9b3f8e7af7cce93467e1df17e6599 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_77ca6e50ab80c30b63c9091875d5bb92 = $(`<div id="html_77ca6e50ab80c30b63c9091875d5bb92" style="width: 100.0%; height: 100.0%;"><b>東部中学校</b><br>愛知県豊橋市豊橋市飯村北四丁目1-2</div>`)[0];
+            popup_f5b9b3f8e7af7cce93467e1df17e6599.setContent(html_77ca6e50ab80c30b63c9091875d5bb92);
+        
+
+        circle_marker_12079a27e69d926e28050044a71c242c.bindPopup(popup_f5b9b3f8e7af7cce93467e1df17e6599)
+        ;
+
+        
+    
+    
+            var circle_marker_2d2f10c09f7552aacedaa6b40dcf4a6b = L.circleMarker(
+                [34.74346311, 137.4037226],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_c43f6c101b075cc34b6c1c2ef6fff6fd = L.popup({"maxWidth": "100%"});
+
+        
+            var html_64a2e10dafe91e159e4206beadcad6e0 = $(`<div id="html_64a2e10dafe91e159e4206beadcad6e0" style="width: 100.0%; height: 100.0%;"><b>つつじが丘小学校</b><br>愛知県豊橋市豊橋市佐藤五丁目16-1</div>`)[0];
+            popup_c43f6c101b075cc34b6c1c2ef6fff6fd.setContent(html_64a2e10dafe91e159e4206beadcad6e0);
+        
+
+        circle_marker_2d2f10c09f7552aacedaa6b40dcf4a6b.bindPopup(popup_c43f6c101b075cc34b6c1c2ef6fff6fd)
+        ;
+
+        
+    
+    
+            var circle_marker_c4d5232ea28170187bf9cc93617f68ef = L.circleMarker(
+                [34.7670563, 137.3986423],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_209927b31f6384c04ea1ae4284925a40 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_1d53da6460866d7cf294e6307c603f8a = $(`<div id="html_1d53da6460866d7cf294e6307c603f8a" style="width: 100.0%; height: 100.0%;"><b>八町小学校</b><br>愛知県豊橋市豊橋市八町通五丁目5</div>`)[0];
+            popup_209927b31f6384c04ea1ae4284925a40.setContent(html_1d53da6460866d7cf294e6307c603f8a);
+        
+
+        circle_marker_c4d5232ea28170187bf9cc93617f68ef.bindPopup(popup_209927b31f6384c04ea1ae4284925a40)
+        ;
+
+        
+    
+    
+            var circle_marker_693d517e5daee0b4d4e61fcaf8e60ad2 = L.circleMarker(
+                [34.77007437, 137.391564],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_f5848dc5ebb9ec3cc1c2cbd78f0feee5 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_4c34f91519d854a5c4bbd8d0b91b9ca3 = $(`<div id="html_4c34f91519d854a5c4bbd8d0b91b9ca3" style="width: 100.0%; height: 100.0%;"><b>豊城中学校</b><br>愛知県豊橋市豊橋市今橋町2-1</div>`)[0];
+            popup_f5848dc5ebb9ec3cc1c2cbd78f0feee5.setContent(html_4c34f91519d854a5c4bbd8d0b91b9ca3);
+        
+
+        circle_marker_693d517e5daee0b4d4e61fcaf8e60ad2.bindPopup(popup_f5848dc5ebb9ec3cc1c2cbd78f0feee5)
+        ;
+
+        
+    
+    
+            var circle_marker_a20ea56715bf59f0e259c2ae35d6a4c3 = L.circleMarker(
+                [34.76791656, 137.3922333],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_2bd600e41e2d7d0593e3b95c667e4a82 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a36b7d0ed0f6ecdf615a374241ef7d32 = $(`<div id="html_a36b7d0ed0f6ecdf615a374241ef7d32" style="width: 100.0%; height: 100.0%;"><b>豊橋市公会堂</b><br>愛知県豊橋市豊橋市八町通二丁目22</div>`)[0];
+            popup_2bd600e41e2d7d0593e3b95c667e4a82.setContent(html_a36b7d0ed0f6ecdf615a374241ef7d32);
+        
+
+        circle_marker_a20ea56715bf59f0e259c2ae35d6a4c3.bindPopup(popup_2bd600e41e2d7d0593e3b95c667e4a82)
+        ;
+
+        
+    
+    
+            var circle_marker_d6a61362423e4e194fbc4688f884eea5 = L.circleMarker(
+                [34.76855298, 137.3811986],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_d3d38afcf86fa0e257a806f7ab508b44 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_cf80fed9ba71837e75334d69a00423e8 = $(`<div id="html_cf80fed9ba71837e75334d69a00423e8" style="width: 100.0%; height: 100.0%;"><b>松葉小学校</b><br>愛知県豊橋市豊橋市大橋通三丁目107</div>`)[0];
+            popup_d3d38afcf86fa0e257a806f7ab508b44.setContent(html_cf80fed9ba71837e75334d69a00423e8);
+        
+
+        circle_marker_d6a61362423e4e194fbc4688f884eea5.bindPopup(popup_d3d38afcf86fa0e257a806f7ab508b44)
+        ;
+
+        
+    
+    
+            var circle_marker_30976a5254d655ebaf764c733f39643e = L.circleMarker(
+                [34.77120729, 137.3642277],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_1b64e3be70c96b6e37c51c8fdcb928fc = L.popup({"maxWidth": "100%"});
+
+        
+            var html_dabde3bdc3a3406dbe51f376c12d5605 = $(`<div id="html_dabde3bdc3a3406dbe51f376c12d5605" style="width: 100.0%; height: 100.0%;"><b>吉田方小学校</b><br>愛知県豊橋市豊橋市吉川町118</div>`)[0];
+            popup_1b64e3be70c96b6e37c51c8fdcb928fc.setContent(html_dabde3bdc3a3406dbe51f376c12d5605);
+        
+
+        circle_marker_30976a5254d655ebaf764c733f39643e.bindPopup(popup_1b64e3be70c96b6e37c51c8fdcb928fc)
+        ;
+
+        
+    
+    
+            var circle_marker_8c0d23230b5801d834adce0c0daab040 = L.circleMarker(
+                [34.77043254, 137.3505573],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_805e041de7066423e2dd7e2c3f024647);
+        
+    
+        var popup_55a79a62e1e719e3777014630d26be5a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a681095bfb1962dd5f6a06263826c0e7 = $(`<div id="html_a681095bfb1962dd5f6a06263826c0e7" style="width: 100.0%; height: 100.0%;"><b>吉田方中学校</b><br>愛知県豊橋市豊橋市高洲町字長弦73-1</div>`)[0];
+            popup_55a79a62e1e719e3777014630d26be5a.setContent(html_a681095bfb1962dd5f6a06263826c0e7);
+        
+
+        circle_marker_8c0d23230b5801d834adce0c0daab040.bindPopup(popup_55a79a62e1e719e3777014630d26be5a)
+        ;
+
+        
+    
+    
+            var feature_group_a48d93ee819d53bc5475ac1a820a38d0 = L.featureGroup(
+                {}
+            ).addTo(map_175b1a83f8fb96e412bfcc8d88dc021f);
+        
+    
+            var circle_marker_2e85bf657b8e4d211600cfabc976e02c = L.circleMarker(
+                [34.771363, 137.352632],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_a997574baae4b36e0a015a7a1549d2e6 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_dd092f06b2ecd4e7a5184007c8713cdc = $(`<div id="html_dd092f06b2ecd4e7a5184007c8713cdc" style="width: 100.0%; height: 100.0%;"><b>吉田方防災備蓄倉庫</b><br>愛知県豊橋市高洲町字高洲122</div>`)[0];
+            popup_a997574baae4b36e0a015a7a1549d2e6.setContent(html_dd092f06b2ecd4e7a5184007c8713cdc);
+        
+
+        circle_marker_2e85bf657b8e4d211600cfabc976e02c.bindPopup(popup_a997574baae4b36e0a015a7a1549d2e6)
+        ;
+
+        
+    
+    
+            var circle_marker_2ecc4379cf6ea0c162b94285aa48f22e = L.circleMarker(
+                [34.735667, 137.399485],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_c948f3ada90ea56184aee3c50f12eb6f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_559dc4a533fe15de7fe6f735129b5255 = $(`<div id="html_559dc4a533fe15de7fe6f735129b5255" style="width: 100.0%; height: 100.0%;"><b>北山防災備蓄倉庫</b><br>愛知県豊橋市北山町95-15</div>`)[0];
+            popup_c948f3ada90ea56184aee3c50f12eb6f.setContent(html_559dc4a533fe15de7fe6f735129b5255);
+        
+
+        circle_marker_2ecc4379cf6ea0c162b94285aa48f22e.bindPopup(popup_c948f3ada90ea56184aee3c50f12eb6f)
+        ;
+
+        
+    
+    
+            var circle_marker_77abbe8499f0b30beabd04d95389e860 = L.circleMarker(
+                [34.75847, 137.424356],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_ce94203a10acbbbc3dc22f19212b88a2 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_5c6b04299b876f7472ff0af354a39a89 = $(`<div id="html_5c6b04299b876f7472ff0af354a39a89" style="width: 100.0%; height: 100.0%;"><b>岩田防災備蓄倉庫</b><br>愛知県豊橋市岩田町1-2</div>`)[0];
+            popup_ce94203a10acbbbc3dc22f19212b88a2.setContent(html_5c6b04299b876f7472ff0af354a39a89);
+        
+
+        circle_marker_77abbe8499f0b30beabd04d95389e860.bindPopup(popup_ce94203a10acbbbc3dc22f19212b88a2)
+        ;
+
+        
+    
+    
+            var circle_marker_c3b0b76c3cff504b25124df51b74264f = L.circleMarker(
+                [34.726103, 137.385919],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_5dff3ae76a6f9982d620746020a041ce = L.popup({"maxWidth": "100%"});
+
+        
+            var html_3b39c76a1210c8e20f682d0d5c02d133 = $(`<div id="html_3b39c76a1210c8e20f682d0d5c02d133" style="width: 100.0%; height: 100.0%;"><b>高師防災備蓄倉庫</b><br>愛知県豊橋市高師町字北原1-1</div>`)[0];
+            popup_5dff3ae76a6f9982d620746020a041ce.setContent(html_3b39c76a1210c8e20f682d0d5c02d133);
+        
+
+        circle_marker_c3b0b76c3cff504b25124df51b74264f.bindPopup(popup_5dff3ae76a6f9982d620746020a041ce)
+        ;
+
+        
+    
+    
+            var circle_marker_13ac4958adccc05a9a966c5f7afed2f7 = L.circleMarker(
+                [34.738962, 137.41256],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_06258a41b6a1eed4b8f2758d225635a6 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_6fbc1bdab3f89f3614612cdc4617adad = $(`<div id="html_6fbc1bdab3f89f3614612cdc4617adad" style="width: 100.0%; height: 100.0%;"><b>幸防災備蓄倉庫</b><br>愛知県豊橋市佐藤町字池下49</div>`)[0];
+            popup_06258a41b6a1eed4b8f2758d225635a6.setContent(html_6fbc1bdab3f89f3614612cdc4617adad);
+        
+
+        circle_marker_13ac4958adccc05a9a966c5f7afed2f7.bindPopup(popup_06258a41b6a1eed4b8f2758d225635a6)
+        ;
+
+        
+    
+    
+            var circle_marker_0e36bbfe4684bda551b048f410d21b1a = L.circleMarker(
+                [34.775307, 137.424753],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_55ea9c36760c41cd08f90b7d07dbbfce = L.popup({"maxWidth": "100%"});
+
+        
+            var html_42c495f1231199057aad0f1c280a63df = $(`<div id="html_42c495f1231199057aad0f1c280a63df" style="width: 100.0%; height: 100.0%;"><b>牛川防災備蓄倉庫</b><br>愛知県豊橋市西小鷹野四丁目1-1</div>`)[0];
+            popup_55ea9c36760c41cd08f90b7d07dbbfce.setContent(html_42c495f1231199057aad0f1c280a63df);
+        
+
+        circle_marker_0e36bbfe4684bda551b048f410d21b1a.bindPopup(popup_55ea9c36760c41cd08f90b7d07dbbfce)
+        ;
+
+        
+    
+    
+            var circle_marker_0818b96ba2bdaa5e55a031de8a8c4d9a = L.circleMarker(
+                [34.75858438, 137.32332946],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_c8f42ea9c0d0c8bdca360b806fa95dca = L.popup({"maxWidth": "100%"});
+
+        
+            var html_84bbba8e850c8306bda58b1b129d2fe2 = $(`<div id="html_84bbba8e850c8306bda58b1b129d2fe2" style="width: 100.0%; height: 100.0%;"><b>総合スポーツ公園防災備蓄倉庫</b><br>愛知県豊橋市神野新田町字メノ割1-3</div>`)[0];
+            popup_c8f42ea9c0d0c8bdca360b806fa95dca.setContent(html_84bbba8e850c8306bda58b1b129d2fe2);
+        
+
+        circle_marker_0818b96ba2bdaa5e55a031de8a8c4d9a.bindPopup(popup_c8f42ea9c0d0c8bdca360b806fa95dca)
+        ;
+
+        
+    
+    
+            var circle_marker_e3d5040b044348b13572cd3ddb869272 = L.circleMarker(
+                [34.768342, 137.398028],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_62ade96d4352f40c9299932dbf565603 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_6cc67e0c74fee3e6b2dcf8e50dbc1655 = $(`<div id="html_6cc67e0c74fee3e6b2dcf8e50dbc1655" style="width: 100.0%; height: 100.0%;"><b>豊橋公園防災備蓄倉庫</b><br>愛知県豊橋市今橋町4</div>`)[0];
+            popup_62ade96d4352f40c9299932dbf565603.setContent(html_6cc67e0c74fee3e6b2dcf8e50dbc1655);
+        
+
+        circle_marker_e3d5040b044348b13572cd3ddb869272.bindPopup(popup_62ade96d4352f40c9299932dbf565603)
+        ;
+
+        
+    
+    
+            var circle_marker_e7a0d65d0e695a94288467cf64df5935 = L.circleMarker(
+                [34.6972, 137.3902],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_9085c8fe236e37aa5853584497692e07 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_510e091a4fd735469828551973080492 = $(`<div id="html_510e091a4fd735469828551973080492" style="width: 100.0%; height: 100.0%;"><b>野依防災備蓄倉庫</b><br>愛知県豊橋市野依町字諏訪149-1</div>`)[0];
+            popup_9085c8fe236e37aa5853584497692e07.setContent(html_510e091a4fd735469828551973080492);
+        
+
+        circle_marker_e7a0d65d0e695a94288467cf64df5935.bindPopup(popup_9085c8fe236e37aa5853584497692e07)
+        ;
+
+        
+    
+    
+            var circle_marker_dbc978f2a3f1d4aa6b3aaa434c35f631 = L.circleMarker(
+                [34.75302, 137.401727],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_dad5fde2887cf0b1a8a131a37e73dc0a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d4d57eda50279960bb0c8cf47e7b4e9e = $(`<div id="html_d4d57eda50279960bb0c8cf47e7b4e9e" style="width: 100.0%; height: 100.0%;"><b>向山防災備蓄倉庫</b><br>愛知県豊橋市向山町字池下37-1</div>`)[0];
+            popup_dad5fde2887cf0b1a8a131a37e73dc0a.setContent(html_d4d57eda50279960bb0c8cf47e7b4e9e);
+        
+
+        circle_marker_dbc978f2a3f1d4aa6b3aaa434c35f631.bindPopup(popup_dad5fde2887cf0b1a8a131a37e73dc0a)
+        ;
+
+        
+    
+    
+            var circle_marker_b1e5f0d4abc1b6c62edb8c60096b5f90 = L.circleMarker(
+                [34.759357, 137.384785],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_03f056ae53a687a16e1d938377209f11 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_69f10b8993648a8127f2c8bd74ce1be3 = $(`<div id="html_69f10b8993648a8127f2c8bd74ce1be3" style="width: 100.0%; height: 100.0%;"><b>防災ひろば防災備蓄倉庫</b><br>愛知県豊橋市西小田原町138</div>`)[0];
+            popup_03f056ae53a687a16e1d938377209f11.setContent(html_69f10b8993648a8127f2c8bd74ce1be3);
+        
+
+        circle_marker_b1e5f0d4abc1b6c62edb8c60096b5f90.bindPopup(popup_03f056ae53a687a16e1d938377209f11)
+        ;
+
+        
+    
+    
+            var circle_marker_f174dbfc94bf0ab26e717b53ee28ffe6 = L.circleMarker(
+                [34.696023, 137.414742],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a48d93ee819d53bc5475ac1a820a38d0);
+        
+    
+        var popup_2097e107208a7b29113379f5aadfbf4f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d1eb9d717ce4050deff28a094d081000 = $(`<div id="html_d1eb9d717ce4050deff28a094d081000" style="width: 100.0%; height: 100.0%;"><b>道の駅とよはし防災備蓄倉庫</b><br>愛知県豊橋市東七根町字稲場41-4</div>`)[0];
+            popup_2097e107208a7b29113379f5aadfbf4f.setContent(html_d1eb9d717ce4050deff28a094d081000);
+        
+
+        circle_marker_f174dbfc94bf0ab26e717b53ee28ffe6.bindPopup(popup_2097e107208a7b29113379f5aadfbf4f)
+        ;
+
+        
+    
+    
+            var layer_control_d7c6248e6555020a02634cc9a04ee809 = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_0cd2212a962d70b7bb1a7948d26dcd95,
+                },
+                overlays :  {
+                    "\u5e30\u5b85\u56f0\u96e3\u8005\u7b49\u652f\u63f4\u65bd\u8a2d" : feature_group_59b4689dd52fe807260ed4a454643c35,
+                    "\u6d25\u6ce2\u9632\u707d\u30bb\u30f3\u30bf\u30fc" : feature_group_91b3d34ca394804ec986e3cef1f6bf16,
+                    "\u798f\u7949\u907f\u96e3\u6240" : feature_group_f3327cbf8b3719e8197e6d885e4ab74b,
+                    "\u7b2c\u4e8c\u6307\u5b9a\u907f\u96e3\u6240" : feature_group_805e041de7066423e2dd7e2c3f024647,
+                    "\u9632\u707d\u5099\u84c4\u5009\u5eab" : feature_group_a48d93ee819d53bc5475ac1a820a38d0,
+                },
+            };
+            L.control.layers(
+                layer_control_d7c6248e6555020a02634cc9a04ee809.base_layers,
+                layer_control_d7c6248e6555020a02634cc9a04ee809.overlays,
+                {"autoZIndex": true, "collapsed": false, "position": "topright"}
+            ).addTo(map_175b1a83f8fb96e412bfcc8d88dc021f);
+        
+</script>
+</html>
