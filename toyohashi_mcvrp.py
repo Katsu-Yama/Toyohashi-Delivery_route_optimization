@@ -163,12 +163,14 @@ def disp_odawaraMap(odawara_district,center=mapcenter, zoom_start=GIS_ZOOM):
 def plot_marker(m, data):
     for _, row in data.iterrows():
         # Node先頭文字判定による色設定
-        if row['Node'][0] == 'K':
-            icol = 'pink'
-        elif row['Node'][0] == 'M':
+        if row['Node'][0] == 'SW':
             icol = 'blue'
-        elif row['Node'][0] == 'N':
+        elif row['Node'][0] == 'DS':
+            icol = 'pink'
+        elif row['Node'][0] == 'WS':
             icol = 'red'
+        elif row['Node'][0] == 'TC':
+            icol = 'yellow'
         else:
             icol = 'green'
         # マーカー追加
