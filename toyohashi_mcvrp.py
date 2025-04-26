@@ -163,16 +163,16 @@ def disp_odawaraMap(odawara_district,center=mapcenter, zoom_start=GIS_ZOOM):
 def plot_marker(m, data):
     for _, row in data.iterrows():
         # Node先頭文字判定による色設定
-        if row['Node'][0] == 'SW':
+        if row['Node'][0] == 'S':
             icol = 'blue'
-        elif row['Node'][0] == 'DS':
+        elif row['Node'][0] == 'D':
             icol = 'pink'
-        elif row['Node'][0] == 'WS':
+        elif row['Node'][0] == 'W':
             icol = 'red'
-        elif row['Node'][0] == 'TC':
-            icol = 'yellow'
-        else:
+        elif row['Node'][0] == 'T':
             icol = 'green'
+        else:
+            icol = 'yellow'
         # マーカー追加
         folium.Marker(
             location=[row['緯度'], row['経度']],
@@ -184,12 +184,12 @@ def plot_marker(m, data):
 def plot_select_marker(m, data,op_data):
     actve_layer = folium.FeatureGroup(name="開設")
     actve_layer.add_to(m)
-    nonactive_layer = folium.FeatureGroup(name="閉鎖")
+    nonactive_layer = folium.FeatureGroup(name="未開設")
     nonactive_layer.add_to(m)
 
     for _, row in data.iterrows():
-         # 避難所ノード判定
-        if row['Node'][0] == 'K':
+        # 避難所ノード判定
+        if row['Node'][0] == '':
           if row['Node'] in (op_data['避難所']):
             icol = 'green'
             layer=actve_layer
@@ -197,8 +197,8 @@ def plot_select_marker(m, data,op_data):
             icol = 'lightgray'
             layer=nonactive_layer
         
-        # 配送拠点ノード判定
-        elif row['Node'][0] == 'M':
+        # 配送拠点ノード判定s
+        elif row['Node'][0] == 'S':
           if row['Node'] in (op_data['配送拠点']):
             icol = 'purple'
             layer=actve_layer
