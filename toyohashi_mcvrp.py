@@ -34,6 +34,12 @@ api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"
 
 ##############################
 
+state = 'Aichi'
+city = 'Toyohashi'
+
+##############################
+
+
 # 対象地域のマップ表示中心座標
 mapcenter = [34.7691972,　137.3914667]   #豊橋市役所
 
@@ -184,7 +190,7 @@ def plot_marker(m, data):
 def plot_select_marker(m, data,op_data):
     actve_layer = folium.FeatureGroup(name="開設")
     actve_layer.add_to(m)
-    nonactive_layer = folium.FeatureGroup(name="未開設")
+    nonactive_layer = folium.FeatureGroup(name="閉鎖/未開設")
     nonactive_layer.add_to(m)
 
     for _, row in data.iterrows():
@@ -277,11 +283,11 @@ def set_map_data():
     map_data['path_d'] = pd.read_json(root_dir + route_file)    # 経路リスト
 
     # OSMnx で道路グラフ取得
-    place = {'city' : 'Odawara', 'state' : 'Kanagawa', 'country' : 'Japan'}
+    place = {'city' : city, 'state' : state, 'country' : 'Japan'}
     map_data['G'] = ox.graph_from_place(place, network_type='drive')
 
     # ベース地図作成
-    map_data['base_map']=disp_odawaraMap(map_data['gep_map'] )
+    map_data['base_map'] = disp_Map(map_data['gep_map'] )
 
     return(map_data)
 
