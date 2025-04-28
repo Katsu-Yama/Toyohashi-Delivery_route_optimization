@@ -537,7 +537,7 @@ with anr_st:
   # Pill UI で複数選択
   selected_shelter=anr_st.pills("≪避難所≫",all_shelter['施設名'].tolist(),selection_mode="multi")
   selected_transport=anr_st.pills("≪配送拠点≫",all_transport['施設名'].tolist(),selection_mode="multi")
-  st.write("選択完了後、下のボタンを押してください。")
+  st.write("『選択完了後、下のボタンを押してください。』")
 
 # 選択されたノードIDリスト
 selected_shelter_node=all_shelter[all_shelter['施設名'].isin(selected_shelter)]['Node'].tolist()
