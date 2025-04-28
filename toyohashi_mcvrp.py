@@ -33,12 +33,11 @@ import copy  # オブジェクトのディープコピー用
 api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"  
 
 ##############################
-
+# 対象とする都道府県、市区名
 state = 'Aichi'
 city = 'Toyohashi'
 
 ##############################
-
 
 # 対象地域のマップ表示中心座標
 mapcenter = [34.7691972,　137.3914667]   #豊橋市役所
@@ -389,9 +388,9 @@ def set_parameter( path_df, op_data, np_df):
 
     # 需要配列初期化 
     demand = np.zeros(nbase)
-    shel_data=op_data['避難所']
+    shel_data = op_data['避難所']
     for i in range(nbase - n_transport_base - 1):
-        node=shel_data[i]
+        node = shel_data[i]
         #demand[i + n_transport_base] = np_df.iloc[i,1]
         #demand[i + n_transport_base] = np_df[np_df['Node']==node]['num']
         demand[i + n_transport_base] = np_df.loc[np_df.Node==node, 'num'].iloc[0]
