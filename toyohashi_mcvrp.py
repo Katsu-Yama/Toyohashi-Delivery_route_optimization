@@ -51,6 +51,26 @@ st.set_page_config(
     layout="wide"  # ページレイアウトを横幅いっぱいに設定
 )
 
+# -----------------------------------------------------------------------------
+# Streamlit で使用するセッションステート変数の初期化
+# Cloud 版では 1 度目のアクセス時に必ず実行できる位置に置く
+# -----------------------------------------------------------------------------
+for key in [
+    "best_tour",
+    "best_cost",
+    "points",
+    "annering_param",
+    "num_of_people",
+    "shelter_df",
+    "client",
+    "map_data",
+    "num_shelter",
+    "num_transport",
+]:
+    st.session_state.setdefault(key, None)
+
+
+
 #########################################
 # streamlit custom css
 #########################################
@@ -193,8 +213,9 @@ def plot_select_marker(m, data,op_data):
     nonactive_layer.add_to(m)
 
     for _, row in data.iterrows():
+        node = row["Node"]
         # 避難所ノード判定
-        if row['Node'][0] == 'DWTR':
+        if node[0] in ("D", "W", "T", "R"):
           if row['Node'] in (op_data['避難所']):
             icol = 'pink'
             layer=actve_layer
