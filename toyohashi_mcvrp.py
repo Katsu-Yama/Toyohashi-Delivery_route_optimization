@@ -195,7 +195,7 @@ def plot_select_marker(m, data,op_data):
 
     for _, row in data.iterrows():
         # 避難所ノード判定
-        if row['Node'][0] == '':
+        if row['Node'][0] == 'DWTR':
           if row['Node'] in (op_data['避難所']):
             icol = 'green'
             layer=actve_layer
@@ -278,7 +278,7 @@ def set_map_data():
     map_data['node_d']=pd.read_json(root_dir + node_data)    #拠点データ
 
     administrative_district = gpd.read_file(geojson_path)
-    map_data['gep_map']=administrative_district[administrative_district["N03_004"]=="小田原市"]  # 小田原市フィルタリング
+    map_data['gep_map']=administrative_district[administrative_district["N03_004"]=="豊橋市"]  # 豊橋市フィルタリング
 
     map_data['path_d'] = pd.read_json(root_dir + route_file)    # 経路リスト
 
@@ -368,7 +368,7 @@ def set_distance_matrix(path_df, node_list):
 
 # アニーリング用のパラメータをまとめて計算して返す関数
 # (distance_matrix: 距離行列, n_transport_base: 配送拠点数, n_shellter: 避難所数, nbase: 全ノード数, nvehicle: 車両台数, capacity: 車両容量, demand: 各ノードの需要（被災者数）)
-def set_parameter( path_df, op_data,np_df):
+def set_parameter( path_df, op_data, np_df):
     
     annering_param = {}
 
@@ -526,8 +526,9 @@ selected_base=st.session_state['points']
 np_df= st.session_state["num_of_people"]
 
 # すべての拠点のリストを取得
-all_shelter= df[df['Node'].str.startswith('K')]
-all_transport= df[df['Node'].str.startswith('M')]
+all_shelter= df[df['Node'].str.startswith('D')| df['Node'].str.startswith('W')|df['Node'].str.startswith('T')|df['Node'].str.startswith('R')]
+all_transport= df[df['Node'].str.startswith('S')]
+
 
 # 右カラムで拠点選択UIを表示
 with anr_st:
@@ -567,7 +568,7 @@ with gis_st:
     st.markdown('<div class="Qsubheader">配送最適化-計算結果</div>',unsafe_allow_html=True)
     selected_base=st.session_state['points']
     plot_select_marker(base_map_copy, df,selected_base)
-    #re_node_list = selected_base['配送拠点'] +selected_base['避難所']
+    #re_node_list = selected_base['配送拠点'] + selected_base['避難所']
     base_map_copy = draw_route(base_map_copy, G, best_tour, path_df, re_node_list)
 
   elif selected_base !=None:
@@ -579,11 +580,11 @@ with gis_st:
           change_num_of_people()
 
        np_df = st.session_state['num_of_people']
-       shelter_df=pd.DataFrame( selected_shelter_node,columns=['Node'] )
-       shelter_df['Name']=shelter_df['Node'].apply(lambda x: get_point_name(df,x))
+       shelter_df = pd.DataFrame( selected_shelter_node,columns=['Node'] )
+       shelter_df['Name'] = shelter_df['Node'].apply(lambda x: get_point_name(df,x))
        shelter_df2 = pd.merge(shelter_df, np_df, on='Node', how='left')
-       shelter_df2['demand']=shelter_df2['num'].apply(lambda x: x*4.0/1000.0)
-       #shelter_df2.columns=['ノード','避難所','避難者数（人）','必要物資量（トン）']
+       shelter_df2['demand'] = shelter_df2['num'].apply(lambda x: x*4.0/1000.0)
+       #shelter_df2.columns = ['ノード','避難所','避難者数（人）','必要物資量（トン）']
        st.session_state['shelter_df']=st.data_editor(shelter_df2,
                                       column_config={
                                         "Node": {"lable": "ノード", "disabled": True},
@@ -682,7 +683,7 @@ if st.session_state['best_tour'] !=None:
      node_list.append(p_node)
      #gis_st.write(r_str)
 
-  result_df=pd.DataFrame({"ノードNo.":node_no,"配送拠点":base_list,"必要物資量":weight_list,"走行距離":distance_list,"巡回順":node_list})
+  result_df = pd.DataFrame({"ノードNo.":node_no,"配送拠点":base_list,"必要物資量":weight_list,"走行距離":distance_list,"巡回順":node_list})
   columnConfig={
                 "ノードNo.": st.column_config.Column(width="small"),
                 "配送拠点":  st.column_config.Column(width='medium'),
@@ -693,7 +694,7 @@ if st.session_state['best_tour'] !=None:
   gis_st.dataframe(result_df,
                column_config = columnConfig
     )
-  all_str=f'総物資量:{weight_all/1000*4:.2f}t/総距離: {best_obj} km'
+  all_str = f'総物資量:{weight_all/1000*4:.2f}t/総距離: {best_obj} km'
   gis_st.write(all_str)
 
   #best_tour_markdown = "\n".join([f"{key}: {value}" for key, value in best_tour.items()])
