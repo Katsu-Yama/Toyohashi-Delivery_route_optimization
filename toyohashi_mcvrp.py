@@ -596,7 +596,7 @@ with gis_st:
   else:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
 
-　# レイヤーコントロールと地図表示
+# レイヤーコントロールと地図表示
   folium.LayerControl().add_to(base_map_copy)
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
