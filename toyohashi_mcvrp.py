@@ -202,7 +202,7 @@ def plot_select_marker(m, data,op_data):
             icol = 'lightgray'
             layer=nonactive_layer
         
-        # 配送拠点ノード判定s
+        # 配送拠点ノード判定
         elif row['Node'][0] == 'S':
           if row['Node'] in (op_data['配送拠点']):
             icol = 'blue'
@@ -535,8 +535,8 @@ with anr_st:
   spinner_container = st.container()
   st.write("開設されている避難所と配送拠点を選んでください")
   # Pill UI で複数選択
-  selected_shelter=anr_st.pills("避難所",all_shelter['施設名'].tolist(),selection_mode="multi")
-  selected_transport=anr_st.pills("配送拠点",all_transport['施設名'].tolist(),selection_mode="multi")
+  selected_shelter=anr_st.pills("≪避難所≫",all_shelter['施設名'].tolist(),selection_mode="multi")
+  selected_transport=anr_st.pills("≪配送拠点≫",all_transport['施設名'].tolist(),selection_mode="multi")
   st.write("選択完了後、下のボタンを押してください。")
 
 # 選択されたノードIDリスト
