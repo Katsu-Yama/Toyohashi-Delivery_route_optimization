@@ -33,7 +33,7 @@ import copy  # オブジェクトのディープコピー用
 api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"  
 
 ##############################
-# 対象とする都道府県、市区名
+# 対象とする都道府県、市区名(Open Street Mapのロードデータ使用範囲を指定）
 state = 'Aichi'
 city = 'Toyohashi'
 
