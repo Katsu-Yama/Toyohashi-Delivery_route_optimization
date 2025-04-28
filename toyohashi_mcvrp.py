@@ -196,7 +196,7 @@ def plot_select_marker(m, data,op_data):
         # 避難所ノード判定
         if row['Node'][0] == 'DWTR':
           if row['Node'] in (op_data['避難所']):
-            icol = 'green'
+            icol = 'pink'
             layer=actve_layer
           else:
             icol = 'lightgray'
@@ -205,7 +205,7 @@ def plot_select_marker(m, data,op_data):
         # 配送拠点ノード判定s
         elif row['Node'][0] == 'S':
           if row['Node'] in (op_data['配送拠点']):
-            icol = 'purple'
+            icol = 'blue'
             layer=actve_layer
           else:
             icol = 'gray'
