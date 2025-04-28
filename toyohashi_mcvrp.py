@@ -304,7 +304,7 @@ def set_map_data():
 
     # OSMnx で道路グラフ取得
     place = {'city' : city, 'state' : state, 'country' : 'Japan'}
-    map_data['G'] = ox.graph_from_place(place, network_type='drive')
+    map_data['G'] = ox.graph_from_place(place, network_type='drive', timeout=180)   # timeout:タイムアウト延長
 
     # ベース地図作成
     map_data['base_map'] = disp_baseMap(map_data['gep_map'] )
