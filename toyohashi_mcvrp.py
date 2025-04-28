@@ -145,7 +145,7 @@ FORMAT_HTML = '<div>【{type}】<br/><b>{name}</b><br/>住所:{address}<div>'
 # ここからFolium を使う表示系関数
 ########################################
 
-def disp_odawaraMap(odawara_district,center=mapcenter, zoom_start=GIS_ZOOM):
+def disp_baseMap(district,center=mapcenter, zoom_start=GIS_ZOOM):
     m = folium.Map(
         location=center,
         tiles=Map_Tile,
@@ -155,7 +155,7 @@ def disp_odawaraMap(odawara_district,center=mapcenter, zoom_start=GIS_ZOOM):
 
     # 市境界をジオJSONで点線描画
     folium.GeoJson(
-        odawara_district,
+        district,
         style_function=lambda x: {
             'color': 'gray',
             'weight': 2,
