@@ -286,7 +286,7 @@ def set_map_data():
     map_data['G'] = ox.graph_from_place(place, network_type='drive')
 
     # ベース地図作成
-    map_data['base_map'] = disp_Map(map_data['gep_map'] )
+    map_data['base_map'] = disp_baseMap(map_data['gep_map'] )
 
     return(map_data)
 
