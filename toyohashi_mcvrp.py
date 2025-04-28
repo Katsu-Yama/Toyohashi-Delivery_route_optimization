@@ -216,23 +216,23 @@ def plot_select_marker(m, data,op_data):
         node = row["Node"]
         # 避難所ノード判定
         if node[0] in ("D", "W", "T", "R"):
-          if row['Node'] in (op_data['避難所']):
-            icol = 'pink'
-            layer=actve_layer
-          else:
-            icol = 'lightgray'
-            layer=nonactive_layer
+            if row['Node'] in (op_data['避難所']):
+                icol = 'pink'
+                layer=actve_layer
+            else:
+                icol = 'lightgray'
+                layer=nonactive_layer
         
         # 配送拠点ノード判定
         elif row['Node'][0] == 'S':
-          if row['Node'] in (op_data['配送拠点']):
-            icol = 'blue'
-            layer=actve_layer
-          else:
-            icol = 'gray'
-            layer=nonactive_layer
+            if row['Node'] in (op_data['配送拠点']):
+                icol = 'blue'
+                layer=actve_layer
+            else:
+                icol = 'gray'
+                layer=nonactive_layer
         else:
-          continue
+              continue
 
         # ポップアップHTML生成
         html =FORMAT_HTML.format( name=row['施設名'],address=row['住所'],type=row['拠点種類'])
