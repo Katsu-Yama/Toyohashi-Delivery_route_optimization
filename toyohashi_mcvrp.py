@@ -1,6 +1,6 @@
 ################################################################
 
-iimport folium  # 地図描画用ライブラリ
+import folium  # 地図描画用ライブラリ
 import pandas as pd  # データフレーム操作用ライブラリ
 import numpy as np  # 数値計算用ライブラリ
 import matplotlib.pyplot as plt  # プロット用ライブラリ（未使用部分あり）
