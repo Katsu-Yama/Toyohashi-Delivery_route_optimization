@@ -299,21 +299,33 @@ def get_point_name(data,node):
          return row['施設名']
 
 # 地図表示に必要な各種データを読み込んで dict で返す関数(拠点データ, GeoJSON境界, 経路リスト. OSM道路ネットワーク, ベースマップ)
+PICKLE_PATH = ROOT_DIR / "toyohashi_drive_graph.pkl"     # ← 生成済み pickle
+
 def set_map_data():
     try:
         map_data = {}
+        # ---------- 1. JSON / GeoJSON 読み込み ----------
         map_data['node_d'] = safe_read_json(ROOT_DIR / "kyoten_geocode.json", "拠点データ")
         map_data['gep_map'] = gpd.read_file(ROOT_DIR / "N03-20240101_23_GML/N03-20240101_23.geojson")\
                                    .query('N03_004 == "豊橋市"')  # 豊橋市フィルタリング
         map_data['path_d'] = safe_read_json(ROOT_DIR / "path_list_toyohashi.json", "経路リスト")
 
-        # OSMnx で道路グラフ取得
-        place = {"city": "city_name", "state": "state_name", "country": "Japan"}
-        map_data['G'] = ox.graph_from_place(place, network_type="drive", timeout=180)   # timeout:タイムアウト延長
-        
-        # ベース地図作成
+        # ---------- 2. 道路グラフの取得 ----------
+        if PICKLE_PATH.exists():                            # pickle があれば即ロード
+            with open(PICKLE_PATH, "rb") as f:
+                map_data['G'] = pickle.load(f)
+        else:                                               # 無ければ OSMnx で取得
+            place = {"city": city_name, "state": state_name, "country": "Japan"}
+            G = ox.graph_from_place(place, network_type="drive", timeout=180)   # timeout:タイムアウト延長
+            map_data['G'] = G
+            # 取得したグラフを保存して次回以降に使う
+            with open(PICKLE_PATH, "wb") as f:
+                pickle.dump(G, f, protocol=pickle.HIGHEST_PROTOCOL)
+
+        # ---------- 3. ベースマップ作成 ----------
         map_data['base_map'] = disp_baseMap(map_data['gep_map'])
         return map_data
+
     except Exception as e:
         st.exception(e)          # Streamlit 上に詳細を表示
         return None              # 失敗時は None を返す
