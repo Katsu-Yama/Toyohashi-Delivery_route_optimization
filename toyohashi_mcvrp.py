@@ -62,8 +62,8 @@ for key in [
     "annering_param",
     "num_of_people",
     "shelter_df",
-    "client",
-    "map_data",
+    # "client",   # ← 削除
+    # "map_data",   # ← 削除
     "num_shelter",
     "num_transport",
 ]:
@@ -499,14 +499,14 @@ st.markdown('<div class="Qheader"><span class="Qtitle">えるくお</span> <span
 gis_st, anr_st = st.columns([2, 1])
 
 # Amplify クライアント初期化
-if "client" not in st.session_state:
-    st.session_state["client"] =start_amplify()
-client=st.session_state["client"]
+if st.session_state.get("client") is None:
+    st.session_state["client"] = start_amplify()
+client = st.session_state["client"]
 
 # 地図データ初期化
-if "map_data" not in st.session_state:
+if st.session_state.get("map_data") is None:
     st.session_state["map_data"] = set_map_data()
-map_data=st.session_state["map_data"]
+map_data = st.session_state["map_data"]
 
 if map_data is None:                                   # 地図データ取得失敗
     st.error("地図データの読み込みに失敗しました。右下：Manage appからログを確認してください。")
