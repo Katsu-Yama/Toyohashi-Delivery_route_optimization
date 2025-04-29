@@ -509,15 +509,8 @@ if "map_data" not in st.session_state:
 map_data=st.session_state["map_data"]
 
 if map_data is None:                                   # 地図データ取得失敗
-    st.error("地図データの読み込みに失敗しました。ログを確認してください。")
+    st.error("地図データの読み込みに失敗しました。右下：Manage appからログを確認してください。")
     st.stop()                                          # 以降の処理を中断
-
-"""
-# セッションステート変数初期化
-for key in ['best_tour','best_cost','points','annering_param']:
-    if key not in st.session_state:
-        st.session_state[key] = None
-"""
 
 # データ展開
 G = map_data['G']
@@ -525,20 +518,6 @@ df = map_data['node_d']
 path_df = map_data['path_d']
 base_map = map_data['base_map']
 base_map_copy = copy.deepcopy(base_map)
-
-# --- セッションステートで計算結果を保持
-if "best_tour" not in st.session_state:
-    st.session_state["best_tour"] = None
-if "best_cost" not in st.session_state:
-    st.session_state["best_cost"] = None
-if "points" not in st.session_state:
-    st.session_state["points"] = None
-if 'num_shelter' not in st.session_state:
-    st.session_state['num_shelter'] = 0
-if 'num_transport' not in st.session_state:
-    st.session_state['num_transport'] = 0
-if 'annering_param' not in st.session_state:
-    st.session_state["annering_param"] = None
 
 # 描画リセットフラグ
 st.session_state['redraw'] = False
