@@ -302,7 +302,7 @@ def set_map_data():
     map_data['path_d'] = pd.read_json(root_dir + route_file)    # 経路リスト
 
     # OSMnx で道路グラフ取得
-    place = {'city' : city_name, 'state' : state_name, 'country' : 'Japan'}
+    place = {"city": city_name, "state": state_name, "country": "Japan"}
     map_data['G'] = ox.graph_from_place(place, network_type='drive', timeout=180)   # timeout:タイムアウト延長
 
     # ベース地図作成
@@ -507,6 +507,10 @@ client=st.session_state["client"]
 if "map_data" not in st.session_state:
     st.session_state["map_data"] = set_map_data()
 map_data=st.session_state["map_data"]
+
+if map_data is None:                                   # 地図データ取得失敗
+    st.error("地図データの読み込みに失敗しました。ログを確認してください。")
+    st.stop()                                          # 以降の処理を中断
 
 """
 # セッションステート変数初期化
