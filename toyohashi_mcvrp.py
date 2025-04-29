@@ -34,8 +34,8 @@ api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"
 
 ##############################
 # 対象とする都道府県、市区名(Open Street Mapのロードデータ使用範囲を指定）
-state = 'Aichi'
-city = 'Toyohashi'
+state_name = 'Aichi'
+city_name = 'Toyohashi'
 
 ##############################
 
@@ -68,7 +68,6 @@ for key in [
     "num_transport",
 ]:
     st.session_state.setdefault(key, None)
-
 
 
 #########################################
@@ -232,7 +231,7 @@ def plot_select_marker(m, data,op_data):
                 icol = 'gray'
                 layer=nonactive_layer
         else:
-              continue
+            continue
 
         # ポップアップHTML生成
         html =FORMAT_HTML.format( name=row['施設名'],address=row['住所'],type=row['拠点種類'])
@@ -276,12 +275,12 @@ def draw_route_v2(m, G, best_routes, path_df, node_name_list):
             goal_node = node_name_list[vehicle_route[iv + 1]]
             route = path_df[(path_df['start_node'] == start_node) & (path_df['goal_node'] == goal_node)]['route']
             for route_nodes in route:
-              route_gdf = ox.graph_to_gdfs(G.subgraph(route_nodes), nodes=False)
-              route_gdf.explore(
-                  m=layer,  # folium.FeatureGroupオブジェクトを指定
-                  color=_colors[k % len(_colors)],
-                  style_kwds={"weight": 3.0, "opacity": 0.5},
-              )
+                route_gdf = ox.graph_to_gdfs(G.subgraph(route_nodes), nodes=False)
+                route_gdf.explore(
+                    m=layer,  # folium.FeatureGroupオブジェクトを指定
+                    color=_colors[k % len(_colors)],
+                    style_kwds={"weight": 3.0, "opacity": 0.5},
+                )
     #folium.LayerControl().add_to(m)
     return 
 
@@ -294,16 +293,16 @@ def get_point_name(data,node):
 # 地図表示に必要な各種データを読み込んで dict で返す関数(拠点データ, GeoJSON境界, 経路リスト. OSM道路ネットワーク, ベースマップ)
 def set_map_data():
 
-    map_data={}
-    map_data['node_d']=pd.read_json(root_dir + node_data)    #拠点データ
+    map_data = {}
+    map_data['node_d'] = pd.read_json(root_dir + node_data)    #拠点データ
 
     administrative_district = gpd.read_file(geojson_path)
-    map_data['gep_map']=administrative_district[administrative_district["N03_004"]=="豊橋市"]  # 豊橋市フィルタリング
+    map_data['gep_map'] = administrative_district[administrative_district["N03_004"]=="豊橋市"]  # 豊橋市フィルタリング
 
     map_data['path_d'] = pd.read_json(root_dir + route_file)    # 経路リスト
 
     # OSMnx で道路グラフ取得
-    place = {'city' : city, 'state' : state, 'country' : 'Japan'}
+    place = {'city' : city_name, 'state' : state_name, 'country' : 'Japan'}
     map_data['G'] = ox.graph_from_place(place, network_type='drive', timeout=180)   # timeout:タイムアウト延長
 
     # ベース地図作成
@@ -517,10 +516,10 @@ for key in ['best_tour','best_cost','points','annering_param']:
 """
 
 # データ展開
-G=map_data['G']
-df=map_data['node_d']
-path_df=map_data['path_d']
-base_map=map_data['base_map']
+G = map_data['G']
+df = map_data['node_d']
+path_df = map_data['path_d']
+base_map = map_data['base_map']
 base_map_copy = copy.deepcopy(base_map)
 
 # --- セッションステートで計算結果を保持
