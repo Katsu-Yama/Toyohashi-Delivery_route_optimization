@@ -522,7 +522,7 @@ map_data = st.session_state["map_data"]
 
 # 地図データ取得失敗時
 if map_data is None:                                   
-    st.error("地図データの読み込みに失敗しました。右下：Manage appからログを確認してください。")
+    st.error("地図データの読み込みに失敗しました（右下：Manage appからログが確認できます）。")
     st.stop()  # 以降の処理を中断
 
 # データ展開
