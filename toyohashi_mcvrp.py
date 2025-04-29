@@ -143,9 +143,10 @@ Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景�
 #################################
 
 # セッションステートに被災者数データを読み込む（初回のみ）
-if "num_of_people" not in st.session_state:
+if st.session_state.get("num_of_people") is None:
     np_df = pd.read_csv(root_dir + numOfPeople, header=None, names=['Node', 'num'])
     st.session_state["num_of_people"] = np_df
+
 
 # 避難所データ用の初期化
 if 'shelter_df' not in st.session_state:
