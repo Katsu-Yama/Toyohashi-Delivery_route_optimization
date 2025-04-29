@@ -519,9 +519,11 @@ if "client" not in st.session_state:
 client=st.session_state["client"]
 
 # 地図データ初期化
+"""
 if "map_data" not in st.session_state:
     st.session_state["map_data"] = set_map_data()
 map_data=st.session_state["map_data"]
+"""
 
 if map_data is None:                        #  ← 追加(1)
     st.error("地図データの読み込みに失敗しました。ログを確認してください。")  # 追加(2)
