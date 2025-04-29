@@ -142,12 +142,6 @@ geojson_path = root_dir + "N03-20240101_23_GML/N03-20240101_23.geojson"  # 対�
 route_file = "path_list_toyohashi.json"         # 経路リストデータ(JSON)
 Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景地図タイルURL
 
-def safe_read_json(path: Path, label: str):
-    if not path.exists():
-        st.error(f"⚠️ {label} が見つかりません: {path}")
-        raise FileNotFoundError(path)
-    return pd.read_json(path)
-
 #################################
 
 # セッションステートに被災者数データを読み込む（初回のみ）
@@ -528,6 +522,10 @@ client=st.session_state["client"]
 if "map_data" not in st.session_state:
     st.session_state["map_data"] = set_map_data()
 map_data=st.session_state["map_data"]
+
+if map_data is None:                        #  ← 追加(1)
+    st.error("地図データの読み込みに失敗しました。ログを確認してください。")  # 追加(2)
+    st.stop()                               # 追加(3)   → TypeError を根本回避
 
 """
 # セッションステート変数初期化
