@@ -303,7 +303,7 @@ def set_map_data():
 
     # OSMnx で道路グラフ取得
     place = {"city": city_name, "state": state_name, "country": "Japan"}
-    ox.settings.timeout = 180　　　 # OSMnx のリクエストタイムアウトを 180 秒に
+    ox.settings.timeout = 180    # OSMnx のリクエストタイムアウトを 180 秒に
     
     map_data['G'] = ox.graph_from_place(place, network_type='drive')
 
