@@ -153,8 +153,8 @@ if 'shelter_df' not in st.session_state:
     st.session_state['shelter_df'] = None
 
 # Folium地図表示サイズとズームレベル設定
-GIS_HIGHT = 800
-GIS_WIDE = 800
+GIS_HIGHT = 1000
+GIS_WIDE = 750
 GIS_ZOOM = 12.0
 
 # ポップアップHTMLフォーマット定義
