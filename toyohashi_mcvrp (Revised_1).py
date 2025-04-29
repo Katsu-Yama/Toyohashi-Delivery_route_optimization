@@ -11,6 +11,7 @@ import osmnx as ox  # OpenStreetMapデータ取得・操作ライブラリ
 import networkx as nx  # グラフ計算用ライブラリ
 from geopy.distance import geodesic  # 距離計算用ライブラリ
 from datetime import timedelta  # 時間差操作用ライブラリ
+from pathlib import Path
 
 import streamlit as st  # Streamlitアプリ用ライブラリ
 from streamlit_folium import st_folium  # Streamlit上でFolium地図を表示するための関数
@@ -133,12 +134,19 @@ _colors = [
 
 # ファイル読み込み用ディレクトリ設定
 root_dir="./"
+ROOT_DIR = Path(__file__).resolve().parent  # スクリプトと同じ階層
 
 node_data = "kyoten_geocode.json"       # 拠点データ(JSON)
 numOfPeople = "number_of_people.csv"       # 被災者数データ(CSV)
 geojson_path = root_dir + "N03-20240101_23_GML/N03-20240101_23.geojson"  # 対象行政区域GeoJSON
 route_file = "path_list_toyohashi.json"         # 経路リストデータ(JSON)
 Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景地図タイルURL
+
+def safe_read_json(path: Path, label: str):
+    if not path.exists():
+        st.error(f"⚠️ {label} が見つかりません: {path}")
+        raise FileNotFoundError(path)
+    return pd.read_json(path)
 
 #################################
 
@@ -292,23 +300,24 @@ def get_point_name(data,node):
 
 # 地図表示に必要な各種データを読み込んで dict で返す関数(拠点データ, GeoJSON境界, 経路リスト. OSM道路ネットワーク, ベースマップ)
 def set_map_data():
+    try:
+        map_data = {}
+        map_data['node_d'] = safe_read_json(ROOT_DIR / "kyoten_geocode.json", "拠点データ")
+        map_data['gep_map'] = gpd.read_file(ROOT_DIR / "N03-20240101_23_GML/N03-20240101_23.geojson")\
+                                   .query('N03_004 == "豊橋市"')  # 豊橋市フィルタリング
+        map_data['path_d'] = safe_read_json(ROOT_DIR / "path_list_toyohashi.json", "経路リスト")
 
-    map_data = {}
-    map_data['node_d'] = pd.read_json(root_dir + node_data)    #拠点データ
+        # OSMnx で道路グラフ取得
+        place = {"city": "city_name", "state": "state_name", "country": "Japan"}
+        map_data['G'] = ox.graph_from_place(place, network_type="drive", timeout=180)   # timeout:タイムアウト延長
+        
+        # ベース地図作成
+        map_data['base_map'] = disp_baseMap(map_data['gep_map'])
+        return map_data
+    except Exception as e:
+        st.exception(e)          # Streamlit 上に詳細を表示
+        return None              # 失敗時は None を返す
 
-    administrative_district = gpd.read_file(geojson_path)
-    map_data['gep_map'] = administrative_district[administrative_district["N03_004"]=="豊橋市"]  # 豊橋市フィルタリング
-
-    map_data['path_d'] = pd.read_json(root_dir + route_file)    # 経路リスト
-
-    # OSMnx で道路グラフ取得
-    place = {'city' : city_name, 'state' : state_name, 'country' : 'Japan'}
-    map_data['G'] = ox.graph_from_place(place, network_type='drive', timeout=180)   # timeout:タイムアウト延長
-
-    # ベース地図作成
-    map_data['base_map'] = disp_baseMap(map_data['gep_map'] )
-
-    return(map_data)
 
 # 避難所ごとの被災者数（num）をセッションステートから反映更新する関数
 def change_num_of_people():
