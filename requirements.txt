@@ -12,3 +12,4 @@ numpy
 matplotlib
 scikit-learn
 mapclassify
+shapely>=2
