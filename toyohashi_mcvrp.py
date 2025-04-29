@@ -28,9 +28,14 @@ from amplify import solve
 import copy  # オブジェクトのディープコピー用
 
 ##############################
-
 # FixStars 有効なトークンを設定
 api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"  
+
+# アニーリング実行回数
+num_annering = 1
+
+# アニーリング実行時間(mmSec)
+time_annering = 10000
 
 ##############################
 # 対象とする都道府県、市区名(Open Street Mapのロードデータ使用範囲を指定）
@@ -38,9 +43,12 @@ state_name = 'Aichi'
 city_name = 'Toyohashi'
 
 ##############################
-
 # 対象地域のマップ表示中心座標
 mapcenter = [34.7691972, 137.3914667]   #豊橋市役所
+
+##############################
+# 一人当たりの必要物資重量(Weight of supplies needed per person)
+wgt_per = 4.0
 
 #########################################
 # Streamlit アプリのページ設定
@@ -590,7 +598,7 @@ with gis_st:
        shelter_df = pd.DataFrame( selected_shelter_node,columns=['Node'] )
        shelter_df['Name'] = shelter_df['Node'].apply(lambda x: get_point_name(df,x))
        shelter_df2 = pd.merge(shelter_df, np_df, on='Node', how='left')
-       shelter_df2['demand'] = shelter_df2['num'].apply(lambda x: x*4.0/1000.0)   #一人当たりの必要物資量：4kgと仮定
+       shelter_df2['demand'] = shelter_df2['num'].apply(lambda x: x*wgt_per/1000.0)   #避難人数×一人当たりの必要物資量
        #shelter_df2.columns = ['ノード','避難所','避難者数（人）','必要物資量（トン）']
        st.session_state['shelter_df'] = st.data_editor(shelter_df2,
                                       column_config={
@@ -625,7 +633,7 @@ if anr_st.button("最適経路探索開始"):
                 best_obj = None
 
                 for a in range(loop_max):
-                    result = sovle_annering(model, client, 1, 10000)   #アニーリング回数＆算出時間（mmSec/回）
+                    result = sovle_annering(model, client, num_annering, time_annering)   #アニーリング回数＆算出時間（mmSec/回）
                     x_values = result.best.values
                     solution = x.evaluate(x_values)
                     sequence = onehot2sequence(solution)
@@ -679,7 +687,7 @@ if st.session_state['best_tour'] !=None:
      
      it=item[1][len(item[1])-1]
      p_node += f'{get_point_name(df,re_node_list[it])}'
-     #r_str=f"ルート{item[0]} (走行距離:{distance/1000:.2f}km/配送量:{weight/1000*4:.2f}t)  \n【拠点】{p_node}"
+     #r_str=f"ルート{item[0]} (走行距離:{distance/1000:.2f}km/配送量:{weight/1000*wgt_per:.2f}t)  \n【拠点】{p_node}"
      weight_all += weight
      base_list.append(get_point_name(df,re_node_list[it]))
      w_str=f'{weight/1000*4:.2f}t'
@@ -701,7 +709,7 @@ if st.session_state['best_tour'] !=None:
   gis_st.dataframe(result_df,
                column_config = columnConfig
     )
-  all_str = f'総物資量:{weight_all/1000*4:.2f}t/総距離: {best_obj} km'
+  all_str = f'総物資量:{weight_all/1000*wgt_per:.2f}t/総距離: {best_obj} km'
   gis_st.write(all_str)
 
   #best_tour_markdown = "\n".join([f"{key}: {value}" for key, value in best_tour.items()])
