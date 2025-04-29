@@ -153,9 +153,9 @@ if 'shelter_df' not in st.session_state:
     st.session_state['shelter_df'] = None
 
 # Folium地図表示サイズとズームレベル設定
-GIS_HIGHT = 650
-GIS_WIDE = 1000
-GIS_ZOOM = 12.2
+GIS_HIGHT = 800
+GIS_WIDE = 800
+GIS_ZOOM = 12.0
 
 # ポップアップHTMLフォーマット定義
 FORMAT_HTML = '<div>【{type}】<br/><b>{name}</b><br/>住所:{address}<div>'
@@ -235,14 +235,15 @@ def plot_select_marker(m, data,op_data):
             continue
 
         # ポップアップHTML生成
-        html =FORMAT_HTML.format( name=row['施設名'],address=row['住所'],type=row['拠点種類'])
+        html =FORMAT_HTML.format(name=row['施設名'],address=row['住所'],type=row['拠点種類'])
         popup = folium.Popup(html, max_width=300)
+        
         # マーカーを該当レイヤーに追加
         folium.Marker(
-            location=[row['緯度'], row['経度']],
-            #popup=f"{row['施設名']} / {row['住所']} ({row['拠点種類']})",
-            popup=popup,
-            icon=folium.Icon(color=icol)
+            location = [row['緯度'], row['経度']],
+            #popup = f"{row['施設名']} / {row['住所']} ({row['拠点種類']})",
+            popup = popup,
+            icon = folium.Icon(color=icol)
         ).add_to(layer)
 
 # 太線で最適ルートを描画する関数(best_routes: {車両ID: [ノードインデックス,...], ...})
@@ -259,9 +260,9 @@ def draw_route(m, G, best_routes, path_df, node_name_list):
             for route_nodes in route:
               route_gdf = ox.graph_to_gdfs(G.subgraph(route_nodes), nodes=False)
               route_gdf.explore(
-                  m=layer,  # folium.FeatureGroupオブジェクトを指定
-                  color=_colors[k % len(_colors)],
-                  style_kwds={"weight": 10.0, "opacity": 0.5},
+                  m = layer,  # folium.FeatureGroupオブジェクトを指定
+                  color = _colors[k % len(_colors)],
+                  style_kwds = {"weight": 10.0, "opacity": 0.5},
               )
     #folium.LayerControl().add_to(m)
     return m
@@ -278,9 +279,9 @@ def draw_route_v2(m, G, best_routes, path_df, node_name_list):
             for route_nodes in route:
                 route_gdf = ox.graph_to_gdfs(G.subgraph(route_nodes), nodes=False)
                 route_gdf.explore(
-                    m=layer,  # folium.FeatureGroupオブジェクトを指定
-                    color=_colors[k % len(_colors)],
-                    style_kwds={"weight": 3.0, "opacity": 0.5},
+                    m = layer,  # folium.FeatureGroupオブジェクトを指定
+                    color = _colors[k % len(_colors)],
+                    style_kwds = {"weight": 3.0, "opacity": 0.5},
                 )
     #folium.LayerControl().add_to(m)
     return 
@@ -315,13 +316,13 @@ def set_map_data():
 
 # 避難所ごとの被災者数（num）をセッションステートから反映更新する関数
 def change_num_of_people():
-    np_df=st.session_state['num_of_people']
-    shelter_df=st.session_state['shelter_df']
+    np_df = st.session_state['num_of_people']
+    shelter_df = st.session_state['shelter_df']
    
     for index, row in shelter_df.iterrows():
-         node=row['Node']
-         num=row['num']
-         #np_df.num[np_df.Node==node]=num
+         node = row['Node']
+         num = row['num']
+         #np_df.num[np_df.Node==node] = num
          np_df.loc[np_df.Node==node, 'num'] = num
     st.session_state['num_of_people']=np_df
 
@@ -511,9 +512,10 @@ if st.session_state.get("map_data") is None:
     st.session_state["map_data"] = set_map_data()
 map_data = st.session_state["map_data"]
 
-if map_data is None:                                   # 地図データ取得失敗
+# 地図データ取得失敗時
+if map_data is None:                                   
     st.error("地図データの読み込みに失敗しました。右下：Manage appからログを確認してください。")
-    st.stop()                                          # 以降の処理を中断
+    st.stop()  # 以降の処理を中断
 
 # データ展開
 G = map_data['G']
@@ -541,17 +543,17 @@ with anr_st:
   spinner_container = st.container()
   st.write("開設されている避難所と配送拠点を選んでください")
   # Pill UI で複数選択
-  selected_shelter=anr_st.pills("≪避難所≫",all_shelter['施設名'].tolist(),selection_mode="multi")
-  selected_transport=anr_st.pills("≪配送拠点≫",all_transport['施設名'].tolist(),selection_mode="multi")
+  selected_shelter = anr_st.pills("≪避難所≫",all_shelter['施設名'].tolist(),selection_mode="multi")
+  selected_transport = anr_st.pills("≪配送拠点≫",all_transport['施設名'].tolist(),selection_mode="multi")
   st.write("『選択完了後、下のボタンを押してください。』")
 
 # 選択されたノードIDリスト
-selected_shelter_node=all_shelter[all_shelter['施設名'].isin(selected_shelter)]['Node'].tolist()
-selected_transport_node=all_transport[all_transport['施設名'].isin(selected_transport)]['Node'].tolist()
+selected_shelter_node = all_shelter[all_shelter['施設名'].isin(selected_shelter)]['Node'].tolist()
+selected_transport_node = all_transport[all_transport['施設名'].isin(selected_transport)]['Node'].tolist()
 
 # 選択数が変化したらツアーリセット
-num_shelter=len(selected_shelter_node)
-num_transport=len(selected_transport_node)
+num_shelter = len(selected_shelter_node)
+num_transport = len(selected_transport_node)
 
 if num_shelter != st.session_state['num_shelter'] or num_transport != st.session_state['num_transport']:
     st.session_state['num_shelter'] = num_shelter
@@ -560,8 +562,8 @@ if num_shelter != st.session_state['num_shelter'] or num_transport != st.session
     st.session_state["best_tour"] = best_tour
 
 # 選択拠点情報をセッションに保存
-selected_base={'配送拠点':selected_transport_node,'避難所':selected_shelter_node}
-st.session_state['points']=selected_base
+selected_base = {'配送拠点':selected_transport_node,'避難所':selected_shelter_node}
+st.session_state['points'] = selected_base
 
 # ルート探索用ノード順リスト
 re_node_list = selected_base['配送拠点'] +selected_base['避難所']
@@ -571,7 +573,7 @@ with gis_st:
   if best_tour !=None:
     # 計算結果表示モード
     st.markdown('<div class="Qsubheader">配送最適化-計算結果</div>',unsafe_allow_html=True)
-    selected_base=st.session_state['points']
+    selected_base = st.session_state['points']
     plot_select_marker(base_map_copy, df,selected_base)
     #re_node_list = selected_base['配送拠点'] + selected_base['避難所']
     base_map_copy = draw_route(base_map_copy, G, best_tour, path_df, re_node_list)
@@ -588,9 +590,9 @@ with gis_st:
        shelter_df = pd.DataFrame( selected_shelter_node,columns=['Node'] )
        shelter_df['Name'] = shelter_df['Node'].apply(lambda x: get_point_name(df,x))
        shelter_df2 = pd.merge(shelter_df, np_df, on='Node', how='left')
-       shelter_df2['demand'] = shelter_df2['num'].apply(lambda x: x*4.0/1000.0)
+       shelter_df2['demand'] = shelter_df2['num'].apply(lambda x: x*4.0/1000.0)   #一人当たりの必要物資量：4kgと仮定
        #shelter_df2.columns = ['ノード','避難所','避難者数（人）','必要物資量（トン）']
-       st.session_state['shelter_df']=st.data_editor(shelter_df2,
+       st.session_state['shelter_df'] = st.data_editor(shelter_df2,
                                       column_config={
                                         "Node": {"lable": "ノード", "disabled": True},
                                         "Name": {"label": "避難所", "disabled": True},
@@ -623,7 +625,7 @@ if anr_st.button("最適経路探索開始"):
                 best_obj = None
 
                 for a in range(loop_max):
-                    result = sovle_annering(model, client, 1, 10000)
+                    result = sovle_annering(model, client, 1, 10000)   #アニーリング回数＆算出時間（mmSec/回）
                     x_values = result.best.values
                     solution = x.evaluate(x_values)
                     sequence = onehot2sequence(solution)
