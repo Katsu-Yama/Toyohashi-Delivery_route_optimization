@@ -87,7 +87,25 @@ for key in [
     "num_transport",
 ]:
     st.session_state.setdefault(key, None)
+st.session_state.setdefault("data_loaded", False)
 
+#起動時に重い処理を全部やるのをやめ、「タイトルだけ即返し → ユーザーアクション後に読み込む」
+# 1. まずは “早期応答” 部分（タイトルとボタンだけ表示）
+st.set_page_config(layout="wide")
+st.title("豊橋市　救援物資配送 最適ルート")
+if "data_loaded" not in st.session_state:
+    st.session_state.data_loaded = False
+
+if not st.session_state.data_loaded:
+    if st.button("地図データを読み込む"):
+        st.session_state.data_loaded = True
+        with st.spinner("地図データを読み込み中…"):
+            # キャッシュ関数を呼び出して実際に重い読み込みを実行
+            st.session_state.geo_df = load_geojson(toyohashi_geojson)
+            st.session_state.G      = load_map_graph(os.path.join(root_dir, "toyohashi_drive_graph.pkl"))
+            st.session_state.base_map = disp_baseMap(st.session_state.geo_df)
+        st.experimental_rerun()
+    st.stop()  # ここで一旦 UI のみ返して初期化完了
 
 #########################################
 # streamlit custom css
@@ -146,23 +164,6 @@ _colors = [
     "darkpurple",
 ]
 
-###############
-# 1. まずは “早期応答” 部分（タイトルとボタンだけ表示）
-st.set_page_config(layout="wide")
-st.title("豊橋市　救援物資配送 最適ルート")
-if "data_loaded" not in st.session_state:
-    st.session_state.data_loaded = False
-
-if not st.session_state.data_loaded:
-    if st.button("地図データを読み込む"):
-        st.session_state.data_loaded = True
-        with st.spinner("地図データを読み込み中…"):
-            # キャッシュ関数を呼び出して実際に重い読み込みを実行
-            st.session_state.geo_df = load_geojson(toyohashi_geojson)
-            st.session_state.G      = load_map_graph(os.path.join(root_dir, "toyohashi_drive_graph.pkl"))
-            st.session_state.base_map = disp_baseMap(st.session_state.geo_df)
-        st.experimental_rerun()
-    st.stop()  # ここで一旦 UI のみ返して初期化完了
 
 ####################################
 # ファイルパス指定
@@ -676,8 +677,10 @@ with gis_st:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
 
 # レイヤーコントロールと地図表示
-  folium.LayerControl().add_to(base_map_copy)
-  st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
+    folium.LayerControl().add_to(base_map_copy)
+    # st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
+    st.subheader("地図表示")
+    st_folium(st.session_state.base_map, width=GIS_WIDE, height=GIS_HIGHT)
 
 # 最適経路探索開始ボタン押下時
 if anr_st.button("最適経路探索開始"):
