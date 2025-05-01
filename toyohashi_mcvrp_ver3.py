@@ -341,7 +341,7 @@ def set_map_data():
     place = {"city": city_name, "state": state_name, "country": "Japan"}
     ox.settings.timeout = 180    # OSMnx のリクエストタイムアウトを 180 秒に
 
-    # pickle キャッシュ読み込み or 未あれば取得して保存
+    # pickle キャッシュ読み込み or 無ければ取得して保存
     graph_pickle = os.path.join(root_dir, 'toyohashi_drive_graph.pickle')
     if os.path.exists(graph_pickle):
         # pickle があれば読み込む
@@ -363,13 +363,11 @@ def set_map_data():
 def change_num_of_people():
     np_df = st.session_state['num_of_people']
     shelter_df = st.session_state['shelter_df']
-   
     for index, row in shelter_df.iterrows():
-         node = row['Node']
-         num = row['num']
-         #np_df.num[np_df.Node==node] = num
-         np_df.loc[np_df.Node==node, 'num'] = num
-    st.session_state['num_of_people']=np_df
+        node = row['Node']
+        num = row['num']
+        np_df.loc[np_df.Node == node, 'num'] = num
+    st.session_state['num_of_people'] = np_df
 
 
 ########################################
