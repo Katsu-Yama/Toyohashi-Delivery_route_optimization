@@ -142,8 +142,9 @@ root_dir = os.getcwd()  # 作業ディレクトリを基準にファイルを読
 
 node_data = "kyoten_geocode.json"        # 拠点データ(JSON)
 num_of_people_file = "number_of_people.csv"  # 被災者数データ(CSV)
-geojson_dir = os.path.join(root_dir, "N03-20240101_23_GML")
-geojson_path = os.path.join(geojson_dir, "N03-20240101_23.geojson")  # 対象行政区域GeoJSON
+
+toyohashi_geojson = os.path.join(root_dir, "toyohashi.geojson")   # 豊橋市域だけの GeoJSON
+
 route_file = "path_list_toyohashi.json"  # 経路リストデータ(JSON)
 Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景地図タイルURL
 
@@ -318,15 +319,12 @@ def set_map_data():
         st.error(f"{node_data} が見つかりません: {e}")
         st.stop()
     
-    # 行政区域GeoJSON
+    # 行政区域GeoJSON（あらかじめ豊橋市域のみを出力したファイルを直接読み込む）
     try:
-        administrative_district = gpd.read_file(geojson_path)
+        map_data['gep_map'] = gpd.read_file(toyohashi_geojson)
     except Exception as e:
-        st.error(f"GeoJSON 読み込み失敗: {e}")
+        st.error(f"豊橋市 GeoJSON 読み込み失敗: {e}")
         st.stop()
-    map_data['gep_map'] = administrative_district[
-        administrative_district["N03_004"] == "豊橋市"
-    ]    # 豊橋市フィルタリング
     
     # 経路リスト
     try:
