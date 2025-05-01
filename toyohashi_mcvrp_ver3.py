@@ -70,6 +70,15 @@ def load_map_graph(pkl_path):
     with open(pkl_path, 'rb') as f:
         return pickle.load(f)
 
+
+##########################
+# セッションステートの初期化
+st.session_state.setdefault("data_loaded", False)
+st.session_state.setdefault("geo_df", None)
+st.session_state.setdefault("G", None)
+st.session_state.setdefault("base_map", None)
+
+
 # -----------------------------------------------------------------------------
 # Streamlit で使用するセッションステート変数の初期化
 # Cloud 版では 1 度目のアクセス時に必ず実行できる位置に置く
@@ -382,19 +391,20 @@ def change_num_of_people():
 #起動時に重い処理を全部やるのをやめ、「タイトルだけ即返し → ユーザーアクション後に読み込む」
 # 1. まずは “早期応答” 部分（タイトルとボタンだけ表示）
 st.title("豊橋市　救援物資配送 最適ルート")
-if "data_loaded" not in st.session_state:
-    st.session_state.data_loaded = False
 
+# まだ読み込みフラグが False の間は、このブロックで止める
 if not st.session_state.data_loaded:
     if st.button("地図データを読み込む"):
+        # ボタンを押すと state が True になり、
+        # Streamlit が自動で再レンダーして下段に進みます
         st.session_state.data_loaded = True
+        # 重い読み込みだけここで実行
         with st.spinner("地図データを読み込み中…"):
-            # キャッシュ関数を呼び出して実際に重い読み込みを実行
-            st.session_state.geo_df = load_geojson(toyohashi_geojson)
-            st.session_state.G      = load_map_graph(os.path.join(root_dir, "toyohashi_drive_graph.pkl"))
+            st.session_state.geo_df   = load_geojson(toyohashi_geojson)
+            st.session_state.G        = load_map_graph(os.path.join(root_dir, "toyohashi_drive_graph.pkl"))
             st.session_state.base_map = disp_baseMap(st.session_state.geo_df)
-        st.experimental_rerun()
-    st.stop()  # ここで一旦 UI のみ返して初期化完了
+    # ボタン押されるまではここで止める
+    st.stop()
 
 ########################################
 # アニーリング周り(以前の関数群)
