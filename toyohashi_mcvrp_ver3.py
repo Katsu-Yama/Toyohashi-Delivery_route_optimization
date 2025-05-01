@@ -186,24 +186,6 @@ GIS_ZOOM = 12.0
 # ポップアップHTMLフォーマット定義
 FORMAT_HTML = '<div>【{type}】<br/><b>{name}</b><br/>住所:{address}<div>'
 
-#################################
-#起動時に重い処理を全部やるのをやめ、「タイトルだけ即返し → ユーザーアクション後に読み込む」
-# 1. まずは “早期応答” 部分（タイトルとボタンだけ表示）
-st.title("豊橋市　救援物資配送 最適ルート")
-if "data_loaded" not in st.session_state:
-    st.session_state.data_loaded = False
-
-if not st.session_state.data_loaded:
-    if st.button("地図データを読み込む"):
-        st.session_state.data_loaded = True
-        with st.spinner("地図データを読み込み中…"):
-            # キャッシュ関数を呼び出して実際に重い読み込みを実行
-            st.session_state.geo_df = load_geojson(toyohashi_geojson)
-            st.session_state.G      = load_map_graph(os.path.join(root_dir, "toyohashi_drive_graph.pkl"))
-            st.session_state.base_map = disp_baseMap(st.session_state.geo_df)
-        st.experimental_rerun()
-    st.stop()  # ここで一旦 UI のみ返して初期化完了
-
 ########################################
 # ここからFolium を使う表示系関数
 ########################################
@@ -396,6 +378,23 @@ def change_num_of_people():
         np_df.loc[np_df.Node == node, 'num'] = num
     st.session_state['num_of_people'] = np_df
 
+#################################
+#起動時に重い処理を全部やるのをやめ、「タイトルだけ即返し → ユーザーアクション後に読み込む」
+# 1. まずは “早期応答” 部分（タイトルとボタンだけ表示）
+st.title("豊橋市　救援物資配送 最適ルート")
+if "data_loaded" not in st.session_state:
+    st.session_state.data_loaded = False
+
+if not st.session_state.data_loaded:
+    if st.button("地図データを読み込む"):
+        st.session_state.data_loaded = True
+        with st.spinner("地図データを読み込み中…"):
+            # キャッシュ関数を呼び出して実際に重い読み込みを実行
+            st.session_state.geo_df = load_geojson(toyohashi_geojson)
+            st.session_state.G      = load_map_graph(os.path.join(root_dir, "toyohashi_drive_graph.pkl"))
+            st.session_state.base_map = disp_baseMap(st.session_state.geo_df)
+        st.experimental_rerun()
+    st.stop()  # ここで一旦 UI のみ返して初期化完了
 
 ########################################
 # アニーリング周り(以前の関数群)
