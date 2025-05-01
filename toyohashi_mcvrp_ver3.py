@@ -50,6 +50,16 @@ mapcenter = [34.7691972, 137.3914667]   #豊橋市役所
 # 一人当たりの必要物資重量(Weight of supplies needed per person)
 wgt_per = 4.0   # Kg
 
+# ──────────── キャッシュ用関数定義 ────────────
+@st.cache_data(ttl=3600)
+def load_geojson(path):
+    return gpd.read_file(path)
+
+@st.cache_data(ttl=3600)
+def load_map_graph(pkl_path):
+    with open(pkl_path, 'rb') as f:
+        return pickle.load(f)
+
 #########################################
 # Streamlit アプリのページ設定
 #########################################
@@ -536,6 +546,12 @@ def sovle_annering(model, client, num_cal, timeout):
 ########################################
 # ここからStreamlit本体
 ########################################
+st.title("豊橋市 救援物資配送 最適ルート")
+with st.spinner("地図データを読み込み中…"):
+    geo_df = load_geojson(toyohashi_geojson)
+    G      = load_map_graph(os.path.join(root_dir, "toyohashi_drive_graph.pkl"))
+    base_map = disp_baseMap(geo_df)
+
 # ヘッダー表示
 #st.markdown('<div class="Qheader"><span class="Qtitle">Q-LOGIQ</span> <span class="caption">Quantum Logistics Intelligence & Quality Optimization  created by WINKY Force</span></div>', unsafe_allow_html=True)
 st.markdown('<div class="Qheader"><span class="Qtitle">えるくお</span> <span class="caption">--Emergency Logistics Quantum Optiviser-- Created by WINKY Force</span></div>', unsafe_allow_html=True)
