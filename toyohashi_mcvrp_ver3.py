@@ -685,9 +685,9 @@ with gis_st:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
 
 # レイヤーコントロールと地図表示
-    folium.LayerControl().add_to(base_map_copy)
-    st.subheader("地図表示")
-    st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
+folium.LayerControl().add_to(base_map_copy)
+st.subheader("地図表示")
+st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
 # 最適経路探索開始ボタン押下時
 if anr_st.button("最適経路探索開始"):
