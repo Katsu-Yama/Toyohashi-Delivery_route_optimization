@@ -686,9 +686,8 @@ with gis_st:
 
 # レイヤーコントロールと地図表示
     folium.LayerControl().add_to(base_map_copy)
-    # st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
     st.subheader("地図表示")
-    st_folium(st.session_state.base_map, width=GIS_WIDE, height=GIS_HIGHT)
+    st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
 # 最適経路探索開始ボタン押下時
 if anr_st.button("最適経路探索開始"):
