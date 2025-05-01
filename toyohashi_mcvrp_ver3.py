@@ -27,6 +27,16 @@ from amplify import Model
 from amplify import solve
 import copy  # オブジェクトのディープコピー用
 
+# ──────────── キャッシュ用関数定義 ────────────
+@st.cache_data(ttl=3600)
+def load_geojson(path):
+    return gpd.read_file(path)
+
+@st.cache_data(ttl=3600)
+def load_map_graph(pkl_path):
+    with open(pkl_path, 'rb') as f:
+        return pickle.load(f)
+
 ##############################
 # FixStars 有効なトークンを設定
 api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"  
@@ -50,15 +60,6 @@ mapcenter = [34.7691972, 137.3914667]   #豊橋市役所
 # 一人当たりの必要物資重量(Weight of supplies needed per person)
 wgt_per = 4.0   # Kg
 
-# ──────────── キャッシュ用関数定義 ────────────
-@st.cache_data(ttl=3600)
-def load_geojson(path):
-    return gpd.read_file(path)
-
-@st.cache_data(ttl=3600)
-def load_map_graph(pkl_path):
-    with open(pkl_path, 'rb') as f:
-        return pickle.load(f)
 
 #########################################
 # Streamlit アプリのページ設定
@@ -144,6 +145,24 @@ _colors = [
     "lightblue",
     "darkpurple",
 ]
+
+###############
+# 1. まずは “早期応答” 部分（タイトルとボタンだけ表示）
+st.set_page_config(layout="wide")
+st.title("豊橋市　救援物資配送 最適ルート")
+if "data_loaded" not in st.session_state:
+    st.session_state.data_loaded = False
+
+if not st.session_state.data_loaded:
+    if st.button("地図データを読み込む"):
+        st.session_state.data_loaded = True
+        with st.spinner("地図データを読み込み中…"):
+            # キャッシュ関数を呼び出して実際に重い読み込みを実行
+            st.session_state.geo_df = load_geojson(toyohashi_geojson)
+            st.session_state.G      = load_map_graph(os.path.join(root_dir, "toyohashi_drive_graph.pkl"))
+            st.session_state.base_map = disp_baseMap(st.session_state.geo_df)
+        st.experimental_rerun()
+    st.stop()  # ここで一旦 UI のみ返して初期化完了
 
 ####################################
 # ファイルパス指定
@@ -546,11 +565,6 @@ def sovle_annering(model, client, num_cal, timeout):
 ########################################
 # ここからStreamlit本体
 ########################################
-st.title("豊橋市 救援物資配送 最適ルート")
-with st.spinner("地図データを読み込み中…"):
-    geo_df = load_geojson(toyohashi_geojson)
-    G      = load_map_graph(os.path.join(root_dir, "toyohashi_drive_graph.pkl"))
-    base_map = disp_baseMap(geo_df)
 
 # ヘッダー表示
 #st.markdown('<div class="Qheader"><span class="Qtitle">Q-LOGIQ</span> <span class="caption">Quantum Logistics Intelligence & Quality Optimization  created by WINKY Force</span></div>', unsafe_allow_html=True)
