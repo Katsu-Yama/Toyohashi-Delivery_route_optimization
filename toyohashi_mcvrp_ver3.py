@@ -1,5 +1,4 @@
 ################################################################
-
 import folium  # 地図描画用ライブラリ
 import pandas as pd  # データフレーム操作用ライブラリ
 import numpy as np  # 数値計算用ライブラリ
@@ -49,7 +48,7 @@ mapcenter = [34.7691972, 137.3914667]   #豊橋市役所
 
 ##############################
 # 一人当たりの必要物資重量(Weight of supplies needed per person)
-wgt_per = 4.0
+wgt_per = 4.0   # Kg
 
 #########################################
 # Streamlit アプリのページ設定
@@ -136,26 +135,31 @@ _colors = [
     "darkpurple",
 ]
 
-#######################
-#　ファイルパス指定
-#######################
+####################################
+# ファイルパス指定
+####################################
+root_dir = os.getcwd()  # 作業ディレクトリを基準にファイルを読み込む
 
-# ファイル読み込み用ディレクトリ設定
-root_dir="./"
-
-node_data = "kyoten_geocode.json"       # 拠点データ(JSON)
-numOfPeople = "number_of_people.csv"       # 被災者数データ(CSV)
-geojson_path = root_dir + "N03-20240101_23_GML/N03-20240101_23.geojson"  # 対象行政区域GeoJSON
-route_file = "path_list_toyohashi.json"         # 経路リストデータ(JSON)
+node_data = "kyoten_geocode.json"        # 拠点データ(JSON)
+num_of_people_file = "number_of_people.csv"  # 被災者数データ(CSV)
+geojson_dir = os.path.join(root_dir, "N03-20240101_23_GML")
+geojson_path = os.path.join(geojson_dir, "N03-20240101_23.geojson")  # 対象行政区域GeoJSON
+route_file = "path_list_toyohashi.json"  # 経路リストデータ(JSON)
 Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景地図タイルURL
 
 #################################
-
 # セッションステートに被災者数データを読み込む（初回のみ）
 if st.session_state.get("num_of_people") is None:
-    np_df = pd.read_csv(root_dir + numOfPeople, header=None, names=['Node', 'num'])
+    try:
+        np_df = pd.read_csv(
+            os.path.join(root_dir, num_of_people_file),
+            header=None,
+            names=['Node', 'num']
+        )
+    except FileNotFoundError as e:
+        st.error(f"{num_of_people_file} が見つかりません: {e}")
+        st.stop()
     st.session_state["num_of_people"] = np_df
-
 
 # 避難所データ用の初期化
 if 'shelter_df' not in st.session_state:
@@ -173,7 +177,6 @@ FORMAT_HTML = '<div>【{type}】<br/><b>{name}</b><br/>住所:{address}<div>'
 ########################################
 # ここからFolium を使う表示系関数
 ########################################
-
 def disp_baseMap(district,center=mapcenter, zoom_start=GIS_ZOOM):
     m = folium.Map(
         location=center,
@@ -305,31 +308,39 @@ def get_point_name(data,node):
 def set_map_data():
 
     map_data = {}
-    
-    # 拠点データ    
+
+    # 拠点データ
     try:
-        map_data['node_d'] = pd.read_json(os.path.join(root_dir, node_data))
+        map_data['node_d'] = pd.read_json(
+            os.path.join(root_dir, node_data)
+        )
     except FileNotFoundError as e:
-        st.error(f"node_dataファイルが見つかりません: {e}")
+        st.error(f"{node_data} が見つかりません: {e}")
         st.stop()
-
-    # 豊橋市フィルタリング
-    administrative_district = gpd.read_file(geojson_path)
-    map_data['gep_map'] = administrative_district[administrative_district["N03_004"]=="豊橋市"]
-
+    
+    # 行政区域GeoJSON
+    try:
+        administrative_district = gpd.read_file(geojson_path)
+    except Exception as e:
+        st.error(f"GeoJSON 読み込み失敗: {e}")
+        st.stop()
+    map_data['gep_map'] = administrative_district[
+        administrative_district["N03_004"] == "豊橋市"
+    ]    # 豊橋市フィルタリング
+    
     # 経路リスト
     try:
-        map_data['path_d']  = pd.read_json(os.path.join(root_dir, route_file))
+        map_data['path_d'] = pd.read_json(
+            os.path.join(root_dir, route_file)
+        )
     except FileNotFoundError as e:
-        st.error(f"route_fileファイルが見つかりません: {e}")
+        st.error(f"{route_file} が見つかりません: {e}")
         st.stop()
-
-
 
     # OSMnx で道路グラフ取得
     place = {"city": city_name, "state": state_name, "country": "Japan"}
     ox.settings.timeout = 180    # OSMnx のリクエストタイムアウトを 180 秒に
-    
+
     # pickle キャッシュ読み込み or 未あれば取得して保存
     graph_pickle = os.path.join(root_dir, 'toyohashi_drive_graph.pickle')
     if os.path.exists(graph_pickle):
