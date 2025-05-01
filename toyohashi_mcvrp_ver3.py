@@ -342,7 +342,7 @@ def set_map_data():
     ox.settings.timeout = 180    # OSMnx のリクエストタイムアウトを 180 秒に
 
     # pickle キャッシュ読み込み or 無ければ取得して保存
-    graph_pickle = os.path.join(root_dir, 'toyohashi_drive_graph.pickle')
+    graph_pickle = os.path.join(root_dir, 'toyohashi_drive_graph.pkl')
     if os.path.exists(graph_pickle):
         # pickle があれば読み込む
         with open(graph_pickle, 'rb') as f:
