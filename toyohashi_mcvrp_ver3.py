@@ -27,16 +27,6 @@ from amplify import Model
 from amplify import solve
 import copy  # オブジェクトのディープコピー用
 
-# ──────────── キャッシュ用関数定義 ────────────
-@st.cache_data(ttl=3600)
-def load_geojson(path):
-    return gpd.read_file(path)
-
-@st.cache_data(ttl=3600)
-def load_map_graph(pkl_path):
-    with open(pkl_path, 'rb') as f:
-        return pickle.load(f)
-
 ##############################
 # FixStars 有効なトークンを設定
 api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"  
@@ -70,6 +60,16 @@ st.set_page_config(
     layout="wide"  # ページレイアウトを横幅いっぱいに設定
 )
 
+# ──────────── キャッシュ用関数定義 ────────────
+@st.cache_data(ttl=3600)
+def load_geojson(path):
+    return gpd.read_file(path)
+
+@st.cache_data(ttl=3600)
+def load_map_graph(pkl_path):
+    with open(pkl_path, 'rb') as f:
+        return pickle.load(f)
+
 # -----------------------------------------------------------------------------
 # Streamlit で使用するセッションステート変数の初期化
 # Cloud 版では 1 度目のアクセス時に必ず実行できる位置に置く
@@ -89,6 +89,7 @@ for key in [
     st.session_state.setdefault(key, None)
 st.session_state.setdefault("data_loaded", False)
 
+#################################
 #起動時に重い処理を全部やるのをやめ、「タイトルだけ即返し → ユーザーアクション後に読み込む」
 # 1. まずは “早期応答” 部分（タイトルとボタンだけ表示）
 st.set_page_config(layout="wide")
