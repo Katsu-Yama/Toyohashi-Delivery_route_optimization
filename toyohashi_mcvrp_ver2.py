@@ -33,7 +33,7 @@ import copy  # オブジェクトのディープコピー用
 api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"  
 
 # アニーリング実行回数
-num_annering = 1
+num_annering = 2
 
 # アニーリング実行時間(mmSec)
 time_annering = 10000
