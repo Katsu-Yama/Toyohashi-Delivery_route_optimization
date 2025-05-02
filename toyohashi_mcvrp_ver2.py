@@ -152,7 +152,7 @@ _colors = [
 root_dir = os.getcwd()  # 作業ディレクトリを基準にファイルを読み込む
 
 node_data = "kyoten_geocode.json"        # 拠点データ(JSON)
-num_of_people_file = "number_of_people.csv"  # 被災者数データ(CSV)
+num_of_people = "number_of_people.csv"  # 被災者数データ(CSV)
 
 toyohashi_geojson = os.path.join(root_dir, "toyohashi.geojson")   # 豊橋市域だけの GeoJSON
 
@@ -165,12 +165,12 @@ Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景�
 if st.session_state.get("num_of_people") is None:
     try:
         np_df = pd.read_csv(
-            os.path.join(root_dir, num_of_people_file),
+            os.path.join(root_dir, num_of_people),
             header=None,
             names=['Node', 'num']
         )
     except FileNotFoundError as e:
-        st.error(f"{num_of_people_file} が見つかりません: {e}")
+        st.error(f"{num_of_people} が見つかりません: {e}")
         st.stop()
     st.session_state["num_of_people"] = np_df
 
@@ -447,7 +447,7 @@ def set_distance_matrix(path_df, node_list):
 
 # アニーリング用のパラメータをまとめて計算して返す関数
 # (distance_matrix: 距離行列, n_transport_base: 配送拠点数, n_shellter: 避難所数, nbase: 全ノード数, nvehicle: 車両台数, capacity: 車両容量, demand: 各ノードの需要（被災者数）)
-def set_parameter( path_df, op_data, np_df):
+def set_parameter(path_df, op_data, np_df):
     
     annering_param = {}
 
@@ -584,13 +584,13 @@ base_map_copy = copy.deepcopy(base_map)
 st.session_state['redraw'] = False
 
 # セッションから値を取得
-best_tour=st.session_state['best_tour']
-selected_base=st.session_state['points']
-np_df= st.session_state["num_of_people"]
+best_tour = st.session_state['best_tour']
+selected_base = st.session_state['points']
+np_df = st.session_state["num_of_people"]
 
 # すべての拠点のリストを取得
-all_shelter= df[df['Node'].str.startswith('D')| df['Node'].str.startswith('W')|df['Node'].str.startswith('T')|df['Node'].str.startswith('R')]
-all_transport= df[df['Node'].str.startswith('S')]
+all_shelter = df[df['Node'].str.startswith('D')| df['Node'].str.startswith('W')|df['Node'].str.startswith('T')|df['Node'].str.startswith('R')]
+all_transport = df[df['Node'].str.startswith('S')]
 
 
 # 右カラムで拠点選択UIを表示
@@ -674,7 +674,7 @@ if anr_st.button("最適経路探索開始"):
             else:
             # ここで、パラメータ設定→モデル構築→アニーリング実行
             #annering_param = set_parameter(np_df, path_df, op_data)
-                annering_param=set_parameter(path_df,selected_base,np_df)
+                annering_param = set_parameter(path_df,selected_base,np_df)
                 model, x = set_annering_model(annering_param)
                 loop_max = 20
                 best_tour = None
@@ -702,33 +702,33 @@ if anr_st.button("最適経路探索開始"):
                 # 結果をセッションステートに保存し再描画
                 st.session_state["best_tour"] = best_tour
                 st.session_state["best_cost"] = best_obj
-                st.session_state["annering_param"]=annering_param
+                st.session_state["annering_param"] = annering_param
                 st.session_state['redraw'] = True
             
             st.success("処理が完了しました！")
 
 # ========== 出力 ==========
 if st.session_state['best_tour'] !=None:
-  annering_param=st.session_state["annering_param"]
-  best_obj=st.session_state['best_cost']
-  best_tour=st.session_state['best_tour']
+  annering_param = st.session_state["annering_param"]
+  best_obj = st.session_state['best_cost']
+  best_tour = st.session_state['best_tour']
   gis_st.write(f"#### 計算結果")
-  distance_matrix=annering_param['distance_matrix']
-  demand=annering_param['demand']
+  distance_matrix = annering_param['distance_matrix']
+  demand = annering_param['demand']
 
-  node_no=[]
-  base_list=[]
-  weight_list=[]
-  distance_list=[]
-  node_list=[]
-  weight_all=0
+  node_no = []
+  base_list = []
+  weight_list = []
+  distance_list = []
+  node_list = []
+  weight_all = 0
   for item in best_tour.items():
-     distance=0
-     weight=0
-     p_node=""
+     distance = 0
+     weight = 0
+     p_node = ""
      for i in range(len(item[1])-1):
-        it=item[1][i]
-        itn=item[1][i+1]
+        it = item[1][i]
+        itn = item[1][i+1]
         distance += distance_matrix[it][itn]
         weight += demand[it]
         p_node += f'{get_point_name(df,re_node_list[it])} ⇒ '
@@ -763,5 +763,5 @@ if st.session_state['best_tour'] !=None:
   #best_tour_markdown = "\n".join([f"{key}: {value}" for key, value in best_tour.items()])
   #gis_st.markdown(best_tour_markdown)
 
-if st.session_state['redraw'] !=False:
+if st.session_state['redraw'] != False:
   st.rerun()
