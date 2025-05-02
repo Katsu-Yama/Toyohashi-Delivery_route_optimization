@@ -379,10 +379,9 @@ def change_num_of_people():
     for index, row in shelter_df.iterrows():
          node = row['Node']
          num = row['num']
-         #np_df.num[np_df.Node　==　node] = num
-         np_df.loc[np_df.Node　==　node, 'num'] = num
-    st.session_state['num_of_people']　=　np_df
-
+         #np_df.num[np_df.Node == node] = num
+         np_df.loc[np_df.Node == node, 'num'] = num
+    st.session_state['num_of_people'] = np_df
 
 ########################################
 # アニーリング周り(以前の関数群)
