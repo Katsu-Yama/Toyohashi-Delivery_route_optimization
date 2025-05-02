@@ -12,6 +12,7 @@ import osmnx as ox  # OpenStreetMapデータ取得・操作ライブラリ
 import networkx as nx  # グラフ計算用ライブラリ
 from geopy.distance import geodesic  # 距離計算用ライブラリ
 from datetime import timedelta  # 時間差操作用ライブラリ
+from osmnx.utils_graph import get_route_edge_attributes
 
 import streamlit as st  # Streamlitアプリ用ライブラリ
 from streamlit_folium import st_folium  # Streamlit上でFolium地図を表示するための関数
@@ -423,31 +424,43 @@ def upperbound_of_tour(capacity: int, demand: np.ndarray) -> int:
     return max_tourable_bases
 
 # ノード間距離行列を作成する関数(未登録ルートはNaNを設定し、最後に未登録組み合わせがある場合は例外を投げる)
-def set_distance_matrix(path_df, node_list):
-    distance_matrix = np.zeros((len(node_list), len(node_list)))
-    unreachable = []
+def set_distance_matrix(path_df, node_list, G):
+    n = len(node_list)
+    distance_matrix = np.zeros((n, n))
+    # 経路リストにない組み合わせは動的に計算
     for i, s in enumerate(node_list):
         for j, g in enumerate(node_list):
             if s == g:
-                distance_matrix[i, j] = 0
+                distance_matrix[i, j] = 0.0
                 continue
 
+            # 既存経路を探す
             row = path_df[(path_df['start_node'] == s) & (path_df['goal_node'] == g)]
-            if row.empty:
-                unreachable.append((s, g))
-                distance_matrix[i, j] = np.nan   # ここで NaN を入れておく
-            else:
+            if not row.empty:
                 distance_matrix[i, j] = row['distance'].iloc[0]
+                continue
 
-    if unreachable:
-        raise ValueError(
-            f"ルートが登録されていない組み合わせがあります: {unreachable}"
-        )
+            # なければ OSMnx/NetworkX で最短経路を計算
+            try:
+                route = nx.shortest_path(G, s, g, weight='length')
+                dist = sum(get_route_edge_attributes(G, route, 'length'))
+                distance_matrix[i, j] = dist
+                # オプション：path_df にも追加してキャッシュ
+                path_df.loc[len(path_df)] = {
+                    'start_node': s,
+                    'goal_node' : g,
+                    'route'     : [route],
+                    'distance'  : dist
+                }
+            except Exception as e:
+                # それでも失敗したら大きめの値を入れておく
+                distance_matrix[i, j] = np.inf
+                st.warning(f"経路計算に失敗しました: {s} → {g} ({e})")
     return distance_matrix
 
 # アニーリング用のパラメータをまとめて計算して返す関数
 # (distance_matrix: 距離行列, n_transport_base: 配送拠点数, n_shellter: 避難所数, nbase: 全ノード数, nvehicle: 車両台数, capacity: 車両容量, demand: 各ノードの需要（被災者数）)
-def set_parameter(path_df, op_data, np_df):
+def set_parameter(path_df, op_data, np_df, G):
     
     annering_param = {}
 
@@ -455,7 +468,7 @@ def set_parameter(path_df, op_data, np_df):
     re_node_list = op_data['配送拠点'] + op_data['避難所']
 
     # 距離行列作成
-    distance_matrix = set_distance_matrix(path_df, re_node_list)
+    distance_matrix = set_distance_matrix(path_df, re_node_list, G)
     
     # 基本パラメータ設定
     n_transport_base = len(op_data['配送拠点'])
@@ -673,8 +686,7 @@ if anr_st.button("最適経路探索開始"):
                 anr_st.warning("避難所・配送拠点をそれぞれを1つ以上選択してください")
             else:
             # ここで、パラメータ設定→モデル構築→アニーリング実行
-            #annering_param = set_parameter(np_df, path_df, op_data)
-                annering_param = set_parameter(path_df,selected_base,np_df)
+                annering_param = set_parameter(path_df, selected_base, np_df, G)
                 model, x = set_annering_model(annering_param)
                 loop_max = 20
                 best_tour = None
