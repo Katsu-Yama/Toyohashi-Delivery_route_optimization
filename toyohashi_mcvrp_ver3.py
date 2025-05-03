@@ -717,6 +717,14 @@ with gis_st:
   folium.LayerControl().add_to(base_map_copy)
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
+# ───── 選択数チェック （プロトタイプstreamlitクラウドのスペック都合上） ─────
+max_nodes = 50
+total_selected = len(selected_depot_nodes) + len(selected_shelter_nodes)
+if total_selected > max_nodes:
+    st.warning(f"プロトタイプstreamlitクラウドのスペック都合上、配送拠点と避難所の合計は最大{max_nodes}箇所としています。現在{total_selected}箇所選択されています。")
+    st.stop()
+
+
 # 最適経路探索開始ボタン押下時
 if anr_st.button("最適経路探索開始", key="btn_optimize_start"):
     with spinner_container:
