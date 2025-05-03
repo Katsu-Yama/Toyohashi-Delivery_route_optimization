@@ -681,24 +681,35 @@ with gis_st:
     plot_select_marker(base_map_copy, df,selected_base)
     with st.expander("被災者数と必要物資量"):
        
-       if st.session_state['shelter_df'] is not None:
-          change_num_of_people()
+        # 前回編集結果があればCSVデータも更新
+        if st.session_state['shelter_df'] is not None:
+            change_num_of_people()
 
-       np_df = st.session_state['num_of_people']
-       shelter_df = pd.DataFrame(selected_shelter_node,columns=['Node'] )
-       shelter_df['Name'] = shelter_df['Node'].apply(lambda x: get_point_name(df,x))
-       shelter_df2 = pd.merge(shelter_df, np_df, on='Node', how='left')
-       shelter_df2['demand'] = shelter_df2['num'].apply(lambda x: x*wgt_per/1000.0)   #避難人数×一人当たりの必要物資量
-       #shelter_df2.columns = ['ノード','避難所','避難者数（人）','必要物資量（トン）']
-       st.session_state['shelter_df'] = st.data_editor(shelter_df2,
-                                      column_config={
-                                        "Node": {"lable": "ノード", "disabled": True},
-                                        "Name": {"label": "避難所", "disabled": True},
-                                        "num": {"label": "避難者数（人）"},
-                                        "demand": {"label": "必要物資量(トン)", "disabled": True}
-                                        }                      
+        # 被災者数データの Node 列を文字列かつ前後空白カット
+        np_df = st.session_state['num_of_people']
+        np_df['Node'] = np_df['Node'].astype(str).str.strip()
+      
+        # 選択ノードリストも文字列に揃えてDataFrame化
+        shelter_df = pd.DataFrame({
+            'Node': [str(n).strip() for n in selected_shelter_node]
+        })
+        shelter_df['Name'] = shelter_df['Node'].apply(lambda x: get_point_name(df, x))
+
+        # マージで避難者数(num)を取り込む
+        shelter_df2 = pd.merge(shelter_df, np_df, on='Node', how='left')
+        shelter_df2['demand'] = shelter_df2['num'].apply(lambda x: x * wgt_per / 1000.0)   #避難人数×一人当たりの必要物資量
+
+        # typo: "lable"→"label"、全角括弧を利用して見出しを日本語化
+        st.session_state['shelter_df'] = st.data_editor(
+            shelter_df2,
+            column_config={
+                "Node":   {"label": "ノード",           "disabled": True},
+                "Name":   {"label": "避難所",         "disabled": True},
+                "num":    {"label": "避難者数（人）"},
+                "demand": {"label": "必要物資量（トン）", "disabled": True}
+            }
         )
- 
+
   else:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
 
