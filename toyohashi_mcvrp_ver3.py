@@ -739,7 +739,7 @@ with gis_st:
                 st.session_state["shelter_df"]     = edited
     else:
         # まだ避難所が選択されていない場合のガイダンス
-        st.info("まずは右側のペインから避難所を1つ以上選択してください。")
+        st.info("右側のペインから選択された避難所の避難者数＆必要物資量が表示されます。")
 
   else:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
