@@ -701,36 +701,45 @@ with gis_st:
   elif selected_base !=None:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
     plot_select_marker(base_map_copy, df,selected_base)
-    with st.expander("被災者数と必要物資量"):
-       
-        # 前回編集結果があればCSVデータも更新
-        if st.session_state['shelter_df'] is not None:
-            change_num_of_people()
+    # 選択された避難所があれば「被災者数テーブル」を表示
+    if selected_shelter_node:
+        with st.expander("被災者数と必要物資量"):
+            # 1) 元データ取得＆Node列文字列化＋strip
+            np_df = st.session_state["num_of_people"].copy()
+            np_df["Node"] = np_df["Node"].astype(str).str.strip()
 
-        # 被災者数データの Node 列を文字列かつ前後空白カット
-        np_df = st.session_state['num_of_people']
-        np_df['Node'] = np_df['Node'].astype(str).str.strip()
-      
-        # 選択ノードリストも文字列に揃えてDataFrame化
-        shelter_df = pd.DataFrame({
-            'Node': [str(n).strip() for n in selected_shelter_node]
-        })
-        shelter_df['Name'] = shelter_df['Node'].apply(lambda x: get_point_name(df, x))
+            # 2) 選択リストからテーブルを組み立て
+            tmp = pd.DataFrame({
+                "Node": selected_shelter_node,
+                "Name": [get_point_name(df, n) for n in selected_shelter_node]
+            })
+            # 3) マージ＆欠損は 0 人で埋め
+            merged = tmp.merge(np_df[["Node","num"]], on="Node", how="left")
+            merged["num"] = merged["num"].fillna(0).astype(int)
+            # 4) 必要物資量(トン) を計算
+            merged["demand"] = merged["num"] * wgt_per / 1000.0
 
-        # マージで避難者数(num)を取り込む
-        shelter_df2 = pd.merge(shelter_df, np_df, on='Node', how='left')
-        shelter_df2['demand'] = shelter_df2['num'].apply(lambda x: x * wgt_per / 1000.0)   #避難人数×一人当たりの必要物資量
-
-        # typo: "lable"→"label"、全角括弧を利用して見出しを日本語化
-        st.session_state['shelter_df'] = st.data_editor(
-            shelter_df2,
-            column_config={
-                "Node":   {"label": "ノード",           "disabled": True},
-                "Name":   {"label": "避難所",         "disabled": True},
-                "num":    {"label": "避難者数（人）"},
-                "demand": {"label": "必要物資量（トン）", "disabled": True}
-            }
-        )
+            # 5) 列の見映えとキーを指定して DataEditor を表示
+            edited = st.data_editor(
+                merged,
+                column_config={
+                    "Node":   {"label":"ノード",               "disabled": True},
+                    "Name":   {"label":"避難所",             "disabled": True},
+                    "num":    {"label":"避難者数（人）"},
+                    "demand": {"label":"必要物資量（トン）",   "disabled": True},
+                },
+                key="shelter_editor"
+            )
+            # 6) ユーザー編集後の値をセッションに反映
+            if edited is not None:
+                # np_df の num を置き換え
+                for _, row in edited.iterrows():
+                    np_df.loc[np_df["Node"] == row["Node"], "num"] = row["num"]
+                st.session_state["num_of_people"] = np_df
+                st.session_state["shelter_df"]     = edited
+    else:
+        # まだ避難所が選択されていない場合のガイダンス
+        st.info("まずは右側のペインから避難所を1つ以上選択してください。")
 
   else:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
