@@ -29,6 +29,25 @@ from amplify import Model
 from amplify import solve
 import copy  # オブジェクトのディープコピー用
 
+#################################
+# 重い処理のキャッシュ化
+#毎回 OSM からグラフを取り直したり、距離行列を再計算したりすると非常に重くなる為。一度計算した結果をキャッシュ化。
+
+@st.cache_resource(show_spinner=False)
+def load_graph(place):
+    # OSMnx でのグラフ構築をキャッシュ
+    return ox.graph_from_place(place, network_type="drive")
+
+@st.cache_data(show_spinner=False)
+def build_distance_matrix(G, nodes):
+    # 単一始点ダイクストラで全ペア距離をキャッシュ
+    matrix = {}
+    for u in nodes:
+        lengths = nx.single_source_dijkstra_path_length(G, u, weight="length")
+        for v in nodes:
+            matrix[(u, v)] = lengths.get(v, float("inf"))
+    return matrix
+
 ##############################
 # FixStars 有効なトークンを設定
 api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"  
@@ -702,43 +721,50 @@ with gis_st:
 if anr_st.button("最適経路探索開始", key="btn_optimize_start"):
     with spinner_container:
         with st.spinner("処理中です。しばらくお待ちください..."):
-        #gis_st.write(f'選択された避難所: {selected_shelter_node}//選択された配送拠点:{selected_transport_node}')
-            if not selected_shelter_node or not selected_transport_node:
-                anr_st.warning("避難所・配送拠点をそれぞれを1つ以上選択してください")
-            else:
-            # ここで、パラメータ設定→モデル構築→アニーリング実行
+            try:
+                # ── 入力チェック ──
+                if not selected_shelter_node or not selected_transport_node:
+                    anr_st.warning("避難所・配送拠点をそれぞれ1つ以上選択してください")
+                    st.stop()
+
+                # ── パラメータ設定・モデル構築 ──
                 annering_param = set_parameter(path_df, selected_base, np_df, G)
                 model, x = set_annering_model(annering_param)
+
+                # ── アニーリング実行ループ ──
                 loop_max = 20
                 best_tour = None
                 best_obj = None
-
-                for a in range(loop_max):
-                    result = sovle_annering(model, client, num_annering, time_annering)   #アニーリング回数＆算出時間（mmSec/回）
+                for _ in range(loop_max):
+                    result = sovle_annering(model, client, num_annering, time_annering)
                     x_values = result.best.values
                     solution = x.evaluate(x_values)
                     sequence = onehot2sequence(solution)
                     candidate_tour = process_sequence(sequence)
                     cost_val = result.solutions[0].objective
 
-            # 条件に応じて更新(ここでは最初の解を使う例)
+                    # 条件に応じて更新(ここでは最初の解を使う例)
                     best_tour = candidate_tour
                     best_obj = cost_val
 
+                    # ループ終了条件
                     if not any(k in best_tour[k][1:-1] for k in range(annering_param['nvehicle'])):
-                       break
-                
-                # メートル→キロメートル変換、小数第1位
-                best_obj = best_obj / 1000.0  # メートル→キロメートル
-                best_obj = round(best_obj, 1)  # 小数点第1位まで
+                        break
 
-                # 結果をセッションステートに保存し再描画
+                # ── 結果整形 ──
+                # メートル→キロメートル変換＋小数第1位
+                best_obj = round(best_obj / 1000.0, 1)
+
+                # ── セッションステートに保存 ──
                 st.session_state["best_tour"] = best_tour
                 st.session_state["best_cost"] = best_obj
                 st.session_state["annering_param"] = annering_param
-                st.session_state['redraw'] = True
-            
-            st.success("処理が完了しました！")
+                st.session_state["redraw"] = True
+
+                st.success("処理が完了しました！")
+
+            except Exception as e:
+                st.error(f"最適経路探索中にエラーが発生しました：{e}")
 
 # ========== 出力 ==========
 if st.session_state['best_tour'] !=None:
