@@ -699,7 +699,7 @@ with gis_st:
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
 # 最適経路探索開始ボタン押下時
-if anr_st.button("最適経路探索開始"):
+if anr_st.button("最適経路探索開始", key="btn_validate_start"):
     # ①配送拠点→避難所間の到達可能性チェック
     unreachable = []
     for g in selected_shelter_node:
@@ -713,7 +713,7 @@ if anr_st.button("最適経路探索開始"):
         )
         st.stop()
 
-if anr_st.button("最適経路探索開始"):
+if anr_st.button("最適経路探索開始", key="btn_optimize_start"):
     with spinner_container:
         with st.spinner("処理中です。しばらくお待ちください..."):
         #gis_st.write(f'選択された避難所: {selected_shelter_node}//選択された配送拠点:{selected_transport_node}')
