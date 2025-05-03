@@ -388,7 +388,8 @@ def set_map_data():
             G = pickle.load(f)
     else:
         # pickle がなければ OSMnx から取得して pickle に保存
-        G = ox.graph_from_place(place, network_type='drive')
+        # G = ox.graph_from_place(place, network_type='drive')
+        G = load_graph(place)
         with open(graph_pickle, 'wb') as f:
             pickle.dump(G, f)
     map_data['G'] = G
