@@ -29,25 +29,6 @@ from amplify import Model
 from amplify import solve
 import copy  # オブジェクトのディープコピー用
 
-#################################
-# 重い処理のキャッシュ化
-#毎回 OSM からグラフを取り直したり、距離行列を再計算したりすると非常に重くなる為。一度計算した結果をキャッシュ化。
-
-@st.cache_resource(show_spinner=False)
-def load_graph(place):
-    # OSMnx でのグラフ構築をキャッシュ
-    return ox.graph_from_place(place, network_type="drive")
-
-@st.cache_data(show_spinner=False)
-def build_distance_matrix(G, nodes):
-    # 単一始点ダイクストラで全ペア距離をキャッシュ
-    matrix = {}
-    for u in nodes:
-        lengths = nx.single_source_dijkstra_path_length(G, u, weight="length")
-        for v in nodes:
-            matrix[(u, v)] = lengths.get(v, float("inf"))
-    return matrix
-
 ##############################
 # FixStars 有効なトークンを設定
 api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"  
@@ -69,7 +50,7 @@ mapcenter = [34.7691972, 137.3914667]   #豊橋市役所
 
 ##############################
 # 一人当たりの必要物資重量(Weight of supplies needed per person)
-wgt_per = 4.0   #Kg
+wgt_per = 4.0   # Kg
 
 #########################################
 # Streamlit アプリのページ設定
@@ -90,19 +71,24 @@ def load_map_graph(pkl_path):
     with open(pkl_path, 'rb') as f:
         return pickle.load(f)
 
-# ---------------------------------------------
-# グラフデータの読み込み（pickleキャッシュ対応）
-# ---------------------------------------------
-def load_graph(place, graph_pickle):
-    if os.path.exists(graph_pickle):
-        with open(graph_pickle, 'rb') as f:
-            G = pickle.load(f)
-    else:
-        G = ox.graph_from_place(place, network_type='drive')
-        with open(graph_pickle, 'wb') as f:
-            pickle.dump(G, f)
-    return G
+#################################
+# 重い処理のキャッシュ化
+#毎回 OSM からグラフを取り直したり、距離行列を再計算したりすると非常に重くなる為。一度計算した結果をキャッシュ化。
 
+@st.cache_resource(show_spinner=False)
+def load_graph(place):
+    # OSMnx でのグラフ構築をキャッシュ
+    return ox.graph_from_place(place, network_type="drive")
+
+@st.cache_data(show_spinner=False)
+def build_distance_matrix(G, nodes):
+    # 単一始点ダイクストラで全ペア距離をキャッシュ
+    matrix = {}
+    for u in nodes:
+        lengths = nx.single_source_dijkstra_path_length(G, u, weight="length")
+        for v in nodes:
+            matrix[(u, v)] = lengths.get(v, float("inf"))
+    return matrix
 
 # -----------------------------------------------------------------------------
 # Streamlit で使用するセッションステート変数の初期化
