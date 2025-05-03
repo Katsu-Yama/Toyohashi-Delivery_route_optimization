@@ -190,7 +190,7 @@ if st.session_state.get("num_of_people") is None:
         np_df = pd.read_csv(
             file_path,
             header=None,
-            names=["Node", "num"]
+            names=["Node", "num"],
             dtype={"Node": str}         # Node を文字列として読み込む
         )
     except FileNotFoundError as e:
