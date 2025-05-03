@@ -180,17 +180,17 @@ route_file = "path_list_toyohashi.json"  # 経路リストデータ(JSON)
 Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景地図タイルURL
 
 #################################
-
 # セッションステートに被災者数データを読み込む（初回のみ）
 if st.session_state.get("num_of_people") is None:
+    # まずファイルパスを作成
+    file_path = os.path.join(root_dir, num_of_people)
     try:
-        # ファイルパスを先に組み立て
-        file_path = os.path.join(root_dir, num_of_people)
-        # 位置引数は file_path のみ、header/names はキーワード引数
+        # ファイルパスを唯一の位置引数に、
+        # header/names はキーワード引数で渡す
         np_df = pd.read_csv(
             file_path,
-            header=None,                     # ヘッダー行なし
-            names=["Node", "num"]           # 列名を付与
+            header=None,
+            names=["Node", "num"]
         )
     except FileNotFoundError as e:
         st.error(f"{num_of_people} が見つかりません: {e}")
