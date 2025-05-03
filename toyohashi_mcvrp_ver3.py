@@ -19,7 +19,7 @@ from streamlit_folium import st_folium  # Streamlit上でFolium地図を表示�
 
 # Fixstars Amplify 関係のインポート（量子アニーリング用）
 import amplify
-from amplify.client import FixstarsClient
+from amplify import FixstarsClient
 from amplify import VariableGenerator
 from amplify import one_hot
 from amplify import einsum
@@ -70,6 +70,20 @@ def load_geojson(path):
 def load_map_graph(pkl_path):
     with open(pkl_path, 'rb') as f:
         return pickle.load(f)
+
+# ---------------------------------------------
+# グラフデータの読み込み（pickleキャッシュ対応）
+# ---------------------------------------------
+def load_graph(place, graph_pickle):
+    if os.path.exists(graph_pickle):
+        with open(graph_pickle, 'rb') as f:
+            G = pickle.load(f)
+    else:
+        G = ox.graph_from_place(place, network_type='drive')
+        with open(graph_pickle, 'wb') as f:
+            pickle.dump(G, f)
+    return G
+
 
 # -----------------------------------------------------------------------------
 # Streamlit で使用するセッションステート変数の初期化
@@ -423,6 +437,9 @@ def upperbound_of_tour(capacity: int, demand: np.ndarray) -> int:
             return max_tourable_bases
     return max_tourable_bases
 
+# ---------------------------------------------
+# 距離行列作成関数の定義（動的計算 & 無限遠置換）
+# ---------------------------------------------
 # ノード間距離行列を作成する関数(未登録ルートはNaNを設定し、最後に未登録組み合わせがある場合は例外を投げる)
 def set_distance_matrix(path_df, node_list, G):
     n = len(node_list)
@@ -445,17 +462,21 @@ def set_distance_matrix(path_df, node_list, G):
                 route = nx.shortest_path(G, s, g, weight='length')
                 dist = sum(get_route_edge_attributes(G, route, 'length'))
                 distance_matrix[i, j] = dist
-                # オプション：path_df にも追加してキャッシュ
+                # キャッシュとしてpath_dfにも追加
                 path_df.loc[len(path_df)] = {
                     'start_node': s,
-                    'goal_node' : g,
-                    'route'     : [route],
-                    'distance'  : dist
+                    'goal_node': g,
+                    'route': [route],
+                    'distance': dist
                 }
             except Exception as e:
-                # それでも失敗したら大きめの値を入れておく
+                # それでも失敗したら一時的に無限大を設定
                 distance_matrix[i, j] = np.inf
                 st.warning(f"経路計算に失敗しました: {s} → {g} ({e})")
+    # 無限大を大きな有限値に置換（無限大が混入するとQUBO正規化でNaN発生）
+    finite_max = np.nanmax(distance_matrix[np.isfinite(distance_matrix)])
+    # 無限距離は「最大全域距離×10」など、適度に大きな値へ置き換え
+    distance_matrix[np.isinf(distance_matrix)] = finite_max * 10
     return distance_matrix
 
 # アニーリング用のパラメータをまとめて計算して返す関数
@@ -678,6 +699,20 @@ with gis_st:
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
 # 最適経路探索開始ボタン押下時
+if anr_st.button("最適経路探索開始"):
+    # ①配送拠点→避難所間の到達可能性チェック
+    unreachable = []
+    for g in selected_shelter_node:
+        # いずれかの配送拠点から到達できるか
+        if not any(nx.has_path(G, s, g) for s in selected_transport_node):
+            unreachable.append(g)
+    if unreachable:
+        names = [get_point_name(df, g) for g in unreachable]
+        anr_st.error(
+            f"以下の避難所へは配送拠点から到達できません：{', '.join(names)}。選択を見直してください。"
+        )
+        st.stop()
+
 if anr_st.button("最適経路探索開始"):
     with spinner_container:
         with st.spinner("処理中です。しばらくお待ちください..."):
