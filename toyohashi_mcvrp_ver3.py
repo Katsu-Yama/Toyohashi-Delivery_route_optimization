@@ -197,22 +197,6 @@ if st.session_state.get("num_of_people") is None:
         st.stop()
     st.session_state["num_of_people"] = np_df
 
-
-if st.session_state.get("num_of_people") is None:
-    try:
-        np_df = pd.read_csv(
-            "number_of_people.csv",
-            header=None,                # ヘッダー行がないことを指定
-            names=["Node", "NeedAmount"] , # 好きな列名を付与
-            os.path.join(root_dir, num_of_people),
-            header=None,
-            names=['Node', 'num'])
-    except FileNotFoundError as e:
-        st.error(f"{num_of_people} が見つかりません: {e}")
-        st.stop()
-    st.session_state["num_of_people"] = np_df
-
-
 # 避難所データ用の初期化
 if 'shelter_df' not in st.session_state:
     st.session_state['shelter_df'] = None
