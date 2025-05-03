@@ -184,6 +184,22 @@ Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景�
 # セッションステートに被災者数データを読み込む（初回のみ）
 if st.session_state.get("num_of_people") is None:
     try:
+        # ファイルパスを先に組み立て
+        file_path = os.path.join(root_dir, num_of_people)
+        # 位置引数は file_path のみ、header/names はキーワード引数
+        np_df = pd.read_csv(
+            file_path,
+            header=None,                     # ヘッダー行なし
+            names=["Node", "num"]           # 列名を付与
+        )
+    except FileNotFoundError as e:
+        st.error(f"{num_of_people} が見つかりません: {e}")
+        st.stop()
+    st.session_state["num_of_people"] = np_df
+
+
+if st.session_state.get("num_of_people") is None:
+    try:
         np_df = pd.read_csv(
             "number_of_people.csv",
             header=None,                # ヘッダー行がないことを指定
