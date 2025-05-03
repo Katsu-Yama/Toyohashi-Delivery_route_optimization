@@ -193,6 +193,10 @@ if st.session_state.get("num_of_people") is None:
             names=["Node", "num"],
             dtype={"Node": str}         # Node を文字列として読み込む
         )
+        # ────────── 追加 ──────────
+        # CSV から読み込んだ Node 列は文字列化＆余分な空白を除去
+        np_df["Node"] = np_df["Node"].astype(str).str.strip()
+        # ──────────────────────
     except FileNotFoundError as e:
         st.error(f"{num_of_people} が見つかりません: {e}")
         st.stop()
@@ -617,7 +621,13 @@ if map_data is None:
 
 # データ展開
 G = map_data['G']
+
 df = map_data['node_d']
+# ────────── 追加 ──────────
+# JSON 由来の Node 列も文字列化＆余分な空白を除去
+df["Node"] = df["Node"].astype(str).str.strip()
+# ──────────────────────
+
 path_df = map_data['path_d']
 base_map = map_data['base_map']
 base_map_copy = copy.deepcopy(base_map)
@@ -646,8 +656,20 @@ with anr_st:
   st.write("『選択完了後、下のボタンを押してください』")
 
 # 選択されたノードIDリスト
-selected_shelter_node = all_shelter[all_shelter['施設名'].isin(selected_shelter)]['Node'].tolist()
-selected_transport_node = all_transport[all_transport['施設名'].isin(selected_transport)]['Node'].tolist()
+selected_shelter_node   = (
+    all_shelter[all_shelter["施設名"].isin(selected_shelter)]
+      ["Node"]
+      .astype(str)
+      .str.strip()
+      .tolist()
+)
+selected_transport_node = (
+    all_transport[all_transport["施設名"].isin(selected_transport)]
+      ["Node"]
+      .astype(str)
+      .str.strip()
+      .tolist()
+)
 
 # 選択数が変化したらツアーリセット
 num_shelter = len(selected_shelter_node)
