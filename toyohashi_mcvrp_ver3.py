@@ -719,7 +719,8 @@ with gis_st:
 
 # ───── 選択数チェック （プロトタイプstreamlitクラウドのスペック都合上） ─────
 max_nodes = 50
-total_selected = len(selected_depot_nodes) + len(selected_shelter_nodes)
+# ここでは既に定義済みのリスト名を使う
+total_selected = len(selected_transport_node) + len(selected_shelter_node)
 if total_selected > max_nodes:
     st.warning(f"プロトタイプstreamlitクラウドのスペック都合上、配送拠点と避難所の合計は最大{max_nodes}箇所としています。現在{total_selected}箇所選択されています。")
     st.stop()
