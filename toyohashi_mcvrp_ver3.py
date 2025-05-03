@@ -699,20 +699,6 @@ with gis_st:
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
 # 最適経路探索開始ボタン押下時
-if anr_st.button("最適経路探索開始", key="btn_validate_start"):
-    # ①配送拠点→避難所間の到達可能性チェック
-    unreachable = []
-    for g in selected_shelter_node:
-        # いずれかの配送拠点から到達できるか
-        if not any(nx.has_path(G, s, g) for s in selected_transport_node):
-            unreachable.append(g)
-    if unreachable:
-        names = [get_point_name(df, g) for g in unreachable]
-        anr_st.error(
-            f"以下の避難所へは配送拠点から到達できません：{', '.join(names)}。選択を見直してください。"
-        )
-        st.stop()
-
 if anr_st.button("最適経路探索開始", key="btn_optimize_start"):
     with spinner_container:
         with st.spinner("処理中です。しばらくお待ちください..."):
