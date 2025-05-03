@@ -185,6 +185,9 @@ Map_Tile = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'  # 背景�
 if st.session_state.get("num_of_people") is None:
     try:
         np_df = pd.read_csv(
+            "number_of_people.csv",
+            header=None,                # ヘッダー行がないことを指定
+            names=["Node", "NeedAmount"] , # 好きな列名を付与
             os.path.join(root_dir, num_of_people),
             header=None,
             names=['Node', 'num']
@@ -682,7 +685,7 @@ with gis_st:
           change_num_of_people()
 
        np_df = st.session_state['num_of_people']
-       shelter_df = pd.DataFrame( selected_shelter_node,columns=['Node'] )
+       shelter_df = pd.DataFrame(selected_shelter_node,columns=['Node'] )
        shelter_df['Name'] = shelter_df['Node'].apply(lambda x: get_point_name(df,x))
        shelter_df2 = pd.merge(shelter_df, np_df, on='Node', how='left')
        shelter_df2['demand'] = shelter_df2['num'].apply(lambda x: x*wgt_per/1000.0)   #避難人数×一人当たりの必要物資量
