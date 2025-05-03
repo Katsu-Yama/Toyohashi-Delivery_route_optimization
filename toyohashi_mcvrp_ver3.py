@@ -190,8 +190,7 @@ if st.session_state.get("num_of_people") is None:
             names=["Node", "NeedAmount"] , # 好きな列名を付与
             os.path.join(root_dir, num_of_people),
             header=None,
-            names=['Node', 'num']
-        )
+            names=['Node', 'num'])
     except FileNotFoundError as e:
         st.error(f"{num_of_people} が見つかりません: {e}")
         st.stop()
