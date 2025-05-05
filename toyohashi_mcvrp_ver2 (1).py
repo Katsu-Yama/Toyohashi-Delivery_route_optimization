@@ -699,7 +699,36 @@ with gis_st:
     #re_node_list = selected_base['配送拠点'] + selected_base['避難所']
     base_map_copy = draw_route(base_map_copy, G, best_tour, path_df, re_node_list)
 
-  elif selected_base !=None:
+    # ────────────────────────────────────────────────
+    # ここから追記：最適経路探索後でも被災者数テーブルを残す
+    # ────────────────────────────────────────────────
+        if selected_shelter_node:
+            with st.expander("被災者数と必要物資量", expanded=False):
+                # 1) 元データ取得＆整形
+                np_df = st.session_state["num_of_people"].copy()
+                np_df["Node"] = np_df["Node"].astype(str).str.strip()
+
+                # 2) 選択避難所リストから表示用 DataFrame を作成
+                tmp = pd.DataFrame({
+                    "Node": selected_shelter_node,
+                    "Name": [get_point_name(df, n) for n in selected_shelter_node],
+                })
+                merged = tmp.merge(np_df[["Node", "num"]], on="Node", how="left")
+                merged["num"] = merged["num"].fillna(0).astype(int)
+                merged["demand"] = merged["num"] * wgt_per / 1000.0
+
+                # 3) DataFrame（読み取り専用）を表示
+                st.dataframe(
+                    merged.rename(columns={
+                        "Name":   "避難所",
+                        "num":    "避難者数（人）",
+                        "demand": "必要物資量（トン）",
+                    }),
+                    hide_index=True,
+                )
+# ────────────────────────────────────────────────
+
+  elif selected_base != None:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
     plot_select_marker(base_map_copy, df,selected_base)
     # 選択された避難所があれば「被災者数テーブル」を表示
