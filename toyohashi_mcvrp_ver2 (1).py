@@ -702,30 +702,28 @@ with gis_st:
     # ────────────────────────────────────────────────
     # ここから追記：最適経路探索後でも被災者数テーブルを残す
     # ────────────────────────────────────────────────
-        if selected_shelter_node:
-            with st.expander("被災者数と必要物資量", expanded=False):
-                # 1) 元データ取得＆整形
-                np_df = st.session_state["num_of_people"].copy()
-                np_df["Node"] = np_df["Node"].astype(str).str.strip()
+    if selected_shelter_node:
+        with st.expander("被災者数と必要物資量", expanded=False):
+            np_df = st.session_state["num_of_people"].copy()
+            np_df["Node"] = np_df["Node"].astype(str).str.strip()
 
-                # 2) 選択避難所リストから表示用 DataFrame を作成
-                tmp = pd.DataFrame({
-                    "Node": selected_shelter_node,
-                    "Name": [get_point_name(df, n) for n in selected_shelter_node],
-                })
-                merged = tmp.merge(np_df[["Node", "num"]], on="Node", how="left")
-                merged["num"] = merged["num"].fillna(0).astype(int)
-                merged["demand"] = merged["num"] * wgt_per / 1000.0
+            tmp = pd.DataFrame({
+                "Node": selected_shelter_node,
+                "Name": [get_point_name(df, n) for n in selected_shelter_node],
+            })
+            merged = tmp.merge(
+                np_df[["Node", "num"]], on="Node", how="left")
+            merged["num"] = merged["num"].fillna(0).astype(int)
+            merged["demand"] = merged["num"] * wgt_per / 1000.0
 
-                # 3) DataFrame（読み取り専用）を表示
-                st.dataframe(
-                    merged.rename(columns={
-                        "Name":   "避難所",
-                        "num":    "避難者数（人）",
-                        "demand": "必要物資量（トン）",
-                    }),
-                    hide_index=True,
-                )
+            st.dataframe(
+                merged.rename(columns={
+                    "Name":   "避難所",
+                    "num":    "避難者数（人）",
+                    "demand": "必要物資量（トン）",
+                }),
+                hide_index=True,
+            )
 # ────────────────────────────────────────────────
 
   elif selected_base != None:
