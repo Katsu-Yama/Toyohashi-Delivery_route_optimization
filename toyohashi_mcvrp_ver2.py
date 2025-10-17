@@ -31,7 +31,7 @@ import copy  # オブジェクトのディープコピー用
 
 ##############################
 # FixStars 有効なトークンを設定
-api_token = "AE/mpODs9XWW40bvSyBs9UZVIEoOKWmtgZo"  
+api_token = "AE/URHR9FLII4OW9iTl5QArFYqV2KHTcVdI"  
 
 # アニーリング実行回数
 num_annering = 1
@@ -892,3 +892,4 @@ if st.session_state['best_tour'] !=None:
 
 if st.session_state['redraw'] != False:
   st.rerun()
+
