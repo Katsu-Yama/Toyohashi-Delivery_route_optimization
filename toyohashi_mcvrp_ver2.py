@@ -31,7 +31,7 @@ import copy  # オブジェクトのディープコピー用
 
 ##############################
 # FixStars 有効なトークンを設定
-api_token = "AE/URHR9FLII4OW9iTl5QArFYqV2KHTcVdI"  
+api_token = "AE/I6E6QYvcYzybmZlQZodZC2tMZhRTZ3Qo"  
 
 # アニーリング実行回数
 num_annering = 1
